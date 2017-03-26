@@ -53,7 +53,7 @@ public class VideoListActivity extends AppCompatActivity {
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        MenuItem item = navigation.getMenu().findItem(R.id.navigation_cafe);
+        MenuItem item = navigation.getMenu().findItem(R.id.navigation_video);
         item.setCheckable(true);
         item.setChecked(true);
     }
