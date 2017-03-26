@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,5 +61,16 @@ public class VideoListActivity extends AppCompatActivity {
         MenuItem item = navigation.getMenu().findItem(R.id.navigation_video);
         item.setCheckable(true);
         item.setChecked(true);
+
+        // Set floating button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
