@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Cafeyab</string>
+
+    <string name="title_home">خانه</string>
+    <string name="title_cafe">کافه ها</string>
+    <string name="title_news">مطالب</string>
+    <string name="title_event">رویداد ها</string>
+    <string name="title_map">نقشه</string>
+
+    <string name="activity_about">درباره کافه یاب</string>
+    <string name="activity_cafe_list">فهرست کافه ها</string>
+    <string name="activity_news_list">فهرست مطالب</string>
+    <string name="activity_event_list">فهرست رویداد ها</string>
+    <string name="activity_map_list">کافه های اطراف</string>
+</resources>
