@@ -1,6 +1,5 @@
 package com.faragostaresh.cafeyab;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -93,5 +92,4 @@ public class MainActivity extends AppCompatActivity {
         GridView gridView = (GridView)findViewById(R.id.gridview);
         gridView.setAdapter(new MainIconAdapter(this));
     }
-
 }
