@@ -43,6 +43,11 @@
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
+            android:name=".VideoListActivity"
+            android:label="@string/activity_video_list"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
             android:parentActivityName=".MainActivity">

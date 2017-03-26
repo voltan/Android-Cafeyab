@@ -10,8 +10,6 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -34,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
                     startActivity(intent4);
                     break;
-                case R.id.navigation_map:
-                    Intent intent5 = new Intent(getApplicationContext(), MapListActivity.class);
+                case R.id.navigation_video:
+                    Intent intent5 = new Intent(getApplicationContext(), VideoListActivity.class);
                     startActivity(intent5);
                     break;
             }
