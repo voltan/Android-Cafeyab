@@ -7,9 +7,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
 import com.bumptech.glide.Glide;
+import com.faragostaresh.adaptor.MainIconAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        GridView gridView = (GridView)findViewById(R.id.gridview);
+        gridView.setAdapter(new MainIconAdapter(this));
     }
 
 }
