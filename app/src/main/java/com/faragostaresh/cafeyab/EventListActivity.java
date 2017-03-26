@@ -19,27 +19,31 @@ public class EventListActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_event:
                     Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
                     startActivity(intent3);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_news:
                     Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
                     startActivity(intent4);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_video:
                     Intent intent5 = new Intent(getApplicationContext(), VideoListActivity.class);
                     startActivity(intent5);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
             }
             return false;
         }
-
     };
 
     @Override
