@@ -1,5 +1,6 @@
 package com.faragostaresh.cafeyab;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
+        // Set hide actionBar
+        getSupportActionBar().hide();
+
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        // Set list of main icons
         GridView gridView = (GridView)findViewById(R.id.gridview);
         gridView.setAdapter(new MainIconAdapter(this));
     }

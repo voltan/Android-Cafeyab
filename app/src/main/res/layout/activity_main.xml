@@ -59,6 +59,7 @@
                         android:text="@string/backdrop_subtitle"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/backdrop_subtitle"
+                        android:gravity="center"
                         android:padding="@dimen/backdrop_subtitle_padding"/>
 
                 </LinearLayout>
