@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
@@ -91,5 +92,41 @@ public class MainActivity extends AppCompatActivity {
         // Set list of main icons
         GridView gridView = (GridView)findViewById(R.id.gridview);
         gridView.setAdapter(new MainIconAdapter(this));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                if (position == 0) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 1) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 2) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 3) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 4) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 5) {
+                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+            }
+        });
     }
 }

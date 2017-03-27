@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Cafeyab</string>
 
+    <string name="action_search">جستجو</string>
+
     <string name="title_home">خانه</string>
     <string name="title_cafe">کافه ها</string>
     <string name="title_news">مطالب</string>

@@ -26,5 +26,4 @@
         android:icon="@drawable/ic_videocam"
         android:title="@string/title_video" />
 
-
 </menu>
