@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
@@ -15,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.faragostaresh.adaptor.MainIconAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText searchBox;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -126,6 +130,16 @@ public class MainActivity extends AppCompatActivity {
                     Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
+            }
+        });
+
+        // Set click on search box
+        searchBox = (EditText)findViewById(R.id.search);
+        searchBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
             }
         });
     }

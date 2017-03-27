@@ -69,6 +69,11 @@
             android:label="@string/activity_map_list"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/activity_search"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@
     <string name="activity_event_list">فهرست رویداد ها</string>
     <string name="activity_video_list">فهرست ویدیو ها</string>
     <string name="activity_map_list">کافه های اطراف بر روی نقشه</string>
+    <string name="activity_search">جستجو</string>
 
     <string name="backdrop_title">کافه یاب</string>
     <string name="backdrop_subtitle">فهرست کافه های شهر های مختلف ایران</string>
