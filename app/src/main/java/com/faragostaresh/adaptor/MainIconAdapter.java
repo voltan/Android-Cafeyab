@@ -20,12 +20,12 @@ public final class MainIconAdapter extends BaseAdapter {
     public MainIconAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
 
-        mItems.add(new Item("Red",       R.drawable.ic_videocam_black_24dp));
-        mItems.add(new Item("Magenta",   R.drawable.ic_videocam_black_24dp));
-        mItems.add(new Item("Dark Gray", R.drawable.ic_videocam_black_24dp));
-        mItems.add(new Item("Gray",      R.drawable.ic_videocam_black_24dp));
-        mItems.add(new Item("Green",     R.drawable.ic_videocam_black_24dp));
-        mItems.add(new Item("Cyan",      R.drawable.ic_videocam_black_24dp));
+        mItems.add(new Item("Red",       R.drawable.ic_videocam));
+        mItems.add(new Item("Magenta",   R.drawable.ic_videocam));
+        mItems.add(new Item("Dark Gray", R.drawable.ic_videocam));
+        mItems.add(new Item("Gray",      R.drawable.ic_videocam));
+        mItems.add(new Item("Green",     R.drawable.ic_videocam));
+        mItems.add(new Item("Cyan",      R.drawable.ic_videocam));
     }
 
     @Override
