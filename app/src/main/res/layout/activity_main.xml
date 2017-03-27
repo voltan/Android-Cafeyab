@@ -72,7 +72,7 @@
                         android:layout_below="@+id/search"
                         android:layout_centerHorizontal="true"
                         android:ems="10"
-                        android:hint="جستجو"
+                        android:hint="@string/backdrop_search"
                         android:focusableInTouchMode="false"
                         android:imeOptions="flagNoExtractUi"
                         android:shadowColor="@color/white"

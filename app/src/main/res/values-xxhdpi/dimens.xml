@@ -1,0 +1,8 @@
+<resources>
+    <!-- Main page image -->
+    <dimen name="detail_backdrop_height">200dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+    <dimen name="backdrop_subtitle_padding">10dp</dimen>
+
+</resources>

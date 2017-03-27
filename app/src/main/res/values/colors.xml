@@ -5,4 +5,5 @@
     <color name="colorAccent">#FC0000</color>
 
     <color name="white">#ffffff</color>
+    <color name="background_material_light">#efebe9</color>
 </resources>

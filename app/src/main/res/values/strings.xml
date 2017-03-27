@@ -21,4 +21,5 @@
 
     <string name="backdrop_title">کافه یاب</string>
     <string name="backdrop_subtitle">فهرست کافه های شهر های مختلف ایران</string>
+    <string name="backdrop_search">جستجوی کافه یا منطقه ...</string>
 </resources>

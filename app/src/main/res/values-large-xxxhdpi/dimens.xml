@@ -1,0 +1,18 @@
+<resources>
+    <!-- Main page image -->
+    <dimen name="detail_backdrop_height">400dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+    <dimen name="backdrop_subtitle_padding">10dp</dimen>
+
+    <!-- Main page icons -->
+    <dimen name="main_grid_icon_padding_bottom">65dp</dimen>
+    <dimen name="main_grid_icon_padding_top">65dp</dimen>
+    <dimen name="main_grid_icon_padding_left">65dp</dimen>
+    <dimen name="main_grid_icon_padding_right">65dp</dimen>
+    <dimen name="main_grid_text_padding_bottom">35dp</dimen>
+    <dimen name="main_grid_text_padding_top">5dp</dimen>
+    <dimen name="main_grid_text_padding_left">5dp</dimen>
+    <dimen name="main_grid_text_padding_right">5dp</dimen>
+
+</resources>
