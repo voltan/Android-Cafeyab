@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@android:color/holo_red_dark</item>
         <item name="android:colorBackground">?attr/colorButtonNormal</item>
+
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -16,5 +18,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="fontPath">fonts/Vazir.ttf</item>
     </style>
 </resources>
