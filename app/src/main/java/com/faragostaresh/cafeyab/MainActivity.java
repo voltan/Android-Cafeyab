@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
+import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.faragostaresh.adaptor.MainIconAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText searchBox;
+    TextView searchBox;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set click on search box
-        searchBox = (EditText)findViewById(R.id.search);
+        searchBox = (TextView)findViewById(R.id.search);
         searchBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

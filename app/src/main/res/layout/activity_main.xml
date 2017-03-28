@@ -46,7 +46,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout3">
 
                     <TextView
                         android:id="@+id/love_music"
@@ -65,24 +66,22 @@
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/backdrop_subtitle" />
 
-                    <EditText
-                        android:id="@+id/search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/search"
-                        android:layout_centerHorizontal="true"
-                        android:ems="10"
-                        android:hint="@string/backdrop_search"
-                        android:focusableInTouchMode="false"
-                        android:imeOptions="flagNoExtractUi"
-                        android:shadowColor="@color/white"
-                        android:textColor="@color/white"
-                        android:textColorHighlight="@color/white"
-                        android:textColorHint="@color/white"
-                        android:textColorLink="@color/white"
-                        android:background="@drawable/background_search"></EditText>
-
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/background_search"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="true"
+                    android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                    android:text="@string/backdrop_search"
+                    android:textAlignment="center"
+                    android:textColor="#8f8f8f" />
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
