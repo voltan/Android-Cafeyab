@@ -23,4 +23,5 @@
     <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
         <item name="fontPath">fonts/Vazir.ttf</item>
     </style>
+
 </resources>
