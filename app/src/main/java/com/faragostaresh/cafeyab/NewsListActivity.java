@@ -19,7 +19,7 @@ public class NewsListActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent1 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;

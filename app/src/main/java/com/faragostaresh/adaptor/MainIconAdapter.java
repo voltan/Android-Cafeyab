@@ -20,12 +20,13 @@ public final class MainIconAdapter extends BaseAdapter {
     public MainIconAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
 
-        mItems.add(new Item("کافه های با کیک",       R.drawable.ic_cake));
-        mItems.add(new Item("کافه های با صبحانه",   R.drawable.ic_free_breakfast));
-        mItems.add(new Item("کافه های بدون سیگار", R.drawable.ic_smoke_free));
-        mItems.add(new Item("کافه های با غذا",      R.drawable.ic_restaurant));
-        mItems.add(new Item("کافه های با نوشدنی",     R.drawable.ic_local_drink));
-        mItems.add(new Item("انتخاب شهر",      R.drawable.ic_location_city));
+        mItems.add(new Item("کافه‌های پیشنهادی",       R.drawable.ic_assistant_photo));
+        mItems.add(new Item("کافه‌های با صبحانه",   R.drawable.ic_free_breakfast));
+        mItems.add(new Item("کافه‌های بدون سیگار", R.drawable.ic_smoke_free));
+        mItems.add(new Item("کافه‌های با غذا",      R.drawable.ic_restaurant));
+
+        mItems.add(new Item("مناسب برای خانواده",     R.drawable.ic_people));
+        mItems.add(new Item("با غذای گیاهی",      R.drawable.ic_cake));
     }
 
     @Override

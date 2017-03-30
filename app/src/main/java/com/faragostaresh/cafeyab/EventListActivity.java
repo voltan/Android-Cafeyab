@@ -2,6 +2,7 @@ package com.faragostaresh.cafeyab;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -9,8 +10,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.faragostaresh.adaptor.EventListAdapter;
+import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.model.ItemList;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventListActivity extends AppCompatActivity {
+
+    private static final String eventUrl = "https://www.cafeyab.com/event/json/search?page=";
+    public static String itemId;
+    public int page = 1;
+    private List<ItemList> myEventList = new ArrayList<ItemList>();
+    private GridView gridView;
+    private EventListAdapter adapter;
+    private SwipyRefreshLayout mSwipyRefreshLayout;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -19,7 +49,7 @@ public class EventListActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent1 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
@@ -73,6 +103,23 @@ public class EventListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Set for list of items
+        gridView = (GridView) findViewById(R.id.eventlist);
+        adapter = new EventListAdapter(this, myEventList);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new EventListActivity.ListVewiClickListener());
+        gridView.setOnScrollListener(onScrollListener());
+        myEventList.clear();
+        mSwipyRefreshLayout = (SwipyRefreshLayout) findViewById(R.id.swipyrefreshlayout);
+        mSwipyRefreshLayout.post(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         mSwipyRefreshLayout.setRefreshing(true);
+                                         fetchList();
+                                     }
+                                 }
+        );
     }
 
     @Override
@@ -89,5 +136,110 @@ public class EventListActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    private AbsListView.OnScrollListener onScrollListener() {
+        return new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                int first = view.getFirstVisiblePosition();
+                int count = view.getChildCount();
+                if (scrollState == SCROLL_STATE_IDLE || (first + count > adapter.getCount())) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mSwipyRefreshLayout.setRefreshing(true);
+                            fetchList();
+                        }
+                    }, 1500);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                                 int totalItemCount) {
+            }
+        };
+    }
+
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        fetchList();
+    }
+
+
+    private void fetchList() {
+        // showing refresh animation before making http call
+        mSwipyRefreshLayout.setRefreshing(true);
+
+
+        // appending offset to url
+        String url = eventUrl + page;
+
+        // Volley's json array request object
+        JsonObjectRequest req = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            JSONArray jsonArray = response.optJSONArray("events");
+                            if (response.length() > 0) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    try {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        ItemList event = new ItemList();
+                                        event.setTitle(obj.getString("title"));
+                                        event.setItemID(obj.getString("id"));
+                                        event.setThumbnailUrl(obj.getString("mediumUrl"));
+                                        myEventList.add(event);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                // Update page
+                                page++;
+                                adapter.notifyDataSetChanged();
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mSwipyRefreshLayout.setRefreshing(false);
+                                    }
+                                }, 2500);
+                            }
+                        }
+
+                        // stopping swipe refresh
+                        mSwipyRefreshLayout.setRefreshing(false);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                // stopping swipe refresh
+                mSwipyRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        // Adding request to request queue
+        CafeyabApplication.getInstance().addToRequestQueue(req);
+    }
+
+    private class ListVewiClickListener implements ListView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            ItemList getselected = (ItemList) (gridView.getItemAtPosition(position));
+            itemId = getselected.getItemId();
+            displayView(itemId);
+        }
+
+        private void displayView(String itemId) {
+            // Start New activity with a request to Show Selected News
+            Intent intent = new Intent(getApplicationContext(), EventSingleActivity.class);
+            intent.putExtra("itemId", itemId);
+            startActivity(intent);
+
+        }
     }
 }

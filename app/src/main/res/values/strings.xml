@@ -9,6 +9,7 @@
     <string name="title_event">رویداد ها</string>
     <string name="title_video">ویدیو ها</string>
     <string name="title_map">نقشه</string>
+    <string name="title_city">انتخاب شهر</string>
 
     <string name="activity_main">کافه یاب</string>
     <string name="activity_about">درباره کافه یاب</string>
@@ -16,10 +17,13 @@
     <string name="activity_news_list">فهرست مطالب</string>
     <string name="activity_event_list">فهرست رویداد ها</string>
     <string name="activity_video_list">فهرست ویدیو ها</string>
-    <string name="activity_map_list">کافه های اطراف بر روی نقشه</string>
+    <string name="activity_map_list">کافه‌های اطراف بر روی نقشه</string>
     <string name="activity_search">جستجو</string>
 
+    <string name="activity_event_single">جزییات رویداد</string>
+    <string name="activity_video_single">جزییات ویدیو</string>
+
     <string name="backdrop_title">کافه یاب</string>
-    <string name="backdrop_subtitle">فهرست کافه های شهر های مختلف ایران</string>
+    <string name="backdrop_subtitle">فهرست کافه‌های شهر های مختلف ایران</string>
     <string name="backdrop_search">جستجوی کافه یا منطقه ...</string>
 </resources>
