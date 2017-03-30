@@ -34,7 +34,7 @@ import java.util.List;
 
 public class EventListActivity extends AppCompatActivity {
 
-    private static final String eventUrl = "https://www.cafeyab.com/event/json/search?page=";
+    private static final String eventUrl = "https://www.cafeyab.com/event/json/search?limit=10&page=";
     public static String itemId;
     public int page = 1;
     private List<ItemList> myEventList = new ArrayList<ItemList>();

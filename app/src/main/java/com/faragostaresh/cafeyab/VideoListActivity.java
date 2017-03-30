@@ -34,7 +34,7 @@ import java.util.List;
 
 public class VideoListActivity extends AppCompatActivity {
 
-    private static final String videoUrl = "https://www.cafeyab.com/video/json/search?page=";
+    private static final String videoUrl = "https://www.cafeyab.com/video/json/search?limit=10&page=";
     public static String itemId;
     public int page = 1;
     private List<ItemList> myVideoList = new ArrayList<ItemList>();
