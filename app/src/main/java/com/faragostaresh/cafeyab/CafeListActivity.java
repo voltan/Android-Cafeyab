@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,15 +39,12 @@ import java.util.List;
 public class CafeListActivity extends AppCompatActivity {
 
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
-    private static final String locationUrl = "https://www.cafeyab.com/guide/json/locationList?level=3";
     public static String itemId;
     public int page = 1;
     private List<ItemList> myCafeList = new ArrayList<ItemList>();
     private GridView gridView;
     private CafeListAdapter adapter;
     private SwipyRefreshLayout mSwipyRefreshLayout;
-
-    String[] SPINNERLIST = {"تهران", "اصفهان", "شیراز", "مشهد", "اهواز", "رشت", "ساری", "کرج", "تبریز"};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -109,11 +108,20 @@ public class CafeListActivity extends AppCompatActivity {
             }
         });
 
-
         // Get location list
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
+        String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, CITYTITLE);
         MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
         materialDesignSpinner.setAdapter(arrayAdapter);
+        materialDesignSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String[] CITYSLUG = getResources().getStringArray(R.array.city_list_slug);
+                String cityTitle = adapterView.getItemAtPosition(position).toString();
+                String citySlug = CITYSLUG[position];
+                setTitle(cityTitle + " - " + citySlug);
+            }
+        });
 
         // Set for list of items
         gridView = (GridView) findViewById(R.id.cafelist);

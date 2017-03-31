@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city_list_name">
+        <item>همه شهر ها</item>
+        <item>تهران</item>
+        <item>کرج</item>
+        <item>تبریز</item>
+        <item>اصفهان</item>
+        <item>شیراز</item>
+        <item>مشهد</item>
+        <item>اهواز</item>
+        <item>رشت</item>
+        <item>ساری</item>
+        <item>آمل</item>
+        <item>دزفول</item>
+        <item>بندر عباس</item>
+        <item>بیرجند</item>
+        <item>اراک</item>
+        <item>قزوین</item>
+        <item>رویان(نور)</item>
+        <item>رامسر</item>
+    </string-array>
+
+    <string-array name="city_list_slug">
+        <item>all</item>
+        <item>tehran</item>
+        <item>karaj-city</item>
+        <item>tabriz</item>
+        <item>isfahan-city</item>
+        <item>shiraz</item>
+        <item>mashhad</item>
+        <item>ahvaz</item>
+        <item>rasht</item>
+        <item>sari</item>
+        <item>amol</item>
+        <item>dezful</item>
+        <item>bandar-abbas4</item>
+        <item>birjand</item>
+        <item>arak</item>
+        <item>qazvin-city</item>
+        <item>royan-noor</item>
+        <item>ramsar</item>
+    </string-array>
+</resources>
