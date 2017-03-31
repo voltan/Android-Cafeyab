@@ -51,6 +51,11 @@
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
+            android:name=".CafeSingleActivity"
+            android:label="@string/activity_cafe_list"
+            android:parentActivityName=".CafeListActivity">
+        </activity>
+        <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"
             android:parentActivityName=".MainActivity">
@@ -78,11 +83,6 @@
         <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
-            android:name=".SearchActivity"
-            android:label="@string/activity_search"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>

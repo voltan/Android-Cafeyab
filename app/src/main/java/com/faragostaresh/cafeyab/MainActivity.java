@@ -5,12 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
@@ -105,32 +102,32 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position == 0) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 1) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 2) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 3) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 4) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 5) {
-                    Intent myIntent = new Intent(view.getContext(), AboutActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
             }
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         searchBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
                 startActivity(intent);
             }
         });

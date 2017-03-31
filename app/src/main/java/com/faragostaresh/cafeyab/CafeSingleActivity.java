@@ -6,12 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class SearchActivity extends AppCompatActivity {
+public class CafeSingleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_cafe_single);
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);

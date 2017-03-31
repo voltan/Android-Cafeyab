@@ -20,8 +20,9 @@
     <string name="activity_map_list">کافه‌های اطراف بر روی نقشه</string>
     <string name="activity_search">جستجو</string>
 
-    <string name="activity_event_single">جزییات رویداد</string>
-    <string name="activity_video_single">جزییات ویدیو</string>
+    <string name="activity_event_single">اطلاعات رویداد</string>
+    <string name="activity_video_single">اطلاعات ویدیو</string>
+    <string name="activity_cafe_single">اطلاعات کافه</string>
 
     <string name="backdrop_title">کافه یاب</string>
     <string name="backdrop_subtitle">فهرست کافه‌های شهر های مختلف ایران</string>

@@ -2,6 +2,7 @@ package com.faragostaresh.cafeyab;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -9,8 +10,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.faragostaresh.adaptor.CafeListAdapter;
+import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.model.ItemList;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CafeListActivity extends AppCompatActivity {
+
+    private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
+    private static final String locationUrl = "https://www.cafeyab.com/guide/json/locationList?level=3";
+    public static String itemId;
+    public int page = 1;
+    private List<ItemList> myCafeList = new ArrayList<ItemList>();
+    private GridView gridView;
+    private CafeListAdapter adapter;
+    private SwipyRefreshLayout mSwipyRefreshLayout;
+
+    String[] SPINNERLIST = {"تهران", "اصفهان", "شیراز", "مشهد", "اهواز", "رشت", "ساری", "کرج", "تبریز"};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,6 +108,29 @@ public class CafeListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        // Get location list
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, SPINNERLIST);
+        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
+        materialDesignSpinner.setAdapter(arrayAdapter);
+
+        // Set for list of items
+        gridView = (GridView) findViewById(R.id.cafelist);
+        adapter = new CafeListAdapter(this, myCafeList);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new CafeListActivity.ListVewiClickListener());
+        gridView.setOnScrollListener(onScrollListener());
+        myCafeList.clear();
+        mSwipyRefreshLayout = (SwipyRefreshLayout) findViewById(R.id.swipyrefreshlayout);
+        mSwipyRefreshLayout.post(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         mSwipyRefreshLayout.setRefreshing(true);
+                                         fetchList();
+                                     }
+                                 }
+        );
     }
 
     @Override
@@ -90,4 +148,110 @@ public class CafeListActivity extends AppCompatActivity {
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
     }
+
+    private AbsListView.OnScrollListener onScrollListener() {
+        return new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                int first = view.getFirstVisiblePosition();
+                int count = view.getChildCount();
+                if (scrollState == SCROLL_STATE_IDLE || (first + count > adapter.getCount())) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mSwipyRefreshLayout.setRefreshing(true);
+                            fetchList();
+                        }
+                    }, 1500);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                                 int totalItemCount) {
+            }
+        };
+    }
+
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        fetchList();
+    }
+
+
+    private void fetchList() {
+        // showing refresh animation before making http call
+        mSwipyRefreshLayout.setRefreshing(true);
+
+
+        // appending offset to url
+        String url = cafeUrl + page;
+
+        // Volley's json array request object
+        JsonObjectRequest req = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            JSONArray jsonArray = response.optJSONArray("items");
+                            if (response.length() > 0) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    try {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        ItemList cafe = new ItemList();
+                                        cafe.setTitle(obj.getString("title"));
+                                        cafe.setItemID(obj.getString("id"));
+                                        cafe.setThumbnailUrl(obj.getString("mediumUrl"));
+                                        myCafeList.add(cafe);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                // Update page
+                                page++;
+                                adapter.notifyDataSetChanged();
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mSwipyRefreshLayout.setRefreshing(false);
+                                    }
+                                }, 2500);
+                            }
+                        }
+
+                        // stopping swipe refresh
+                        mSwipyRefreshLayout.setRefreshing(false);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                // stopping swipe refresh
+                mSwipyRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        // Adding request to request queue
+        CafeyabApplication.getInstance().addToRequestQueue(req);
+    }
+
+    private class ListVewiClickListener implements ListView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            ItemList getselected = (ItemList) (gridView.getItemAtPosition(position));
+            itemId = getselected.getItemId();
+            displayView(itemId);
+        }
+
+        private void displayView(String itemId) {
+            // Start New activity with a request to Show Selected News
+            Intent intent = new Intent(getApplicationContext(), CafeSingleActivity.class);
+            intent.putExtra("itemId", itemId);
+            startActivity(intent);
+
+        }
+    }
+
 }
