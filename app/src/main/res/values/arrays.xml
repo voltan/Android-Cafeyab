@@ -22,7 +22,7 @@
     </string-array>
 
     <string-array name="city_list_slug">
-        <item>all</item>
+        <item></item>
         <item>tehran</item>
         <item>karaj-city</item>
         <item>tabriz</item>

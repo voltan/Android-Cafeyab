@@ -7,8 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +40,7 @@ public class CafeListActivity extends AppCompatActivity {
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
     public static String itemId;
     public int page = 1;
+    public String location = "";
     private List<ItemList> myCafeList = new ArrayList<ItemList>();
     private GridView gridView;
     private CafeListAdapter adapter;
@@ -120,8 +120,19 @@ public class CafeListActivity extends AppCompatActivity {
                 String cityTitle = adapterView.getItemAtPosition(position).toString();
                 String citySlug = CITYSLUG[position];
                 setTitle(cityTitle + " - " + citySlug);
+
+
+                Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
+                intent.putExtra("location", citySlug);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            location = extras.getString("location");
+        }
 
         // Set for list of items
         gridView = (GridView) findViewById(R.id.cafelist);
@@ -193,6 +204,9 @@ public class CafeListActivity extends AppCompatActivity {
 
         // appending offset to url
         String url = cafeUrl + page;
+        if (!TextUtils.isEmpty(location)) {
+            url = url + "&location=" + location;
+        }
 
         // Volley's json array request object
         JsonObjectRequest req = new JsonObjectRequest(url,
