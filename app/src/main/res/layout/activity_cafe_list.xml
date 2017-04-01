@@ -80,8 +80,8 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingRight="10dp"
-                        android:text="@string/backdrop_search"
-                        android:textSize="14sp" />
+                        android:text="@string/filter_title"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -92,15 +92,38 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/filter_name"
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="@string/filter_name" />
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="0.3"
+                                android:padding="8dp"
+                                android:text="@string/filter_name" />
+
+                            <EditText
+                                android:id="@+id/filter_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="0.7"
+                                android:background="@drawable/background_field"
+                                android:ems="10"
+                                android:inputType="textPersonName"
+                                android:padding="8dp" />
+
+                        </TableRow>
 
                         <View
                             android:layout_width="match_parent"
@@ -114,25 +137,6 @@
                             android:layout_margin="@dimen/activity_vertical_margin"
                             android:hint="@string/filter_city"
                             app:met_floatingLabel="normal" />
-
-
-                        <TableRow
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content" >
-
-                            <CheckBox
-                                android:id="@+id/circleCloseCheck"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/filter_breakfast" />
-
-                            <CheckBox
-                                android:id="@+id/nwpCheck"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/filter_city" />
-                        </TableRow>
-
 
                         <View
                             android:layout_width="match_parent"
@@ -151,72 +155,81 @@
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
 
-                        <CheckBox
-                            android:id="@+id/filter_no_smoking"
+                        <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_no_smoking" />
+                            android:layout_height="wrap_content">
+
+                            <CheckBox
+                                android:id="@+id/filter_no_smoking"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_no_smoking" />
+
+                            <CheckBox
+                                android:id="@+id/filter_family"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_family" />
+
+                        </TableRow>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
 
-                        <CheckBox
-                            android:id="@+id/filter_family"
+                        <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_family" />
+                            android:layout_height="wrap_content">
+
+                            <CheckBox
+                                android:id="@+id/filter_breakfast"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_breakfast" />
+
+                            <CheckBox
+                                android:id="@+id/filter_food"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_food" />
+
+                        </TableRow>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
 
-                        <CheckBox
-                            android:id="@+id/filter_breakfast"
+                        <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_breakfast" />
+                            android:layout_height="64dp">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray" />
+                            <CheckBox
+                                android:id="@+id/filter_vegetarianـfood"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_vegetarianـfood" />
 
-                        <CheckBox
-                            android:id="@+id/filter_food"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_food" />
+                            <CheckBox
+                                android:id="@+id/filter_wifi"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:text="@string/filter_wifi" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray" />
-
-                        <CheckBox
-                            android:id="@+id/filter_vegetarianـfood"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_vegetarianـfood" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray" />
-
-                        <CheckBox
-                            android:id="@+id/filter_wifi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:text="@string/filter_wifi" />
+                        </TableRow>
 
                         <View
                             android:layout_width="match_parent"
@@ -233,9 +246,6 @@
                     </LinearLayout>
 
                 </ScrollView>
-
-
-
             </LinearLayout>
         </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 

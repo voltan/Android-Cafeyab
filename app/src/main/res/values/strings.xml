@@ -31,16 +31,16 @@
     <string name="connection_error">دسترسی به اینترنت برقرار نیست !</string>
     <string name="connection_retry">بررسی</string>
 
-    <string name="filter_title">جستجوی کافه یا منطقه ...</string>
+    <string name="filter_title">جستجوی کافه بر اساس منطقه و ویژگی ها</string>
     <string name="filter_name">نام کافه</string>
     <string name="filter_city">انتخاب شهر</string>
     <string name="filter_recommended">کافه‌های پیشنهادی</string>
-    <string name="filter_no_smoking">کافه‌های بدون سیگار</string>
-    <string name="filter_family">مناسب برای خانواده</string>
-    <string name="filter_breakfast">کافه‌های با صبحانه</string>
-    <string name="filter_food">کافه‌های با غذا</string>
-    <string name="filter_vegetarianـfood">با غذای گیاهی</string>
-    <string name="filter_wifi">کافه های با اینترنت</string>
+    <string name="filter_no_smoking">بدون سیگار</string>
+    <string name="filter_family">خانوادی</string>
+    <string name="filter_breakfast">صبحانه</string>
+    <string name="filter_food">غذا</string>
+    <string name="filter_vegetarianـfood">غذای گیاهی</string>
+    <string name="filter_wifi">اینترنت</string>
     <string name="filter_button">جستجو</string>
 
 </resources>
