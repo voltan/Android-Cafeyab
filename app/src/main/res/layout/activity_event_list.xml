@@ -30,16 +30,12 @@
 
             <GridView
                 android:id="@+id/eventlist"
-                android:numColumns="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:horizontalSpacing="16dp"
-                android:verticalSpacing="16dp"
                 android:clipToPadding="false"
-                android:padding="8dp"/>
+                android:numColumns="1" />
 
         </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
-
 
     </FrameLayout>
 
