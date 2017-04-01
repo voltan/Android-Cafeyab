@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.faragostaresh.cafeyab.CafeListActivity">
-
-    <FrameLayout
-        android:id="@+id/select_city"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="#ffffff"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="#000"
-        android:textColorHint="#000">
-
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:id="@+id/city_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/title_city"
-            android:textColor="#000"
-            android:textColorHint="#000"
-            app:met_floatingLabel="normal" />
-    </FrameLayout>
+    tools:context="com.faragostaresh.cafeyab.EventListActivity">
 
     <FrameLayout
         android:id="@+id/content"
@@ -42,20 +23,221 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@android:drawable/ic_dialog_map" />
 
-        <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-            android:id="@+id/swipyrefreshlayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srl_direction="bottom">
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            sothree:umanoDragView="@+id/dragView"
+            sothree:umanoOverlay="true"
+            sothree:umanoPanelHeight="68dp"
+            sothree:umanoParallaxOffset="100dp"
+            sothree:umanoScrollableView="@+id/list"
+            sothree:umanoShadowHeight="4dp">
 
-            <GridView
-                android:id="@+id/cafelist"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:numColumns="1" />
+                android:orientation="vertical">
 
-        </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+                <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+                    android:id="@+id/swipyrefreshlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="68dp"
+                    app:srl_direction="bottom">
+
+                    <GridView
+                        android:id="@+id/cafelist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:numColumns="1" />
+
+                </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+            </FrameLayout>
+
+            <!-- SLIDING LAYOUT -->
+            <LinearLayout
+                android:id="@+id/dragView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:clickable="true"
+                android:focusable="false"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/search_title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingRight="10dp"
+                        android:text="@string/backdrop_search"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <EditText
+                            android:id="@+id/filter_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="@string/filter_name" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                            android:id="@+id/city_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:hint="@string/filter_city"
+                            app:met_floatingLabel="normal" />
+
+
+                        <TableRow
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <CheckBox
+                                android:id="@+id/circleCloseCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filter_breakfast" />
+
+                            <CheckBox
+                                android:id="@+id/nwpCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filter_city" />
+                        </TableRow>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_recommended"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_recommended" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_no_smoking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_no_smoking" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_family"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_family" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_breakfast"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_breakfast" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_food"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_food" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_vegetarianـfood"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_vegetarianـfood" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <CheckBox
+                            android:id="@+id/filter_wifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_wifi" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <Button
+                            android:id="@+id/filter_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:text="@string/filter_button" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+
+
+            </LinearLayout>
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
     </FrameLayout>
 
@@ -70,3 +252,6 @@
         app:menu="@menu/navigation" />
 
 </LinearLayout>
+
+
+

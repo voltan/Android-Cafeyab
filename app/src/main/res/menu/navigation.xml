@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+    <!-- <item
         android:id="@+id/navigation_home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" /> -->
 
     <item
         android:id="@+id/navigation_cafe"
@@ -17,10 +17,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/navigation_news"
+        android:id="@+id/navigation_video"
         android:enabled="true"
-        android:icon="@drawable/ic_content_paste"
-        android:title="@string/title_news"
+        android:icon="@drawable/ic_videocam"
+        android:title="@string/title_video"
         app:showAsAction="ifRoom" />
 
     <item
@@ -30,11 +30,11 @@
         android:title="@string/title_event"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/navigation_video"
+    <!-- <item
+        android:id="@+id/navigation_news"
         android:enabled="true"
-        android:icon="@drawable/ic_videocam"
-        android:title="@string/title_video"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/ic_content_paste"
+        android:title="@string/title_news"
+        app:showAsAction="ifRoom" /> -->
 
 </menu>

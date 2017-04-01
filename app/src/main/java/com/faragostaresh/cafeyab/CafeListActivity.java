@@ -1,6 +1,7 @@
 package com.faragostaresh.cafeyab;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONArray;
@@ -45,6 +47,7 @@ public class CafeListActivity extends AppCompatActivity {
     private GridView gridView;
     private CafeListAdapter adapter;
     private SwipyRefreshLayout mSwipyRefreshLayout;
+    private SlidingUpPanelLayout mLayout;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,24 +55,14 @@ public class CafeListActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                /* case R.id.navigation_home:
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
+                    break; */
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
-                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
-                case R.id.navigation_event:
-                    Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
-                    startActivity(intent3);
-                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
-                case R.id.navigation_news:
-                    Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
-                    startActivity(intent4);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_video:
@@ -77,6 +70,16 @@ public class CafeListActivity extends AppCompatActivity {
                     startActivity(intent5);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
+                case R.id.navigation_event:
+                    Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
+                    startActivity(intent3);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                    break;
+                /* case R.id.navigation_news:
+                    Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
+                    startActivity(intent4);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                    break; */
             }
             return false;
         }
@@ -108,27 +111,7 @@ public class CafeListActivity extends AppCompatActivity {
             }
         });
 
-        // Get location list
-        String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, CITYTITLE);
-        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
-        materialDesignSpinner.setAdapter(arrayAdapter);
-        materialDesignSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String[] CITYSLUG = getResources().getStringArray(R.array.city_list_slug);
-                String cityTitle = adapterView.getItemAtPosition(position).toString();
-                String citySlug = CITYSLUG[position];
-                setTitle(cityTitle + " - " + citySlug);
-
-
-                Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
-                intent.putExtra("location", citySlug);
-                startActivity(intent);
-                overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-            }
-        });
-
+        // Get search information
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             location = extras.getString("location");
@@ -150,6 +133,46 @@ public class CafeListActivity extends AppCompatActivity {
                                      }
                                  }
         );
+
+        // Sliding Up Panel actions
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                //Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                //Log.i(TAG, "onPanelStateChanged " + newState);
+            }
+        });
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+
+        // Get location list
+        String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, CITYTITLE);
+        MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
+        materialDesignSpinner.setAdapter(arrayAdapter);
+        materialDesignSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String[] CITYSLUG = getResources().getStringArray(R.array.city_list_slug);
+                String cityTitle = adapterView.getItemAtPosition(position).toString();
+                String citySlug = CITYSLUG[position];
+                setTitle(cityTitle + " - " + citySlug);
+
+                Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
+                intent.putExtra("location", citySlug);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+            }
+        });
     }
 
     @Override
@@ -275,5 +298,4 @@ public class CafeListActivity extends AppCompatActivity {
 
         }
     }
-
 }

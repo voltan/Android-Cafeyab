@@ -9,6 +9,7 @@
         <item name="android:colorBackground">?attr/colorButtonNormal</item>
 
         <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -22,6 +23,10 @@
 
     <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
         <item name="fontPath">fonts/Vazir.ttf</item>
+    </style>
+
+    <style name="ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:displayOptions">homeAsUp</item>
     </style>
 
 </resources>

@@ -26,24 +26,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent intent1 = new Intent(getApplicationContext(), CafeListActivity.class);
+                /* case R.id.navigation_home:
+                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
+                    break; */
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
-                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
-                case R.id.navigation_event:
-                    Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
-                    startActivity(intent3);
-                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
-                case R.id.navigation_news:
-                    Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
-                    startActivity(intent4);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
                 case R.id.navigation_video:
@@ -51,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent5);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
+                case R.id.navigation_event:
+                    Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
+                    startActivity(intent3);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                    break;
+                /* case R.id.navigation_news:
+                    Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
+                    startActivity(intent4);
+                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                    break; */
             }
             return false;
         }
@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        MenuItem item = navigation.getMenu().findItem(R.id.navigation_home);
-        item.setCheckable(true);
-        item.setChecked(true);
+        //MenuItem item = navigation.getMenu().findItem(R.id.navigation_home);
+        //item.setCheckable(true);
+        //item.setChecked(true);
 
         // Set floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
