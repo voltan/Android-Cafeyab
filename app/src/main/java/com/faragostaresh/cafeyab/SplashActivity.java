@@ -3,6 +3,7 @@ package com.faragostaresh.cafeyab;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -18,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isNetworkConnected()) {
+        if (haveNetworkConnection()) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -29,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             setContentView(R.layout.activity_splash);
             coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
-            Snackbar snackbar = Snackbar.make(coordinatorLayout, "No internet connection !", 10000).setAction("RETRY", new View.OnClickListener() {
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, R.string.connection_error, 10000).setAction(R.string.connection_retry, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
@@ -46,8 +47,21 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isNetworkConnected() {
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null;
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
     }
 }

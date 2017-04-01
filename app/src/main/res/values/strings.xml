@@ -27,4 +27,7 @@
     <string name="backdrop_title">کافه یاب</string>
     <string name="backdrop_subtitle">فهرست کافه‌های شهر های مختلف ایران</string>
     <string name="backdrop_search">جستجوی کافه یا منطقه ...</string>
+
+    <string name="connection_error">دسترسی به اینترنت برقرار نیست !</string>
+    <string name="connection_retry">بررسی</string>
 </resources>
