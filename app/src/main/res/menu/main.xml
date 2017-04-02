@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_city"
-        android:icon="@drawable/ic_location_city"
-        android:title="@string/title_city"
+        android:id="@+id/menu_user"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_person"
+        android:title="@string/title_people"
         app:showAsAction="always" />
 
     <item

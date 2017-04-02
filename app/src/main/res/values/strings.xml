@@ -10,6 +10,7 @@
     <string name="title_video">ویدیو ها</string>
     <string name="title_map">نقشه</string>
     <string name="title_city">انتخاب شهر</string>
+    <string name="title_people">کاربر</string>
 
     <string name="activity_main">کافه یاب</string>
     <string name="activity_about">درباره کافه یاب</string>
