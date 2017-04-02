@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+    <!-- <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"
-        app:showAsAction="always" />
+        app:showAsAction="always" /> -->
 
     <item
         android:id="@+id/menu_user"
@@ -20,9 +20,9 @@
         android:title="@string/title_about"
         app:showAsAction="always" />
 
-    <item
+    <!-- <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search"
         android:title="@string/action_search"
-        app:showAsAction="always" />
+        app:showAsAction="always" /> -->
 </menu>

@@ -4,15 +4,9 @@
     <color name="colorPrimaryDark">#5d4037</color>
     <color name="colorAccent">#FC0000</color>
 
+    <color name="colorBrown50">#efebe9</color>
+    <color name="colorBrown100">#d7ccc8</color>
+
     <color name="white">#ffffff</color>
     <color name="background_material_light">#efebe9</color>
-
-
-    <color name="list_divider">#d7ccc8</color>
-
-
-
-    <color name="dark_grey">#424242</color>
-    <color name="medium_grey">#9E9E9E</color>
-    <color name="button_grey">#757575</color>
 </resources>

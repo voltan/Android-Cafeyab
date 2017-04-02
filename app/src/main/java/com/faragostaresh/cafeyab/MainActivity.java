@@ -109,31 +109,37 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 if (position == 0) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchRecommended", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 1) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchNoSmoking", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 2) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchWifi", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 3) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchBreakfast", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 4) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchFood", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 5) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchVegetarianFood", 1);
                     startActivityForResult(myIntent, 0);
                 }
             }
@@ -145,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
+                intent.putExtra("openSearchBox", 1);
                 startActivity(intent);
             }
         });
@@ -161,10 +168,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.menu_home:
+            /* case R.id.menu_home:
                 Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentHome);
-                break;
+                break; */
 
             case R.id.menu_user:
                 Intent intentUser = new Intent(getApplicationContext(), UserActivity.class);
@@ -176,10 +183,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentAbout);
                 break;
 
-            case R.id.menu_search:
+            /* case R.id.menu_search:
                 Intent intentSearch = new Intent(getApplicationContext(), CafeListActivity.class);
                 startActivity(intentSearch);
-                break;
+                break; */
         }
         return super.onOptionsItemSelected(item);
     }

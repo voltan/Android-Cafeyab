@@ -39,15 +39,15 @@
     <string name="filter_city">انتخاب شهر</string>
     <string name="filter_recommended">کافه‌های پیشنهادی</string>
     <string name="filter_no_smoking">بدون سیگار</string>
-    <string name="filter_family">خانوادی</string>
     <string name="filter_breakfast">صبحانه</string>
     <string name="filter_food">غذا</string>
     <string name="filter_vegetarianـfood">غذای گیاهی</string>
     <string name="filter_wifi">اینترنت</string>
-    <string name="filter_third_wave_coffee">قهوه نسل سوم</string>
+    <!-- <string name="filter_third_wave_coffee">قهوه نسل سوم</string>
     <string name="filter_takea_way">بیرون بر</string>
     <string name="filter_gallery">گالری</string>
     <string name="filter_tv">تلویزیون</string>
+    <string name="filter_family">خانوادی</string> -->
     <string name="filter_button">جستجو</string>
 
     <!-- Strings related to login -->

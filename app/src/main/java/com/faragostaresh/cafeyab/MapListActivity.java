@@ -30,10 +30,10 @@ public class MapListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.menu_home:
+            /* case R.id.menu_home:
                 Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intentHome);
-                break;
+                break; */
 
             case R.id.menu_user:
                 Intent intentUser = new Intent(getApplicationContext(), UserActivity.class);
@@ -45,10 +45,10 @@ public class MapListActivity extends AppCompatActivity {
                 startActivity(intentAbout);
                 break;
 
-            case R.id.menu_search:
+            /* case R.id.menu_search:
                 Intent intentSearch = new Intent(getApplicationContext(), CafeListActivity.class);
                 startActivity(intentSearch);
-                break;
+                break; */
         }
         return super.onOptionsItemSelected(item);
     }
