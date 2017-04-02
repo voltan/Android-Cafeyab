@@ -373,7 +373,7 @@ public class CafeListActivity extends AppCompatActivity {
             url = url + "&recommended=1";
         }
         if (searchNoSmoking == 1) {
-            url = url + "&nosmoke=آزاد نیست";
+            url = url + "&nosmoke=%D8%A2%D8%B2%D8%A7%D8%AF%20%D9%86%DB%8C%D8%B3%D8%AA";
         }
         if (searchBreakfast == 1) {
             url = url + "&breakfast=دارد";
@@ -402,6 +402,8 @@ public class CafeListActivity extends AppCompatActivity {
         if (searchFamily == 1) {
             url = url + "&suitablefamily=بله";
         } */
+
+        Log.i(TAG, url);
 
         // Volley's json array request object
         JsonObjectRequest req = new JsonObjectRequest(url,
