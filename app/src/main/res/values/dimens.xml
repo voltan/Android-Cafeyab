@@ -21,9 +21,6 @@
     <dimen name="main_grid_text_padding_right">5dp</dimen>
 
 
-
-
-
     <dimen name="card_height">304dp</dimen>
     <dimen name="md_keylines">16dp</dimen>
     <dimen name="tile_padding">8dp</dimen>

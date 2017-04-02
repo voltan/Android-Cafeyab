@@ -10,7 +10,8 @@
     <string name="title_video">ویدیو ها</string>
     <string name="title_map">نقشه</string>
     <string name="title_city">انتخاب شهر</string>
-    <string name="title_people">کاربر</string>
+    <string name="title_user">کاربر</string>
+    <string name="title_about">درباره ما</string>
 
     <string name="activity_main">کافه یاب</string>
     <string name="activity_about">درباره کافه یاب</string>
@@ -43,5 +44,19 @@
     <string name="filter_vegetarianـfood">غذای گیاهی</string>
     <string name="filter_wifi">اینترنت</string>
     <string name="filter_button">جستجو</string>
+    <string name="title_activity_user">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">ایمیل</string>
+    <string name="prompt_password">پسورد</string>
+    <string name="action_sign_in">ورود</string>
+    <string name="action_sign_in_short">ورود</string>
+    <string name="error_invalid_email">آدرس ایمیل وارد شده نامعتبر است</string>
+    <string name="error_invalid_password">پسورد بیش از اندازه کوتاه است</string>
+    <string name="error_incorrect_password">پسورد وارد شده صحیح نیست</string>
+    <string name="error_field_required">این فیلد باید تکمیل شود</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 
 </resources>

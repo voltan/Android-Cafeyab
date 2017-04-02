@@ -1,5 +1,6 @@
 package com.faragostaresh.cafeyab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -27,10 +28,28 @@ public class MapListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_home:
+                Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentHome);
+                break;
+
+            case R.id.menu_user:
+                Intent intentUser = new Intent(getApplicationContext(), UserActivity.class);
+                startActivity(intentUser);
+                break;
+
+            case R.id.menu_about:
+                Intent intentAbout = new Intent(getApplicationContext(), AboutActivity.class);
+                startActivity(intentAbout);
+                break;
+
+            case R.id.menu_search:
+                Intent intentSearch = new Intent(getApplicationContext(), CafeListActivity.class);
+                startActivity(intentSearch);
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

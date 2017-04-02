@@ -6,10 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <!-- EXTERNAL_STORAGE permissions are optional for Android 6.0 onwards. -->
     <uses-permission
@@ -18,6 +19,11 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="22" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name="com.faragostaresh.app.CafeyabApplication"
@@ -38,53 +44,47 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/activity_main">
-        </activity>
+            android:label="@string/activity_main"></activity>
         <activity
             android:name=".AboutActivity"
             android:label="@string/activity_about"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".CafeSingleActivity"
             android:label="@string/activity_cafe_list"
-            android:parentActivityName=".CafeListActivity">
-        </activity>
+            android:parentActivityName=".CafeListActivity"></activity>
         <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".EventSingleActivity"
             android:label="@string/activity_event_single"
-            android:parentActivityName=".EventListActivity">
-        </activity>
+            android:parentActivityName=".EventListActivity"></activity>
         <activity
             android:name=".VideoListActivity"
             android:label="@string/activity_video_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".VideoSingleActivity"
             android:label="@string/activity_video_single"
-            android:parentActivityName=".VideoListActivity">
-        </activity>
+            android:parentActivityName=".VideoListActivity"></activity>
         <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".UserActivity"
+            android:label="@string/title_activity_user"></activity>
     </application>
 
 </manifest>
