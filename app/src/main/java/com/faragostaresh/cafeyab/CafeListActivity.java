@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -35,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CafeListActivity extends AppCompatActivity {
@@ -42,7 +46,19 @@ public class CafeListActivity extends AppCompatActivity {
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
     public static String itemId;
     public int page = 1;
-    public String location = "";
+    public String searchLocation = "";
+    public String searchTitle = "";
+    public int searchRecommended = 0;
+    public int searchNoSmoking = 0;
+    public int searchFamily = 0;
+    public int searchBreakfast = 0;
+    public int searchFood = 0;
+    public int searchVegetarianFood = 0;
+    public int searchWifi = 0;
+    public int searchThirdWaveCoffee = 0;
+    public int searchTakeaWay = 0;
+    public int searchGallery = 0;
+    public int searchTv = 0;
     private List<ItemList> myCafeList = new ArrayList<ItemList>();
     private GridView gridView;
     private CafeListAdapter adapter;
@@ -111,10 +127,138 @@ public class CafeListActivity extends AppCompatActivity {
             }
         });
 
+        // Get location list
+        Spinner spinner = (Spinner) findViewById(R.id.filter_city);
+        ArrayAdapter<CharSequence> filterCityAdapter = ArrayAdapter.createFromResource(this, R.array.city_list_name, android.R.layout.simple_spinner_item);
+        filterCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(filterCityAdapter);
+
+        // Set search information
+        final EditText filterTitle = (EditText) findViewById(R.id.filter_name);
+        final Spinner filterCity = (Spinner) findViewById(R.id.filter_city);
+        final CheckBox filterRecommended = (CheckBox) findViewById(R.id.filter_recommended);
+        final CheckBox filterNoSmoking = (CheckBox) findViewById(R.id.filter_no_smoking);
+        final CheckBox filterFamily = (CheckBox) findViewById(R.id.filter_family);
+        final CheckBox filterBreakfast = (CheckBox) findViewById(R.id.filter_breakfast);
+        final CheckBox filterFood = (CheckBox) findViewById(R.id.filter_food);
+        final CheckBox filterVegetarianFood = (CheckBox) findViewById(R.id.filter_vegetarian_food);
+        final CheckBox filterWifi = (CheckBox) findViewById(R.id.filter_wifi);
+        final CheckBox filterThirdWaveCoffee = (CheckBox) findViewById(R.id.filter_third_wave_coffee);
+        final CheckBox filterTakeaWay = (CheckBox) findViewById(R.id.filter_takea_way);
+        final CheckBox filterGallery = (CheckBox) findViewById(R.id.filter_gallery);
+        final CheckBox filterTv = (CheckBox) findViewById(R.id.filter_tv);
+        final Button search = (Button) findViewById(R.id.filter_button);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
+                int position = filterCity.getSelectedItemPosition();
+                String[] CITYSLUG = getResources().getStringArray(R.array.city_list_slug);
+                searchLocation = CITYSLUG[position];
+                if (!TextUtils.isEmpty(searchLocation)) {
+                    intent.putExtra("searchLocation", searchLocation);
+                }
+                searchTitle = filterTitle.getText().toString();
+                if (!TextUtils.isEmpty(searchTitle)) {
+                    intent.putExtra("searchTitle", searchTitle);
+                }
+                if (filterRecommended.isChecked()) {
+                    intent.putExtra("searchRecommended", 1);
+                }
+                if (filterNoSmoking.isChecked()) {
+                    intent.putExtra("searchNoSmoking", 1);
+                }
+                if (filterFamily.isChecked()) {
+                    intent.putExtra("searchFamily", 1);
+                }
+                if (filterBreakfast.isChecked()) {
+                    intent.putExtra("searchBreakfast", 1);
+                }
+                if (filterFood.isChecked()) {
+                    intent.putExtra("searchFood", 1);
+                }
+                if (filterVegetarianFood.isChecked()) {
+                    intent.putExtra("searchVegetarianFood", 1);
+                }
+                if (filterWifi.isChecked()) {
+                    intent.putExtra("searchWifi", 1);
+                }
+                if (filterThirdWaveCoffee.isChecked()) {
+                    intent.putExtra("searchThirdWaveCoffee", 1);
+                }
+                if (filterTakeaWay.isChecked()) {
+                    intent.putExtra("searchTakeaWay", 1);
+                }
+                if (filterGallery.isChecked()) {
+                    intent.putExtra("searchGallery", 1);
+                }
+                if (filterTv.isChecked()) {
+                    intent.putExtra("searchTv", 1);
+                }
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+            }
+        });
+
         // Get search information
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            location = extras.getString("location");
+            searchLocation = extras.getString("searchLocation");
+            searchTitle = extras.getString("searchTitle");
+            searchRecommended = extras.getInt("searchRecommended");
+            searchNoSmoking = extras.getInt("searchNoSmoking");
+            searchFamily = extras.getInt("searchFamily");
+            searchBreakfast = extras.getInt("searchBreakfast");
+            searchFood = extras.getInt("searchFood");
+            searchVegetarianFood = extras.getInt("searchVegetarianFood");
+            searchWifi = extras.getInt("searchWifi");
+            searchThirdWaveCoffee = extras.getInt("searchThirdWaveCoffee");
+            searchTakeaWay = extras.getInt("searchTakeaWay");
+            searchGallery = extras.getInt("searchGallery");
+            searchTv = extras.getInt("searchTv");
+
+            if (!TextUtils.isEmpty(searchLocation)) {
+                String[] CitySlug = getResources().getStringArray(R.array.city_list_slug);
+                String[] CityName = getResources().getStringArray(R.array.city_list_name);
+                int postion = Arrays.asList(CitySlug).indexOf(searchLocation);
+                filterCity.setSelection(postion);
+            }
+            if (!TextUtils.isEmpty(searchTitle)) {
+                filterTitle.setText(searchTitle);
+            }
+            if (searchRecommended == 1) {
+                filterRecommended.setChecked(true);
+            }
+            if (searchNoSmoking == 1) {
+                filterNoSmoking.setChecked(true);
+            }
+            if (searchFamily == 1) {
+                filterFamily.setChecked(true);
+            }
+            if (searchBreakfast == 1) {
+                filterBreakfast.setChecked(true);
+            }
+            if (searchFood == 1) {
+                filterFood.setChecked(true);
+            }
+            if (searchVegetarianFood == 1) {
+                filterVegetarianFood.setChecked(true);
+            }
+            if (searchWifi == 1) {
+                filterWifi.setChecked(true);
+            }
+            if (searchThirdWaveCoffee == 1) {
+                filterThirdWaveCoffee.setChecked(true);
+            }
+            if (searchTakeaWay == 1) {
+                filterTakeaWay.setChecked(true);
+            }
+            if (searchGallery == 1) {
+                filterGallery.setChecked(true);
+            }
+            if (searchTv == 1) {
+                filterTv.setChecked(true);
+            }
         }
 
         // Set for list of items
@@ -154,12 +298,9 @@ public class CafeListActivity extends AppCompatActivity {
             }
         });
 
-        // Get location list
-        Spinner spinner = (Spinner) findViewById(R.id.filter_city);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.city_list_name, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+
+
+
         /* String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, CITYTITLE);
         MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
@@ -250,8 +391,46 @@ public class CafeListActivity extends AppCompatActivity {
 
         // appending offset to url
         String url = cafeUrl + page;
-        if (!TextUtils.isEmpty(location)) {
-            url = url + "&location=" + location;
+
+        // Make search to url
+        if (!TextUtils.isEmpty(searchTitle)) {
+            url = url + "&title=" + searchTitle;
+        }
+        if (!TextUtils.isEmpty(searchLocation)) {
+            url = url + "&location=" + searchLocation;
+        }
+        if (searchRecommended == 1) {
+            url = url + "&recommended=1";
+        }
+        if (searchNoSmoking == 1) {
+            url = url + "&nosmoke=آزاد نیست";
+        }
+        if (searchBreakfast == 1) {
+            url = url + "&breakfast=دارد";
+        }
+        if (searchFood == 1) {
+            url = url + "&food=دارد";
+        }
+        if (searchVegetarianFood == 1) {
+            url = url + "&vegetarian=دارد";
+        }
+        if (searchWifi == 1) {
+            url = url + "&wifi=دارد";
+        }
+        if (searchThirdWaveCoffee == 1) {
+            url = url + "&thirdwavecoffee=دارد";
+        }
+        if (searchTakeaWay == 1) {
+            url = url + "&takeaway=دارد";
+        }
+        if (searchGallery == 1) {
+            url = url + "&gallery=دارد";
+        }
+        if (searchTv == 1) {
+            url = url + "&tv=دارد";
+        }
+        if (searchFamily == 1) {
+            url = url + "&suitablefamily=بله";
         }
 
         // Volley's json array request object

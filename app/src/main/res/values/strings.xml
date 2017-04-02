@@ -44,8 +44,11 @@
     <string name="filter_food">غذا</string>
     <string name="filter_vegetarianـfood">غذای گیاهی</string>
     <string name="filter_wifi">اینترنت</string>
+    <string name="filter_third_wave_coffee">قهوه نسل سوم</string>
+    <string name="filter_takea_way">بیرون بر</string>
+    <string name="filter_gallery">گالری</string>
+    <string name="filter_tv">تلویزیون</string>
     <string name="filter_button">جستجو</string>
-    <string name="title_activity_user">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">ایمیل</string>
