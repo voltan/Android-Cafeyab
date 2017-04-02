@@ -44,7 +44,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/activity_main"></activity>
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".AboutActivity"
             android:label="@string/activity_about"
@@ -84,7 +85,8 @@
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".UserActivity"
-            android:label="@string/title_activity_user"></activity>
+            android:label="@string/activity_user"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
