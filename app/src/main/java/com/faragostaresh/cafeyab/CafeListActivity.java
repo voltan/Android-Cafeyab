@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -28,7 +29,6 @@ import com.faragostaresh.model.ItemList;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -155,7 +155,12 @@ public class CafeListActivity extends AppCompatActivity {
         });
 
         // Get location list
-        String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
+        Spinner spinner = (Spinner) findViewById(R.id.filter_city);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.city_list_name, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        /* String[] CITYTITLE = getResources().getStringArray(R.array.city_list_name);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, CITYTITLE);
         MaterialBetterSpinner materialDesignSpinner = (MaterialBetterSpinner)findViewById(R.id.city_list);
         materialDesignSpinner.setAdapter(arrayAdapter);
@@ -172,7 +177,7 @@ public class CafeListActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
             }
-        });
+        }); */
     }
 
     @Override

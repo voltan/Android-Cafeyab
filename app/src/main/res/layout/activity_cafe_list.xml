@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/textViewTitle"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/activity_vertical_margin"
@@ -113,13 +113,28 @@
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
 
-                        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                            android:id="@+id/city_list"
+                        <TableRow
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
-                            android:hint="@string/filter_city"
-                            app:met_floatingLabel="normal" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/textViewCity"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="0.3"
+                                android:padding="8dp"
+                                android:text="@string/filter_city" />
+
+                            <Spinner
+                                android:id="@+id/filter_city"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_weight="0.7"
+                                android:padding="8dp" />
+
+                        </TableRow>
 
                         <View
                             android:layout_width="match_parent"
