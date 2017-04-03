@@ -34,7 +34,8 @@
     <string name="connection_error">دسترسی به اینترنت برقرار نیست !</string>
     <string name="connection_retry">بررسی</string>
 
-    <string name="filter_title">جستجوی کافه بر اساس منطقه و ویژگی ها</string>
+    <string name="filter_title">جستجوی کافه</string>
+    <string name="filter_map_list">کافه‌هاروی نقشه</string>
     <string name="filter_name">نام کافه</string>
     <string name="filter_city">انتخاب شهر</string>
     <string name="filter_recommended">کافه‌های پیشنهادی</string>

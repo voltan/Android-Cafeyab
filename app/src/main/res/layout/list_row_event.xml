@@ -8,11 +8,13 @@
     <!-- Thumbnail Image -->
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/thumbnail"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/list_image_height_2_columns"
-        android:adjustViewBounds="true"
+        android:layout_width="@dimen/list_event_image_width"
+        android:layout_height="@dimen/list_event_image_height"
         android:layout_alignParentRight="true"
-/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
     <!-- location Title -->
     <TextView

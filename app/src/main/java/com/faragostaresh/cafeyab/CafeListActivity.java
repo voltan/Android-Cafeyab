@@ -122,8 +122,19 @@ public class CafeListActivity extends AppCompatActivity {
         item.setChecked(true);
 
         // Set floating button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
+                startActivity(intent);
+            }
+        }); */
+
+        // Set map button
+        Button map = (Button) findViewById(R.id.search_map);
+        map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Click action
