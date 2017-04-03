@@ -5,6 +5,10 @@
     <dimen name="backdrop_subtitle">18dp</dimen>
     <dimen name="backdrop_subtitle_padding">10dp</dimen>
 
+    <!-- List image -->
+    <dimen name="list_image_height_1_columns">200dp</dimen>
+    <dimen name="list_image_height_2_columns">100dp</dimen>
+
     <!-- Video page -->
     <dimen name="video_player_height">250dp</dimen>
 

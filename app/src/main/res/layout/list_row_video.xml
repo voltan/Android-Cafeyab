@@ -11,7 +11,7 @@
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/list_image_height_1_columns"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/thumbnail"
             android:layout_alignLeft="@+id/thumbnail"
+            android:layout_gravity="right"
             android:background="#80000000"
             android:orientation="vertical"
             android:paddingBottom="6dp"
@@ -31,7 +32,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="bottom|right"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>

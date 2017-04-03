@@ -20,6 +20,10 @@
     <dimen name="main_grid_text_padding_left">5dp</dimen>
     <dimen name="main_grid_text_padding_right">5dp</dimen>
 
+    <!-- List image -->
+    <dimen name="list_image_height_1_columns">200dp</dimen>
+    <dimen name="list_image_height_2_columns">100dp</dimen>
+
     <!-- Video page -->
     <dimen name="video_player_height">250dp</dimen>
 
