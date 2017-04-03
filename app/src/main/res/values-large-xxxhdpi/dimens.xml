@@ -15,4 +15,7 @@
     <dimen name="main_grid_text_padding_left">5dp</dimen>
     <dimen name="main_grid_text_padding_right">5dp</dimen>
 
+    <!-- Video page -->
+    <dimen name="video_player_height">400dp</dimen>
+
 </resources>

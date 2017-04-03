@@ -9,6 +9,8 @@ import android.view.View;
 
 public class EventSingleActivity extends AppCompatActivity {
 
+    public static String itemId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +19,11 @@ public class EventSingleActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
+        // Get search information
+        Bundle extras = getIntent().getExtras();
+        itemId = extras.getString("itemId");
+
+        setTitle(itemId);
     }
 
     @Override

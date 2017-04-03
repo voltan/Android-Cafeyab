@@ -45,48 +45,52 @@
         <activity
             android:name=".MainActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/activity_about"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CafeSingleActivity"
             android:label="@string/activity_cafe_list"
-            android:parentActivityName=".CafeListActivity"></activity>
+            android:parentActivityName=".CafeListActivity" />
         <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EventSingleActivity"
             android:label="@string/activity_event_single"
-            android:parentActivityName=".EventListActivity"></activity>
+            android:parentActivityName=".EventListActivity" />
         <activity
             android:name=".VideoListActivity"
             android:label="@string/activity_video_list"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".VideoSingleActivity"
             android:label="@string/activity_video_single"
-            android:parentActivityName=".VideoListActivity"></activity>
+            android:parentActivityName=".VideoListActivity" />
         <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UserActivity"
             android:label="@string/activity_user"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

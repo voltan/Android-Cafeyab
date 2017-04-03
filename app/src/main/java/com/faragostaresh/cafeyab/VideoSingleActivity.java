@@ -6,8 +6,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.TextView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.faragostaresh.model.VideoList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class VideoSingleActivity extends AppCompatActivity {
+
+    public static String videoUrl = "https://www.cafeyab.com/video/json/videoSingle/id/";
+    public static String itemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +33,52 @@ public class VideoSingleActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
+        // Get search information
+        Bundle extras = getIntent().getExtras();
+        itemId = extras.getString("itemId");
+        videoUrl = videoUrl + itemId;
+
+        //Creating a json array request
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(videoUrl,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        VideoList videoSingle = new VideoList();
+                        JSONObject json = null;
+                        try {
+                            json = response.getJSONObject(0);
+
+                            setTitle(json.getString("title"));
+
+                            TextView textViewTitle = (TextView) findViewById(R.id.textViewTitle);
+                            textViewTitle.setText(json.getString("title"));
+
+                            //qmeryDirect
+                            WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
+                            playerWebView.clearCache(true);
+                            playerWebView.clearHistory();
+                            playerWebView.getSettings().setJavaScriptEnabled(true);
+                            playerWebView.getSettings().setDomStorageEnabled(true);
+                            playerWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+                            playerWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);;
+                            playerWebView.loadUrl(json.getString("qmeryDirect"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        //Creating request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Adding request to the queue
+        requestQueue.add(jsonArrayRequest);
     }
 
     @Override

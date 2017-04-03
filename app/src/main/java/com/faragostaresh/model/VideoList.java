@@ -26,7 +26,7 @@ public class VideoList {
             String category,
             String categoryMainTitle,
             String summary,
-                    String description,
+            String description,
             String time_create,
             String time_update,
             String image,
