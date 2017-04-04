@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +45,6 @@ import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDE
 public class CafeListActivity extends AppCompatActivity {
 
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
-    private static final String TAG = "";
     public static String itemId;
     public int page = 1;
     public String searchLocation = "";
@@ -133,7 +130,7 @@ public class CafeListActivity extends AppCompatActivity {
         }); */
 
         // Set map button
-        Button map = (Button) findViewById(R.id.search_map);
+        /* Button map = (Button) findViewById(R.id.search_map);
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +138,7 @@ public class CafeListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
         // Get location list
         Spinner spinner = (Spinner) findViewById(R.id.filter_city);
@@ -375,7 +372,7 @@ public class CafeListActivity extends AppCompatActivity {
 
         // Make search to url
         if (!TextUtils.isEmpty(searchTitle)) {
-            url = url + "&title=" + searchTitle;
+            url = url + "&title=" + Uri.encode(searchTitle);
         }
         if (!TextUtils.isEmpty(searchLocation)) {
             url = url + "&location=" + searchLocation;
@@ -413,8 +410,6 @@ public class CafeListActivity extends AppCompatActivity {
         if (searchFamily == 1) {
             url = url + "&suitablefamily=بله";
         } */
-
-        Log.i(TAG, url);
 
         // Volley's json array request object
         JsonObjectRequest req = new JsonObjectRequest(url,
@@ -480,7 +475,6 @@ public class CafeListActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), CafeSingleActivity.class);
             intent.putExtra("itemId", itemId);
             startActivity(intent);
-
         }
     }
 }

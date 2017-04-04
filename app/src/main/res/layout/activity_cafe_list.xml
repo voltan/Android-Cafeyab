@@ -84,7 +84,7 @@
                         android:text="@string/filter_title"
                         android:textSize="14sp" />
 
-                    <Button
+                    <!-- <Button
                         android:id="@+id/search_map"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -94,7 +94,7 @@
                         android:paddingRight="10dp"
                         android:text="@string/filter_map_list"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="14sp" /> -->
 
                 </LinearLayout>
 
