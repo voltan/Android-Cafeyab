@@ -9,7 +9,8 @@
     <dimen name="list_video_image_height">200dp</dimen>
     <dimen name="list_cafe_image_height">100dp</dimen>
 
-    <!-- Video page -->
+    <!-- Item pages -->
     <dimen name="video_player_height">250dp</dimen>
+    <dimen name="main_image_height">320dp</dimen>
 
 </resources>

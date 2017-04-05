@@ -57,8 +57,9 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CafeSingleActivity"
-            android:label="@string/activity_cafe_list"
-            android:parentActivityName=".CafeListActivity" />
+            android:label="@string/activity_cafe_single"
+            android:parentActivityName=".CafeListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"

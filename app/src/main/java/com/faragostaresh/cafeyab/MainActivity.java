@@ -107,21 +107,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
                 if (position == 0) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchRecommended", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 1) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchNoSmoking", 1);
+                    myIntent.putExtra("searchRecommended", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 2) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchWifi", 1);
+                    myIntent.putExtra("searchNoSmoking", 1);
                     startActivityForResult(myIntent, 0);
                 }
 

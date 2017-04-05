@@ -3,6 +3,7 @@ package com.faragostaresh.cafeyab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.model.CafeList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +34,10 @@ public class CafeSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe_single);
 
+        // Set toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
@@ -40,12 +46,16 @@ public class CafeSingleActivity extends AppCompatActivity {
         itemId = extras.getString("itemId");
         cafeUrl = cafeUrl + itemId;
 
+        TextView viewTitle = (TextView) findViewById(R.id.viewTitle);
+        TextView viewCityArea = (TextView) findViewById(R.id.viewCityArea);
+        NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
+
         //Creating a json array request
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(cafeUrl,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        //CafeList cafeSingle = new CafeList();
+                        CafeList cafeSingle = new CafeList();
                         JSONObject json = null;
                         try {
                             json = response.getJSONObject(0);
@@ -54,15 +64,10 @@ public class CafeSingleActivity extends AppCompatActivity {
                             setTitle(json.getString("title"));
 
                             // Set info for layout
-                            TextView viewTitle = (TextView) findViewById(R.id.viewTitle);
-                            viewTitle.setText(json.getString("title"));
 
-                            TextView viewCityArea = (TextView) findViewById(R.id.viewCityArea);
-                            viewCityArea.setText(json.getString("city_area"));
-
-                            NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.thumbnail);
-                            imageLoader = CafeyabApplication.getInstance().getImageLoader();
                             thumbnail.setImageUrl(json.getString("itemimageUrl"), imageLoader);
+                            viewTitle.setText(json.getString("title"));
+                            viewCityArea.setText(json.getString("city_area"));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

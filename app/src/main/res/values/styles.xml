@@ -14,6 +14,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -36,6 +37,10 @@
 
     <style name="ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:displayOptions">homeAsUp</item>
+    </style>
+
+    <style name="ExpandedTitleTextAppearance" parent="@android:style/TextAppearance.Large">
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
