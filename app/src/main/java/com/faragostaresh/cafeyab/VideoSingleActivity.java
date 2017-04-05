@@ -14,7 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.faragostaresh.model.VideoList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,14 +42,16 @@ public class VideoSingleActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        VideoList videoSingle = new VideoList();
+                        //VideoList videoSingle = new VideoList();
                         JSONObject json = null;
                         try {
                             json = response.getJSONObject(0);
 
+                            // Set title
                             setTitle(json.getString("title"));
 
-                            TextView textViewTitle = (TextView) findViewById(R.id.textViewTitle);
+                            // Set info for layout
+                            TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
                             textViewTitle.setText(json.getString("title"));
 
                             //qmeryDirect

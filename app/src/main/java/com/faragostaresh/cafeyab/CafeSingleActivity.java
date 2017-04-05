@@ -6,9 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
+import com.faragostaresh.app.CafeyabApplication;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CafeSingleActivity extends AppCompatActivity {
 
+    ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
+    public static String cafeUrl = "https://www.cafeyab.com/guide/json/itemSingle/id/";
     public static String itemId;
 
     @Override
@@ -22,8 +38,48 @@ public class CafeSingleActivity extends AppCompatActivity {
         // Get search information
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
+        cafeUrl = cafeUrl + itemId;
 
-        setTitle(itemId);
+        //Creating a json array request
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(cafeUrl,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        //CafeList cafeSingle = new CafeList();
+                        JSONObject json = null;
+                        try {
+                            json = response.getJSONObject(0);
+
+                            // Set title
+                            setTitle(json.getString("title"));
+
+                            // Set info for layout
+                            TextView viewTitle = (TextView) findViewById(R.id.viewTitle);
+                            viewTitle.setText(json.getString("title"));
+
+                            TextView viewCityArea = (TextView) findViewById(R.id.viewCityArea);
+                            viewCityArea.setText(json.getString("city_area"));
+
+                            NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.thumbnail);
+                            imageLoader = CafeyabApplication.getInstance().getImageLoader();
+                            thumbnail.setImageUrl(json.getString("itemimageUrl"), imageLoader);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        //Creating request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Adding request to the queue
+        requestQueue.add(jsonArrayRequest);
     }
 
     @Override
