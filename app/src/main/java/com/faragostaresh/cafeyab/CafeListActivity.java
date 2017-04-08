@@ -46,6 +46,7 @@ public class CafeListActivity extends AppCompatActivity {
 
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
     public static String itemId;
+    public static String itemTitle;
     public int page = 1;
     public String searchLocation = "";
     public String searchTitle = "";
@@ -467,13 +468,15 @@ public class CafeListActivity extends AppCompatActivity {
                                 long id) {
             ItemList getselected = (ItemList) (gridView.getItemAtPosition(position));
             itemId = getselected.getItemId();
-            displayView(itemId);
+            itemTitle = getselected.getTitle();
+            displayView(itemId, itemTitle);
         }
 
-        private void displayView(String itemId) {
+        private void displayView(String itemId, String itemTitle) {
             // Start New activity with a request to Show Selected News
             Intent intent = new Intent(getApplicationContext(), CafeSingleActivity.class);
             intent.putExtra("itemId", itemId);
+            intent.putExtra("itemTitle", itemTitle);
             startActivity(intent);
         }
     }

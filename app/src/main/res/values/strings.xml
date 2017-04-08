@@ -158,4 +158,55 @@
     </string>
     <string name="action_settings">Settings</string>
 
+
+
+
+
+
+
+
+
+
+    <string name="attribute_workingHour">ساعت کار</string>
+    <string name="attribute_parkingSpace">جای پارک</string>
+    <string name="attribute_wifi">اینترنت</string>
+    <string name="attribute_music">موزیک</string>
+    <string name="attribute_toilet">سرویس بهداشتی</string>
+    <string name="attribute_cardReader">دستگاه کارت‌خوان</string>
+    <string name="attribute_breakfast">صبحانه</string>
+    <string name="attribute_food">غذا</string>
+    <string name="attribute_outdoor">فضای باز</string>
+    <string name="attribute_booking">رزرو میز</string>
+    <string name="attribute_takeAway">بیرون‌بر</string>
+    <string name="attribute_suitableGroups">مناسب برای قرار گروهی</string>
+    <string name="attribute_suitableChildren">مناسب برای کودکان</string>
+    <string name="attribute_suitableDisabled">مناسب برای معلولین</string>
+    <string name="attribute_gallery">گالری</string>
+    <string name="attribute_tv">تلویزیون</string>
+    <string name="attribute_delivery">دلیوری</string>
+    <string name="attribute_serviceCosts">حق سرویس</string>
+    <string name="attribute_selfService">سلف‌سرویس</string>
+    <string name="attribute_cafeTunes">انتخاب موزیک(کافه‌تونز)</string>
+    <string name="attribute_feelinger">سیستم نظرسنجی</string>
+    <string name="attribute_capacity">ظرفیت</string>
+    <string name="attribute_shop">فروشگاه</string>
+    <string name="attribute_timeLimit">محدودیت زمانی</string>
+    <string name="attribute_routingMetro">مترو</string>
+    <string name="attribute_routingBus">اتوبوس</string>
+    <string name="attribute_routingTaxi">تاکسی</string>
+    <string name="attribute_pros">بهترین‌ها</string>
+    <string name="attribute_thirdwaveCoffee">نسل سوم قهوه</string>
+    <string name="attribute_videoprojector">ویدیو پروژکتور</string>
+    <string name="attribute_vip">فضای ویژه VIP</string>
+    <string name="attribute_suitableforcouples">مناسب برای قرار دو نفره</string>
+    <string name="attribute_suitableFamily">مناسب برای خانواده</string>
+    <string name="address">آدرس</string>
+    <string name="phone">تلفن</string>
+    <string name="cafe_map">محل کافه بر روی نقشه</string>
+
+    <string name="listTitle1">اطلاعات مکان</string>
+    <string name="listTitle2">ساعت کار</string>
+    <string name="listTitle3">امکانات</string>
+    <string name="listTitle4">مسیریابی</string>
+
 </resources>

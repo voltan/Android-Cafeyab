@@ -81,6 +81,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/activity_vertical_margin"
                         android:paddingRight="@dimen/activity_vertical_margin"
+                        android:background="@color/colorBrown100"
                         android:text="@string/filter_title"
                         android:textSize="14sp" />
 

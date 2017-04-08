@@ -66,12 +66,6 @@
                         android:textStyle="bold"
                         android:visibility="invisible" />
 
-                    <TextView
-                        android:id="@+id/viewCityArea1"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
                 </LinearLayout>
 
             </FrameLayout>
@@ -94,44 +88,110 @@
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/viewTitle"
-                style="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/viewCityArea"
-                style="?android:attr/textAppearanceSmall"
+                android:id="@+id/listTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/listTitle1"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"></ListView>
+
+            <Button
+                android:id="@+id/button_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:onClick="showMap"
+                android:text="@string/cafe_map"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/article_body"
-                style="?android:attr/textAppearanceMedium"
+                android:id="@+id/summary"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/listTitle2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/material_layout_keylines_screen_edge_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
-                android:autoLink="web"
-                android:linksClickable="true"
-                android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin"
-                android:text="@string/large_text"
-                android:textColor="@android:color/black" />
+                android:layout_gravity="right"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/listTitle2"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/listView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"></ListView>
+
+            <TextView
+                android:id="@+id/listTitle3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/listTitle3"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/listView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"></ListView>
+
+            <TextView
+                android:id="@+id/listTitle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/listTitle4"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/listView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"></ListView>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
