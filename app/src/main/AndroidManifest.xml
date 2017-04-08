@@ -65,6 +65,10 @@
             android:label="@string/activity_news_list"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".NewsSingleActivity"
+            android:label="@string/activity_news_single"
+            android:parentActivityName=".NewsListActivity" />
+        <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
             android:parentActivityName=".MainActivity" />
@@ -88,10 +92,6 @@
             android:name=".UserActivity"
             android:label="@string/activity_user"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
