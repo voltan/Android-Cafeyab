@@ -3,6 +3,7 @@ package com.faragostaresh.cafeyab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -21,8 +23,10 @@ import org.json.JSONObject;
 
 public class VideoSingleActivity extends AppCompatActivity {
 
-    public static String videoUrl = "https://www.cafeyab.com/video/json/videoSingle/id/";
-    public static String itemId;
+    private static final String TAG = VideoSingleActivity.class.getSimpleName();
+
+    public static String videoUrl = "";
+    public static String itemId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,9 @@ public class VideoSingleActivity extends AppCompatActivity {
         // Get search information
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
-        videoUrl = videoUrl + itemId;
+        videoUrl = "https://www.cafeyab.com/video/json/videoSingle/id/" + itemId;
+
+        Log.d(TAG, "Single item url : " + videoUrl);
 
         //Creating a json array request
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(videoUrl,
@@ -43,6 +49,7 @@ public class VideoSingleActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         //VideoList videoSingle = new VideoList();
+                        Log.d(TAG, response.toString());
                         JSONObject json = null;
                         try {
                             json = response.getJSONObject(0);
@@ -72,7 +79,7 @@ public class VideoSingleActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
                     }
                 });
         //Creating request queue
@@ -114,5 +121,29 @@ public class VideoSingleActivity extends AppCompatActivity {
                 break; */
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
+        playerWebView.onPause();
+        playerWebView.pauseTimers();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
+        playerWebView.resumeTimers();
+        playerWebView.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
+        playerWebView.destroy();
+        playerWebView = null;
+        super.onDestroy();
     }
 }

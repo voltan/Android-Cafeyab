@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +18,12 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.CafeList;
 
@@ -32,10 +36,12 @@ import java.util.Arrays;
 
 public class CafeSingleActivity extends AppCompatActivity {
 
+    private static final String TAG = CafeSingleActivity.class.getSimpleName();
+
     ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
-    public static String cafeUrl = "https://www.cafeyab.com/guide/json/itemSingle/id/";
-    public static String itemId;
-    public static String itemTitle;
+    public static String cafeUrl = "";
+    public static String itemId = "";
+    public static String itemTitle = "";
 
     private TextView txtSummary;
     private TextView txtDescription;
@@ -59,10 +65,13 @@ public class CafeSingleActivity extends AppCompatActivity {
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
         // Get search information
+        itemId = null;
+        itemTitle = null;
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
         itemTitle = extras.getString("itemTitle");
-        cafeUrl = cafeUrl + itemId;
+        cafeUrl = "https://www.cafeyab.com/guide/json/itemSingle/id/" + itemId;
+        Log.d(TAG, "Single item url : " + cafeUrl);
 
         // Set title
         setTitle(itemTitle);
@@ -76,7 +85,8 @@ public class CafeSingleActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        CafeList cafeSingle = new CafeList();
+                        //CafeList cafeSingle = new CafeList();
+                        Log.d(TAG, response.toString());
                         JSONObject json = null;
                         try {
                             json = response.getJSONObject(0);
@@ -267,15 +277,13 @@ public class CafeSingleActivity extends AppCompatActivity {
                             txtSummary = (TextView) findViewById(R.id.summary);
                             if (!json.getString("text_summary").isEmpty()) {
                                 txtSummary.setText(json.getString("text_summary"));
-                                txtSummary.setPadding(16, 0, 16, 0);
-                             } else {
+                            } else {
                                 txtSummary.setVisibility(View.GONE);
                             }
 
                             txtDescription = (TextView) findViewById(R.id.description);
                             if (!json.getString("text_description").isEmpty()) {
-                                txtDescription.setText(json.getString("text_description"));
-                                txtDescription.setPadding(16, 0, 16, 0);
+                                txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
                             } else {
                                 txtDescription.setVisibility(View.GONE);
                             }
@@ -284,13 +292,12 @@ public class CafeSingleActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            }
+        });
         //Creating request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 

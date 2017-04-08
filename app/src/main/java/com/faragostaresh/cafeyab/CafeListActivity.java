@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.faragostaresh.adaptor.CafeListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
@@ -44,9 +46,11 @@ import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDE
 
 public class CafeListActivity extends AppCompatActivity {
 
+    private static final String TAG = CafeListActivity.class.getSimpleName();
+
     private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
-    public static String itemId;
-    public static String itemTitle;
+    public static String itemId = "";
+    public static String itemTitle = "";
     public int page = 1;
     public String searchLocation = "";
     public String searchTitle = "";
@@ -451,6 +455,7 @@ public class CafeListActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 // stopping swipe refresh
                 mSwipyRefreshLayout.setRefreshing(false);
@@ -466,9 +471,16 @@ public class CafeListActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
+
+            itemId = null;
+            itemTitle = null;
             ItemList getselected = (ItemList) (gridView.getItemAtPosition(position));
             itemId = getselected.getItemId();
             itemTitle = getselected.getTitle();
+
+            Log.d(TAG, "List item id : " + itemId);
+            Log.d(TAG, "List item title : " + itemTitle);
+
             displayView(itemId, itemTitle);
         }
 

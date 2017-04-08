@@ -26,6 +26,7 @@
     <string name="activity_event_single">اطلاعات رویداد</string>
     <string name="activity_video_single">اطلاعات ویدیو</string>
     <string name="activity_cafe_single">اطلاعات کافه</string>
+    <string name="activity_news_single">اطلاعات مطلب</string>
 
     <string name="backdrop_title">کافه یاب</string>
     <string name="backdrop_subtitle">فهرست کافه‌های شهر های مختلف ایران</string>
