@@ -1,44 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="city_list_name">
-        <item>همه شهر ها</item>
+        <item>همه استان ها</item>
         <item>تهران</item>
-        <item>کرج</item>
-        <item>تبریز</item>
+        <item>البرز</item>
+        <item>مازندران</item>
+        <item>آذربایجان شرقی</item>
+        <item>آذربایجان غربی</item>
+        <item>اردبیل</item>
         <item>اصفهان</item>
-        <item>شیراز</item>
-        <item>مشهد</item>
-        <item>اهواز</item>
-        <item>رشت</item>
-        <item>ساری</item>
-        <item>آمل</item>
-        <item>دزفول</item>
-        <item>بندر عباس</item>
-        <item>بیرجند</item>
-        <item>اراک</item>
+        <item>ایلام</item>
+        <item>بوشهر</item>
+        <item>چهارمحال و بختیاری</item>
+        <item>خراسان رضوی</item>
+        <item>خراسان جنوبی</item>
+        <item>خراسان شمالی</item>
+        <item>خوزستان</item>
+        <item>زنجان</item>
+        <item>سمنان</item>
+        <item>سیستان و بلوچستان</item>
+        <item>فارس</item>
         <item>قزوین</item>
-        <item>رویان(نور)</item>
-        <item>رامسر</item>
+        <item>قم</item>
+        <item>کردستان</item>
+        <item>کرمان</item>
+        <item>کرمانشاه</item>
+        <item>کهگیلویه و بویراحمد</item>
+        <item>گلستان</item>
+        <item>گیلان</item>
+        <item>لرستان</item>
+        <item>مرکزی</item>
+        <item>هرمزگان</item>
+        <item>همدان</item>
+        <item>یزد</item>
     </string-array>
 
     <string-array name="city_list_slug">
         <item></item>
-        <item>tehran</item>
-        <item>karaj-city</item>
-        <item>tabriz</item>
-        <item>isfahan-city</item>
-        <item>shiraz</item>
-        <item>mashhad</item>
-        <item>ahvaz</item>
-        <item>rasht</item>
-        <item>sari</item>
-        <item>amol</item>
-        <item>dezful</item>
-        <item>bandar-abbas4</item>
-        <item>birjand</item>
-        <item>arak</item>
-        <item>qazvin-city</item>
-        <item>royan-noor</item>
-        <item>ramsar</item>
+        <item>tehran-province</item>
+        <item>alborz</item>
+        <item>mazandaran</item>
+        <item>east-azerbaijan</item>
+        <item>west-azerbaijan</item>
+        <item>ardebil</item>
+        <item>isfahan</item>
+        <item>ilam</item>
+        <item>bushehr</item>
+        <item>chaharmahal-and-bakhtiari</item>
+        <item>razavi-khorasan</item>
+        <item>south-khorasan</item>
+        <item>north-khorasan</item>
+        <item>khuzestan</item>
+        <item>zanjan</item>
+        <item>semnan</item>
+        <item>sistan-and-baluchistan</item>
+        <item>fars</item>
+        <item>qazvin</item>
+        <item>qom</item>
+        <item>kurdistan</item>
+        <item>kerman</item>
+        <item>kermanshah</item>
+        <item>kohgiluyeh-and-boyer-ahmad</item>
+        <item>golestan</item>
+        <item>gilan</item>
+        <item>lorestan</item>
+        <item>markazi</item>
+        <item>hormozgan</item>
+        <item>hamedan</item>
+        <item>yazd</item>
     </string-array>
 </resources>
