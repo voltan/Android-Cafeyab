@@ -49,8 +49,9 @@ public class CafeSingleActivity extends AppCompatActivity {
     private ListView mainListView;
     private ArrayAdapter<String> listAdapter1;
     private ArrayAdapter<String> listAdapter2;
-    private ArrayAdapter<String> listAdapter4;
     private ArrayAdapter<String> listAdapter3;
+    private ArrayAdapter<String> listAdapter4;
+    private ArrayAdapter<String> listAdapter5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,18 +152,6 @@ public class CafeSingleActivity extends AppCompatActivity {
                             if (!json.getString("attribute_pros").isEmpty()) {
                                 listAdapter3.add("بهترین های منو : " + json.getString("attribute_pros"));
                             }
-                            if (!json.getString("attribute_parkingspace").isEmpty()) {
-                                listAdapter3.add("جای پارک : " + json.getString("attribute_parkingspace"));
-                            }
-                            if (!json.getString("attribute_servicecosts").isEmpty()) {
-                                listAdapter3.add("حق سرویس : " + json.getString("attribute_servicecosts"));
-                            }
-                            if (!json.getString("attribute_wifi").isEmpty()) {
-                                listAdapter3.add("اینترنت : " + json.getString("attribute_wifi"));
-                            }
-                            if (!json.getString("attribute_cardreader").isEmpty()) {
-                                listAdapter3.add("دستگاه کارت خوان : " + json.getString("attribute_cardreader"));
-                            }
                             if (!json.getString("attribute_food").isEmpty()) {
                                 listAdapter3.add("غذا : " + json.getString("attribute_food"));
                             }
@@ -175,8 +164,11 @@ public class CafeSingleActivity extends AppCompatActivity {
                             if (!json.getString("attribute_thirdwavecoffee").isEmpty()) {
                                 listAdapter3.add("قهوه موج سوم : " + json.getString("attribute_thirdwavecoffee"));
                             }
-                            if (!json.getString("attribute_outdoor").isEmpty()) {
-                                listAdapter3.add("فضای باز : " + json.getString("attribute_outdoor"));
+                            if (!json.getString("attribute_parkingspace").isEmpty()) {
+                                listAdapter3.add("جای پارک : " + json.getString("attribute_parkingspace"));
+                            }
+                            if (!json.getString("attribute_wifi").isEmpty()) {
+                                listAdapter3.add("اینترنت : " + json.getString("attribute_wifi"));
                             }
                             if (!json.getString("attribute_nosmoke").isEmpty()) {
                                 listAdapter3.add("سیگار کشیدن : " + json.getString("attribute_nosmoke"));
@@ -184,59 +176,8 @@ public class CafeSingleActivity extends AppCompatActivity {
                             if (!json.getString("attribute_toilet").isEmpty()) {
                                 listAdapter3.add("سرویس بهداشتی : " + json.getString("attribute_toilet"));
                             }
-                            if (!json.getString("attribute_music").isEmpty()) {
-                                listAdapter3.add("موزیک : " + json.getString("attribute_music"));
-                            }
-                            if (!json.getString("attribute_timelimit").isEmpty()) {
-                                listAdapter3.add("محدودیت زمانی : " + json.getString("attribute_timelimit"));
-                            }
-                            if (!json.getString("attribute_booking").isEmpty()) {
-                                listAdapter3.add("رزرو تلفنی : " + json.getString("attribute_booking"));
-                            }
-                            if (!json.getString("attribute_takeaway").isEmpty()) {
-                                listAdapter3.add("بیرون بر : " + json.getString("attribute_takeaway"));
-                            }
-                            if (!json.getString("attribute_capacity").isEmpty()) {
-                                listAdapter3.add("ظرفیت : " + json.getString("attribute_capacity"));
-                            }
-                            if (!json.getString("attribute_suitableforcouples").isEmpty()) {
-                                listAdapter3.add("مناسب برای قرار دونفره : " + json.getString("attribute_suitableforcouples"));
-                            }
-                            if (!json.getString("attribute_suitablegroups").isEmpty()) {
-                                listAdapter3.add("مناسب برای قرار گروهی : " + json.getString("attribute_suitablegroups"));
-                            }
-                            if (!json.getString("attribute_suitablefamily").isEmpty()) {
-                                listAdapter3.add(" مناسب برای خانواده : " + json.getString("attribute_suitablefamily"));
-                            }
-                            if (!json.getString("attribute_suitablechildren").isEmpty()) {
-                                listAdapter3.add("مناسب برای کودکان : " + json.getString("attribute_suitablechildren"));
-                            }
-                            if (!json.getString("attribute_suitabledisabled").isEmpty()) {
-                                listAdapter3.add("مناسب برای معلولین : " + json.getString("attribute_suitabledisabled"));
-                            }
-                            if (!json.getString("attribute_gallery").isEmpty()) {
-                                listAdapter3.add("گالری : " + json.getString("attribute_gallery"));
-                            }
-                            if (!json.getString("attribute_tv").isEmpty()) {
-                                listAdapter3.add("تلویزیون : " + json.getString("attribute_tv"));
-                            }
-                            if (!json.getString("attribute_shop").isEmpty()) {
-                                listAdapter3.add("فروشگاه : " + json.getString("attribute_shop"));
-                            }
-                            if (!json.getString("attribute_delivery").isEmpty()) {
-                                listAdapter3.add("دلیوری(تحویل در محل) : " + json.getString("attribute_delivery"));
-                            }
-                            if (!json.getString("attribute_selfservice").isEmpty()) {
-                                listAdapter3.add("سلف سرویس : " + json.getString("attribute_selfservice"));
-                            }
-                            if (!json.getString("attribute_videoprojector").isEmpty()) {
-                                listAdapter3.add("ویدیو پروژکتور : " + json.getString("attribute_videoprojector"));
-                            }
                             if (!json.getString("attribute_vip").isEmpty()) {
                                 listAdapter3.add("فضای ویژه VIP : " + json.getString("attribute_vip"));
-                            }
-                            if (!json.getString("attribute_charge").isEmpty()) {
-                                listAdapter3.add("پریز برق : " + json.getString("attribute_charge"));
                             }
                             mainListView = (ListView) findViewById(R.id.listView3);
                             mainListView.setAdapter(listAdapter3);
@@ -273,6 +214,86 @@ public class CafeSingleActivity extends AppCompatActivity {
                             } else {
                                 setListViewHeightBasedOnChildren(mainListView);
                             }
+
+
+
+
+                            String[] attributes5 = new String[]{};
+                            ArrayList<String> attributesList5 = new ArrayList<String>();
+                            attributesList5.addAll(Arrays.asList(attributes5));
+                            listAdapter5 = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row_cafe_attributes, attributesList5);
+                            if (!json.getString("attribute_cardreader").isEmpty()) {
+                                listAdapter5.add("دستگاه کارت خوان : " + json.getString("attribute_cardreader"));
+                            }
+                            if (!json.getString("attribute_servicecosts").isEmpty()) {
+                                listAdapter5.add("حق سرویس : " + json.getString("attribute_servicecosts"));
+                            }
+                            if (!json.getString("attribute_outdoor").isEmpty()) {
+                                listAdapter5.add("فضای باز : " + json.getString("attribute_outdoor"));
+                            }
+                            if (!json.getString("attribute_music").isEmpty()) {
+                                listAdapter5.add("موزیک : " + json.getString("attribute_music"));
+                            }
+                            if (!json.getString("attribute_timelimit").isEmpty()) {
+                                listAdapter5.add("محدودیت زمانی : " + json.getString("attribute_timelimit"));
+                            }
+                            if (!json.getString("attribute_booking").isEmpty()) {
+                                listAdapter5.add("رزرو تلفنی : " + json.getString("attribute_booking"));
+                            }
+                            if (!json.getString("attribute_takeaway").isEmpty()) {
+                                listAdapter5.add("بیرون بر : " + json.getString("attribute_takeaway"));
+                            }
+                            if (!json.getString("attribute_capacity").isEmpty()) {
+                                listAdapter5.add("ظرفیت : " + json.getString("attribute_capacity"));
+                            }
+                            if (!json.getString("attribute_suitableforcouples").isEmpty()) {
+                                listAdapter5.add("مناسب برای قرار دونفره : " + json.getString("attribute_suitableforcouples"));
+                            }
+                            if (!json.getString("attribute_suitablegroups").isEmpty()) {
+                                listAdapter5.add("مناسب برای قرار گروهی : " + json.getString("attribute_suitablegroups"));
+                            }
+                            if (!json.getString("attribute_suitablefamily").isEmpty()) {
+                                listAdapter5.add(" مناسب برای خانواده : " + json.getString("attribute_suitablefamily"));
+                            }
+                            if (!json.getString("attribute_suitablechildren").isEmpty()) {
+                                listAdapter5.add("مناسب برای کودکان : " + json.getString("attribute_suitablechildren"));
+                            }
+                            if (!json.getString("attribute_suitabledisabled").isEmpty()) {
+                                listAdapter5.add("مناسب برای معلولین : " + json.getString("attribute_suitabledisabled"));
+                            }
+                            if (!json.getString("attribute_gallery").isEmpty()) {
+                                listAdapter5.add("گالری : " + json.getString("attribute_gallery"));
+                            }
+                            if (!json.getString("attribute_tv").isEmpty()) {
+                                listAdapter5.add("تلویزیون : " + json.getString("attribute_tv"));
+                            }
+                            if (!json.getString("attribute_shop").isEmpty()) {
+                                listAdapter5.add("فروشگاه : " + json.getString("attribute_shop"));
+                            }
+                            if (!json.getString("attribute_delivery").isEmpty()) {
+                                listAdapter5.add("دلیوری(تحویل در محل) : " + json.getString("attribute_delivery"));
+                            }
+                            if (!json.getString("attribute_selfservice").isEmpty()) {
+                                listAdapter5.add("سلف سرویس : " + json.getString("attribute_selfservice"));
+                            }
+                            if (!json.getString("attribute_videoprojector").isEmpty()) {
+                                listAdapter5.add("ویدیو پروژکتور : " + json.getString("attribute_videoprojector"));
+                            }
+                            if (!json.getString("attribute_charge").isEmpty()) {
+                                listAdapter5.add("پریز برق : " + json.getString("attribute_charge"));
+                            }
+                            mainListView = (ListView) findViewById(R.id.listView5);
+                            mainListView.setAdapter(listAdapter5);
+                            Integer attributeCount5 = listAdapter5.getCount();
+                            if (attributeCount5 <= 0) {
+                                TextView txtheader5 = (TextView) findViewById(R.id.listTitle5);
+                                txtheader5.setVisibility(View.GONE);
+                            } else {
+                                setListViewHeightBasedOnChildren(mainListView);
+                            }
+
+
+
 
                             txtSummary = (TextView) findViewById(R.id.summary);
                             if (!json.getString("text_summary").isEmpty()) {

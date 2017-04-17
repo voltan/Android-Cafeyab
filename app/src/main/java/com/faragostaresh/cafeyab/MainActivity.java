@@ -121,27 +121,29 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 2) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchNoSmoking", 1);
+                    myIntent.putExtra("searchTruck", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 3) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchBreakfast", 1);
+                    myIntent.putExtra("searchNoSmoking", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 4) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchFood", 1);
+                    myIntent.putExtra("searchBreakfast", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 5) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchVegetarianFood", 1);
+                    myIntent.putExtra("searchFood", 1);
                     startActivityForResult(myIntent, 0);
                 }
+
+
             }
         });
 

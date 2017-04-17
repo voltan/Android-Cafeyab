@@ -60,6 +60,7 @@ public class CafeListActivity extends AppCompatActivity {
     public int searchFood = 0;
     public int searchVegetarianFood = 0;
     public int searchWifi = 0;
+    public int searchTruck = 0;
     /* public int searchThirdWaveCoffee = 0;
     public int searchTakeaWay = 0;
     public int searchGallery = 0;
@@ -160,11 +161,14 @@ public class CafeListActivity extends AppCompatActivity {
         final CheckBox filterFood = (CheckBox) findViewById(R.id.filter_food);
         final CheckBox filterVegetarianFood = (CheckBox) findViewById(R.id.filter_vegetarian_food);
         final CheckBox filterWifi = (CheckBox) findViewById(R.id.filter_wifi);
-        /* final CheckBox filterThirdWaveCoffee = (CheckBox) findViewById(R.id.filter_third_wave_coffee);
+        /*
+        final CheckBox filterTruck = (CheckBox) findViewById(R.id.filter_truck);
+        final CheckBox filterThirdWaveCoffee = (CheckBox) findViewById(R.id.filter_third_wave_coffee);
         final CheckBox filterTakeaWay = (CheckBox) findViewById(R.id.filter_takea_way);
         final CheckBox filterGallery = (CheckBox) findViewById(R.id.filter_gallery);
         final CheckBox filterTv = (CheckBox) findViewById(R.id.filter_tv);
-        final CheckBox filterFamily = (CheckBox) findViewById(R.id.filter_family); */
+        final CheckBox filterFamily = (CheckBox) findViewById(R.id.filter_family);
+        */
         final Button search = (Button) findViewById(R.id.filter_button);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +202,11 @@ public class CafeListActivity extends AppCompatActivity {
                 if (filterWifi.isChecked()) {
                     intent.putExtra("searchWifi", 1);
                 }
-                /* if (filterThirdWaveCoffee.isChecked()) {
+                /*
+                if (filterTruck.isChecked()) {
+                    intent.putExtra("searchTruck", 1);
+                }
+                if (filterThirdWaveCoffee.isChecked()) {
                     intent.putExtra("searchThirdWaveCoffee", 1);
                 }
                 if (filterTakeaWay.isChecked()) {
@@ -212,7 +220,8 @@ public class CafeListActivity extends AppCompatActivity {
                 }
                 if (filterFamily.isChecked()) {
                     intent.putExtra("searchFamily", 1);
-                } */
+                }
+                */
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
             }
@@ -229,6 +238,7 @@ public class CafeListActivity extends AppCompatActivity {
             searchFood = extras.getInt("searchFood");
             searchVegetarianFood = extras.getInt("searchVegetarianFood");
             searchWifi = extras.getInt("searchWifi");
+            searchTruck = extras.getInt("searchTruck");
             /* searchThirdWaveCoffee = extras.getInt("searchThirdWaveCoffee");
             searchTakeaWay = extras.getInt("searchTakeaWay");
             searchGallery = extras.getInt("searchGallery");
@@ -263,7 +273,11 @@ public class CafeListActivity extends AppCompatActivity {
             if (searchWifi == 1) {
                 filterWifi.setChecked(true);
             }
-            /* if (searchThirdWaveCoffee == 1) {
+            /*
+            if (searchTruck == 1) {
+                filterTruck.setChecked(true);
+            }
+            if (searchThirdWaveCoffee == 1) {
                 filterThirdWaveCoffee.setChecked(true);
             }
             if (searchTakeaWay == 1) {
@@ -277,7 +291,8 @@ public class CafeListActivity extends AppCompatActivity {
             }
             if (searchFamily == 1) {
                 filterFamily.setChecked(true);
-            } */
+            }
+            */
         }
 
         // Sliding Up Panel actions
@@ -399,6 +414,9 @@ public class CafeListActivity extends AppCompatActivity {
         }
         if (searchWifi == 1) {
             url = url + "&wifi=دارد";
+        }
+        if (searchTruck == 1) {
+            url = url + "&truck=سیار";
         }
         /* if (searchThirdWaveCoffee == 1) {
             url = url + "&thirdwavecoffee=دارد";
