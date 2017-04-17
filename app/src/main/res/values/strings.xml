@@ -20,6 +20,7 @@
     <string name="activity_event_list">فهرست رویداد ها</string>
     <string name="activity_video_list">فهرست ویدیو ها</string>
     <string name="activity_map_list">کافه‌های اطراف بر روی نقشه</string>
+    <string name="activity_map_single">نقشه</string>
     <string name="activity_search">جستجو</string>
     <string name="activity_user">کاربر</string>
 
@@ -120,5 +121,7 @@
     <string name="listTitle3">امکانات</string>
     <string name="listTitle4">مسیریابی</string>
     <string name="listTitle5">سایر امکانات</string>
+
+    <string name="on_map">بر روی نقشه</string>
 
 </resources>

@@ -434,6 +434,8 @@ public class CafeListActivity extends AppCompatActivity {
             url = url + "&suitablefamily=بله";
         } */
 
+        Log.d(TAG, url);
+
         // Volley's json array request object
         JsonObjectRequest req = new JsonObjectRequest(url,
                 new Response.Listener<JSONObject>() {

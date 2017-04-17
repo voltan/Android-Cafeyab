@@ -88,6 +88,13 @@
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".MapSingleActivity"
+            android:label="@string/activity_map_single" />
+
+
+
         <activity
             android:name=".UserActivity"
             android:label="@string/activity_user"

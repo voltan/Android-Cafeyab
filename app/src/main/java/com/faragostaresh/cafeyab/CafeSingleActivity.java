@@ -1,7 +1,12 @@
 package com.faragostaresh.cafeyab;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -11,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,15 +39,23 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CafeSingleActivity extends AppCompatActivity {
 
     private static final String TAG = CafeSingleActivity.class.getSimpleName();
 
     ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
+
+    Context context = this;
+
     public static String cafeUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
+    public static String mapLatitude = "";
+    public static String mapLongitude = "";
+    public static String mapZoom = "15";
+    public static String mapType = "TERRAIN";
 
     private TextView txtSummary;
     private TextView txtDescription;
@@ -68,9 +82,11 @@ public class CafeSingleActivity extends AppCompatActivity {
         // Get search information
         itemId = null;
         itemTitle = null;
+
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
         itemTitle = extras.getString("itemTitle");
+
         cafeUrl = "https://www.cafeyab.com/guide/json/itemSingle/id/" + itemId;
         Log.d(TAG, "Single item url : " + cafeUrl);
 
@@ -309,6 +325,22 @@ public class CafeSingleActivity extends AppCompatActivity {
                                 txtDescription.setVisibility(View.GONE);
                             }
 
+
+
+                            if (!json.getString("map_latitude").isEmpty()) {
+                                mapLatitude = json.getString("map_latitude");
+                            }
+                            if (!json.getString("map_longitude").isEmpty()) {
+                                mapLongitude = json.getString("map_longitude");
+                            }
+                            if (!json.getString("map_zoom").isEmpty()) {
+                                mapZoom = json.getString("map_zoom");
+                            }
+                            if (!json.getString("map_type").isEmpty()) {
+                                mapType = json.getString("map_type");
+                            }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -324,6 +356,130 @@ public class CafeSingleActivity extends AppCompatActivity {
 
         //Adding request to the queue
         requestQueue.add(jsonArrayRequest);
+
+        // Set map button
+        Button map = (Button) findViewById(R.id.button_map);
+        if (!mapLatitude.isEmpty() && !mapLongitude.isEmpty()) {
+            map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Click action
+                    Intent intent = new Intent(getApplicationContext(), MapSingleActivity.class);
+                    intent.putExtra("mapLatitude", mapLatitude);
+                    intent.putExtra("mapLongitude", mapLongitude);
+                    intent.putExtra("mapZoom", mapZoom);
+                    intent.putExtra("mapType", mapType);
+                    intent.putExtra("itemTitle", itemTitle);
+                    intent.putExtra("itemId", itemId);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            map.setVisibility(View.GONE);
+        }
+
+        // Set shear bottom
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+
+                List<Intent> targetShareIntents = new ArrayList<Intent>();
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("*/*");
+
+                List<ResolveInfo> resInfos = context.getPackageManager().queryIntentActivities(shareIntent, 0);
+                for (ResolveInfo ri : resInfos) {
+
+                    String packageName = ri.activityInfo.packageName;
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
+                    intent.setPackage(packageName);
+
+                    if (packageName.contains("com.twitter.android")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.share_twitter) + shareUrl);
+                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.facebook.katana")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.instagram")) {
+
+                        intent.setType("image/jpeg");
+                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.pinterest")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.google.android.gm")) {
+
+                        intent.setType("image/*");
+                        //intent.putExtra(Intent.EXTRA_TITLE, txttitle.getText());
+                       // intent.putExtra(Intent.EXTRA_SUBJECT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                       // intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.hootsuite.droid.full")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.facebook.pages.app")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("org.telegram.messenger")) {
+
+                        intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        targetShareIntents.add(intent);
+
+                    } /* else {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        targetShareIntents.add(intent);
+
+                    } */
+                }
+
+                Intent chooserIntent = Intent.createChooser(targetShareIntents.remove(0), "Choose app to share");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetShareIntents.toArray(new Parcelable[]{}));
+                startActivity(chooserIntent);
+
+            }
+        });
     }
 
     @Override
