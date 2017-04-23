@@ -5,7 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,13 +18,34 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.faragostaresh.adaptor.MainIconAdapter;
+import com.faragostaresh.adaptor.RecyclerViewDataAdapter;
+import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.model.ItemList;
+import com.faragostaresh.model.SectionDataModel;
+import com.faragostaresh.model.SingleItemModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     TextView searchBox;
+    ArrayList<SectionDataModel> allSampleData;
+    public List<ItemList> cafeList = new ArrayList<ItemList>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -157,6 +182,56 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //
+        String url = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
+        Log.d(TAG, url);
+        // Volley's json array request object
+        JsonObjectRequest req = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            JSONArray jsonArray = response.optJSONArray("items");
+                            if (response.length() > 0) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    try {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        Log.d(TAG, obj.toString());
+                                        ItemList cafe = new ItemList();
+                                        cafe.setTitle(obj.getString("title"));
+                                        cafe.setItemID(obj.getString("id"));
+                                        cafe.setThumbnailUrl(obj.getString("mediumUrl"));
+                                        cafeList.add(cafe);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+
+                        Log.d(TAG, "Size : " + String.valueOf(cafeList.size()));
+
+                        allSampleData = new ArrayList<SectionDataModel>();
+                        createDummyData();
+                        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
+                        my_recycler_view.setHasFixedSize(true);
+                        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(getApplicationContext(), allSampleData);
+                        my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+                        my_recycler_view.setAdapter(adapter);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Adding request to request queue
+        CafeyabApplication.getInstance().addToRequestQueue(req);
     }
 
     @Override
@@ -191,5 +266,17 @@ public class MainActivity extends AppCompatActivity {
                 break; */
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createDummyData() {
+        SectionDataModel dm = new SectionDataModel();
+        dm.setHeaderTitle("کافه های پیشنهادی");
+        ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
+        for (int j = 0; j < cafeList.size(); j++) {
+            ItemList cafe = cafeList.get(j);
+            singleItem.add(new SingleItemModel(cafe.getTitle(), cafe.getThumbnailUrl(), "item", cafe.getItemId()));
+        }
+        dm.setAllItemsInSection(singleItem);
+        allSampleData.add(dm);
     }
 }
