@@ -64,15 +64,6 @@
                         android:text="@string/backdrop_title"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/viewTitle2"
-                        style="?android:attr/textAppearanceLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="@string/backdrop_title"
-                        android:textStyle="bold" />
-
                 </LinearLayout>
 
             </FrameLayout>
