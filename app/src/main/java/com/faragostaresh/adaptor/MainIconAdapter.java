@@ -22,9 +22,14 @@ public final class MainIconAdapter extends BaseAdapter {
         mItems.add(new Item("کافه های جدید",     R.drawable.ic_local_cafe));
         mItems.add(new Item("کافه‌های پیشنهادی", R.drawable.ic_assistant_photo));
         mItems.add(new Item("کافه های سیار",      R.drawable.ic_airport_shuttle));
+
         mItems.add(new Item("کافه‌های بدون سیگار", R.drawable.ic_smoke_free));
+        mItems.add(new Item("کافه‌های با اینترنت", R.drawable.ic_wifi));
+        mItems.add(new Item("کافه‌های با قهوه موج سوم", R.drawable.ic_local_cafe));
+
         mItems.add(new Item("کافه‌های با صبحانه",   R.drawable.ic_free_breakfast));
         mItems.add(new Item("کافه‌های با غذا",      R.drawable.ic_restaurant));
+        mItems.add(new Item("کافه‌های با غذای گیاهی",      R.drawable.ic_local_cafe));
     }
 
     @Override

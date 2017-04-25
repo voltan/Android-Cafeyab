@@ -111,10 +111,10 @@
                     android:textAlignment="center"
                     android:textColor="#8f8f8f" />
 
-                <GridView
+                <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="wrap_content"
                     android:horizontalSpacing="5dp"
                     android:numColumns="3"
                     android:stretchMode="columnWidth"
@@ -124,7 +124,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="270dp"
                 android:background="@color/white"
                 android:orientation="vertical">
 

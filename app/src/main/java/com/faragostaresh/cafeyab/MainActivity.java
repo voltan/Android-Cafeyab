@@ -26,6 +26,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.faragostaresh.adaptor.MainIconAdapter;
+import com.faragostaresh.adaptor.MyGridView;
 import com.faragostaresh.adaptor.RecyclerViewDataAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
@@ -119,13 +120,13 @@ public class MainActivity extends AppCompatActivity {
         // Set main image
         try {
             ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-            Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").into(imageView);
+            Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         // Set list of main icons
-        GridView gridView = (GridView)findViewById(R.id.gridview);
+        MyGridView gridView = (MyGridView)findViewById(R.id.gridview);
         gridView.setAdapter(new MainIconAdapter(this));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {

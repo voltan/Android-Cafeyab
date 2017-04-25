@@ -61,8 +61,8 @@ public class CafeListActivity extends AppCompatActivity {
     public int searchVegetarianFood = 0;
     public int searchWifi = 0;
     public int searchTruck = 0;
-    /* public int searchThirdWaveCoffee = 0;
-    public int searchTakeaWay = 0;
+    public int searchThirdWaveCoffee = 0;
+    /* public int searchTakeaWay = 0;
     public int searchGallery = 0;
     public int searchTv = 0;
     public int searchFamily = 0; */
@@ -203,11 +203,11 @@ public class CafeListActivity extends AppCompatActivity {
                     intent.putExtra("searchWifi", 1);
                 }
                 /*
-                if (filterTruck.isChecked()) {
-                    intent.putExtra("searchTruck", 1);
-                }
                 if (filterThirdWaveCoffee.isChecked()) {
                     intent.putExtra("searchThirdWaveCoffee", 1);
+                }
+                if (filterTruck.isChecked()) {
+                    intent.putExtra("searchTruck", 1);
                 }
                 if (filterTakeaWay.isChecked()) {
                     intent.putExtra("searchTakeaWay", 1);
@@ -239,8 +239,8 @@ public class CafeListActivity extends AppCompatActivity {
             searchVegetarianFood = extras.getInt("searchVegetarianFood");
             searchWifi = extras.getInt("searchWifi");
             searchTruck = extras.getInt("searchTruck");
-            /* searchThirdWaveCoffee = extras.getInt("searchThirdWaveCoffee");
-            searchTakeaWay = extras.getInt("searchTakeaWay");
+            searchThirdWaveCoffee = extras.getInt("searchThirdWaveCoffee");
+            /* searchTakeaWay = extras.getInt("searchTakeaWay");
             searchGallery = extras.getInt("searchGallery");
             searchTv = extras.getInt("searchTv");
             searchFamily = extras.getInt("searchFamily"); */
@@ -274,11 +274,11 @@ public class CafeListActivity extends AppCompatActivity {
                 filterWifi.setChecked(true);
             }
             /*
-            if (searchTruck == 1) {
-                filterTruck.setChecked(true);
-            }
             if (searchThirdWaveCoffee == 1) {
                 filterThirdWaveCoffee.setChecked(true);
+            }
+            if (searchTruck == 1) {
+                filterTruck.setChecked(true);
             }
             if (searchTakeaWay == 1) {
                 filterTakeaWay.setChecked(true);
@@ -418,10 +418,10 @@ public class CafeListActivity extends AppCompatActivity {
         if (searchTruck == 1) {
             url = url + "&truck=سیار";
         }
-        /* if (searchThirdWaveCoffee == 1) {
+        if (searchThirdWaveCoffee == 1) {
             url = url + "&thirdwavecoffee=دارد";
         }
-        if (searchTakeaWay == 1) {
+        /* if (searchTakeaWay == 1) {
             url = url + "&takeaway=دارد";
         }
         if (searchGallery == 1) {
