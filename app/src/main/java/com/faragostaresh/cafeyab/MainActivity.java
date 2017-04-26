@@ -159,16 +159,33 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 4) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
-                    myIntent.putExtra("searchBreakfast", 1);
+                    myIntent.putExtra("searchWifi", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
                 if (position == 5) {
                     Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchThirdWaveCoffee", 1);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 6) {
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchBreakfast", 1);
+                    startActivityForResult(myIntent, 0);
+                }
+
+                if (position == 7) {
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
                     myIntent.putExtra("searchFood", 1);
                     startActivityForResult(myIntent, 0);
                 }
 
+                if (position == 8) {
+                    Intent myIntent = new Intent(view.getContext(), CafeListActivity.class);
+                    myIntent.putExtra("searchVegetarianFood", 1);
+                    startActivityForResult(myIntent, 0);
+                }
 
             }
         });
@@ -185,10 +202,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //
-        String url = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
-        Log.d(TAG, url);
+        String urlCafe = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
+        Log.d(TAG, urlCafe);
         // Volley's json array request object
-        JsonObjectRequest req = new JsonObjectRequest(url,
+        JsonObjectRequest reqCafe = new JsonObjectRequest(urlCafe,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -216,8 +233,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Size : " + String.valueOf(cafeList.size()));
 
                         allSampleData = new ArrayList<SectionDataModel>();
-                        createDummyData();
-                        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
+                        createDummyDataCafe();
+                        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.cafe_list);
                         my_recycler_view.setHasFixedSize(true);
                         RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(getApplicationContext(), allSampleData);
                         my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
@@ -232,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Adding request to request queue
-        CafeyabApplication.getInstance().addToRequestQueue(req);
+        CafeyabApplication.getInstance().addToRequestQueue(reqCafe);
     }
 
     @Override
@@ -269,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createDummyData() {
+    public void createDummyDataCafe() {
         SectionDataModel dm = new SectionDataModel();
         dm.setHeaderTitle("کافه های پیشنهادی");
         ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();

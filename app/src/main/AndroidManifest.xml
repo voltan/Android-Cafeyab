@@ -35,6 +35,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,60 +46,71 @@
         <activity
             android:name=".MainActivity"
             android:label=""
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/activity_about"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CafeSingleActivity"
             android:label="@string/activity_cafe_single"
             android:parentActivityName=".CafeListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NewsSingleActivity"
             android:label="@string/activity_news_single"
-            android:parentActivityName=".NewsListActivity" />
+            android:parentActivityName=".NewsListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EventSingleActivity"
             android:label="@string/activity_event_single"
-            android:parentActivityName=".EventListActivity" />
+            android:parentActivityName=".EventListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VideoListActivity"
             android:label="@string/activity_video_list"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".VideoSingleActivity"
             android:label="@string/activity_video_single"
-            android:parentActivityName=".VideoListActivity" />
+            android:parentActivityName=".VideoListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".MapSingleActivity"
-            android:label="@string/activity_map_single" />
-
-
+            android:label="@string/activity_map_single"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".UserActivity"
             android:label="@string/activity_user"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
