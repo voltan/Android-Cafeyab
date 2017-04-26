@@ -52,6 +52,8 @@ public class CafeSingleActivity extends AppCompatActivity {
     public static String cafeUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
+    public static String itemUrl = "https://www.cafeyab.com";
+    public static String largeUrl = "";
     public static String mapLatitude = "";
     public static String mapLongitude = "";
     public static String mapZoom = "15";
@@ -115,6 +117,12 @@ public class CafeSingleActivity extends AppCompatActivity {
                             thumbnail.setImageUrl(json.getString("itemimageUrl"), imageLoader);
                             //viewTitle.setText(json.getString("title"));
                             //viewCityArea.setText(json.getString("city_area"));
+
+                            // Set item url
+                            itemUrl = json.getString("itemUrl");
+
+                            // Set item largeUrl
+                            largeUrl = json.getString("largeUrl");
 
                             String[] attributes1 = new String[]{};
                             ArrayList<String> attributesList1 = new ArrayList<String>();
@@ -231,9 +239,6 @@ public class CafeSingleActivity extends AppCompatActivity {
                                 setListViewHeightBasedOnChildren(mainListView);
                             }
 
-
-
-
                             String[] attributes5 = new String[]{};
                             ArrayList<String> attributesList5 = new ArrayList<String>();
                             attributesList5.addAll(Arrays.asList(attributes5));
@@ -308,9 +313,6 @@ public class CafeSingleActivity extends AppCompatActivity {
                                 setListViewHeightBasedOnChildren(mainListView);
                             }
 
-
-
-
                             txtSummary = (TextView) findViewById(R.id.summary);
                             if (!json.getString("text_summary").isEmpty()) {
                                 txtSummary.setText(json.getString("text_summary"));
@@ -325,8 +327,6 @@ public class CafeSingleActivity extends AppCompatActivity {
                                 txtDescription.setVisibility(View.GONE);
                             }
 
-
-
                             if (!json.getString("map_latitude").isEmpty()) {
                                 mapLatitude = json.getString("map_latitude");
                             }
@@ -339,7 +339,6 @@ public class CafeSingleActivity extends AppCompatActivity {
                             if (!json.getString("map_type").isEmpty()) {
                                 mapType = json.getString("map_type");
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -359,34 +358,26 @@ public class CafeSingleActivity extends AppCompatActivity {
 
         // Set map button
         Button map = (Button) findViewById(R.id.button_map);
-        if (!mapLatitude.isEmpty() && !mapLongitude.isEmpty()) {
-            map.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Click action
-                    Intent intent = new Intent(getApplicationContext(), MapSingleActivity.class);
-                    intent.putExtra("mapLatitude", mapLatitude);
-                    intent.putExtra("mapLongitude", mapLongitude);
-                    intent.putExtra("mapZoom", mapZoom);
-                    intent.putExtra("mapType", mapType);
-                    intent.putExtra("itemTitle", itemTitle);
-                    intent.putExtra("itemId", itemId);
-                    startActivity(intent);
-                }
-            });
-        } else {
-            map.setVisibility(View.GONE);
-        }
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(getApplicationContext(), MapSingleActivity.class);
+                intent.putExtra("mapLatitude", mapLatitude);
+                intent.putExtra("mapLongitude", mapLongitude);
+                intent.putExtra("mapZoom", mapZoom);
+                intent.putExtra("mapType", mapType);
+                intent.putExtra("itemTitle", itemTitle);
+                intent.putExtra("itemId", itemId);
+                startActivity(intent);
+            }
+        });
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
                 List<Intent> targetShareIntents = new ArrayList<Intent>();
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -404,71 +395,71 @@ public class CafeSingleActivity extends AppCompatActivity {
                     if (packageName.contains("com.twitter.android")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.share_twitter) + shareUrl);
-                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.facebook.katana")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.instagram")) {
 
                         intent.setType("image/jpeg");
-                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.pinterest")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.google.android.gm")) {
 
                         intent.setType("image/*");
-                        //intent.putExtra(Intent.EXTRA_TITLE, txttitle.getText());
-                       // intent.putExtra(Intent.EXTRA_SUBJECT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                       // intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TITLE, itemTitle);
+                        intent.putExtra(Intent.EXTRA_SUBJECT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.hootsuite.droid.full")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("com.facebook.pages.app")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                        //intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } else if (packageName.contains("org.telegram.messenger")) {
 
                         intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        //intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
                         targetShareIntents.add(intent);
 
                     } /* else {
 
                         intent.setType("text/plain");
-                        intent.putExtra(Intent.EXTRA_TEXT, txttitle.getText());
-                        intent.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                        intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
                         targetShareIntents.add(intent);
 
                     } */
