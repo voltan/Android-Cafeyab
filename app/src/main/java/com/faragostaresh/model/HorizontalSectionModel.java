@@ -2,23 +2,18 @@ package com.faragostaresh.model;
 
 import java.util.ArrayList;
 
-public class SectionDataModel {
-
-
+public class HorizontalSectionModel {
 
     private String headerTitle;
-    private ArrayList<SingleItemModel> allItemsInSection;
+    private ArrayList<HorizontalSingleItemModel> allItemsInSection;
 
-
-    public SectionDataModel() {
+    public HorizontalSectionModel() {
 
     }
-    public SectionDataModel(String headerTitle, ArrayList<SingleItemModel> allItemsInSection) {
+    public HorizontalSectionModel(String headerTitle, ArrayList<HorizontalSingleItemModel> allItemsInSection) {
         this.headerTitle = headerTitle;
         this.allItemsInSection = allItemsInSection;
     }
-
-
 
     public String getHeaderTitle() {
         return headerTitle;
@@ -28,11 +23,11 @@ public class SectionDataModel {
         this.headerTitle = headerTitle;
     }
 
-    public ArrayList<SingleItemModel> getAllItemsInSection() {
+    public ArrayList<HorizontalSingleItemModel> getAllItemsInSection() {
         return allItemsInSection;
     }
 
-    public void setAllItemsInSection(ArrayList<SingleItemModel> allItemsInSection) {
+    public void setAllItemsInSection(ArrayList<HorizontalSingleItemModel> allItemsInSection) {
         this.allItemsInSection = allItemsInSection;
     }
 

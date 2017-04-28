@@ -20,6 +20,9 @@
     <dimen name="main_grid_text_padding_left">5dp</dimen>
     <dimen name="main_grid_text_padding_right">5dp</dimen>
 
+    <!-- Main page list -->
+    <dimen name="main_horizontal_list_height">270dp</dimen>
+
     <!-- List image -->
     <dimen name="list_video_image_height">200dp</dimen>
     <dimen name="list_cafe_image_height">100dp</dimen>

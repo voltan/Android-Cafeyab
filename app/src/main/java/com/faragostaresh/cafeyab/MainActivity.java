@@ -1,5 +1,6 @@
 package com.faragostaresh.cafeyab;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,13 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.TextView;
@@ -27,11 +26,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.faragostaresh.adaptor.MainIconAdapter;
 import com.faragostaresh.adaptor.MyGridView;
-import com.faragostaresh.adaptor.RecyclerViewDataAdapter;
+import com.faragostaresh.adaptor.HorizontalRecyclerViewAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
-import com.faragostaresh.model.SectionDataModel;
-import com.faragostaresh.model.SingleItemModel;
+import com.faragostaresh.model.HorizontalSectionModel;
+import com.faragostaresh.model.HorizontalSingleItemModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     TextView searchBox;
-    ArrayList<SectionDataModel> allSampleData;
+    ArrayList<HorizontalSectionModel> allSampleData;
     public List<ItemList> cafeList = new ArrayList<ItemList>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -107,22 +106,26 @@ public class MainActivity extends AppCompatActivity {
         //item.setChecked(true);
 
         // Set floating button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-                Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
-                startActivity(intent);
-            }
-        });
+        if (Build.VERSION.SDK_INT > 21) {
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Click action
+                    Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
         // Set main image
-        try {
-            ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-            Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (Build.VERSION.SDK_INT > 21) {
+            try {
+                ImageView imageView = (ImageView) findViewById(R.id.backdrop);
+                Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         // Set list of main icons
@@ -232,11 +235,11 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d(TAG, "Size : " + String.valueOf(cafeList.size()));
 
-                        allSampleData = new ArrayList<SectionDataModel>();
+                        allSampleData = new ArrayList<HorizontalSectionModel>();
                         createDummyDataCafe();
                         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.cafe_list);
                         my_recycler_view.setHasFixedSize(true);
-                        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(getApplicationContext(), allSampleData);
+                        HorizontalRecyclerViewAdapter adapter = new HorizontalRecyclerViewAdapter(getApplicationContext(), allSampleData);
                         my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
                         my_recycler_view.setAdapter(adapter);
                     }
@@ -287,12 +290,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createDummyDataCafe() {
-        SectionDataModel dm = new SectionDataModel();
+        HorizontalSectionModel dm = new HorizontalSectionModel();
         dm.setHeaderTitle("کافه های پیشنهادی");
-        ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
+        ArrayList<HorizontalSingleItemModel> singleItem = new ArrayList<HorizontalSingleItemModel>();
         for (int j = 0; j < cafeList.size(); j++) {
             ItemList cafe = cafeList.get(j);
-            singleItem.add(new SingleItemModel(cafe.getTitle(), cafe.getThumbnailUrl(), "item", cafe.getItemId()));
+            singleItem.add(new HorizontalSingleItemModel(cafe.getTitle(), cafe.getThumbnailUrl(), "cafe", cafe.getItemId()));
         }
         dm.setAllItemsInSection(singleItem);
         allSampleData.add(dm);

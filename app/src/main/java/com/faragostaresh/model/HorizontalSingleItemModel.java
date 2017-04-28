@@ -1,6 +1,6 @@
 package com.faragostaresh.model;
 
-public class SingleItemModel {
+public class HorizontalSingleItemModel {
 
 
     private String itemTitle;
@@ -9,10 +9,10 @@ public class SingleItemModel {
     private String itemType;
 
 
-    public SingleItemModel() {
+    public HorizontalSingleItemModel() {
     }
 
-    public SingleItemModel(String itemTitle, String itemImage, String itemType, String itemId) {
+    public HorizontalSingleItemModel(String itemTitle, String itemImage, String itemType, String itemId) {
         this.itemTitle = itemTitle;
         this.itemImage = itemImage;
         this.itemType = itemType;

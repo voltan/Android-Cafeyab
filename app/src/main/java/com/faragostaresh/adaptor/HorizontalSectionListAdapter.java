@@ -11,24 +11,25 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.faragostaresh.model.SingleItemModel;
+import com.faragostaresh.cafeyab.CafeSingleActivity;
+import com.faragostaresh.model.HorizontalSingleItemModel;
 import com.faragostaresh.cafeyab.R;
 
 import java.util.ArrayList;
 
-public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListDataAdapter.SingleItemRowHolder> {
+public class HorizontalSectionListAdapter extends RecyclerView.Adapter<HorizontalSectionListAdapter.SingleItemRowHolder> {
 
-    private ArrayList<SingleItemModel> itemsList;
+    private ArrayList<HorizontalSingleItemModel> itemsList;
     private Context mContext;
 
-    public SectionListDataAdapter(Context context, ArrayList<SingleItemModel> itemsList) {
+    public HorizontalSectionListAdapter(Context context, ArrayList<HorizontalSingleItemModel> itemsList) {
         this.itemsList = itemsList;
         this.mContext = context;
     }
 
     @Override
     public SingleItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_single_card, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_horizontal_card, null);
         SingleItemRowHolder mh = new SingleItemRowHolder(v);
         return mh;
     }
@@ -36,11 +37,11 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
     @Override
     public void onBindViewHolder(SingleItemRowHolder holder, int i) {
 
-        SingleItemModel singleItem = itemsList.get(i);
+        HorizontalSingleItemModel singleItem = itemsList.get(i);
 
         holder.itemTitle.setText(singleItem.getItemTitle());
 
-        //holder.itemType.setText(singleItem.getItemType());
+        holder.itemType.setText(singleItem.getItemType());
 
         holder.itemId.setText(singleItem.getItemId());
 
@@ -60,7 +61,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         protected TextView itemTitle;
 
-        //protected TextView itemType;
+        protected TextView itemType;
 
         protected TextView itemId;
 
@@ -71,30 +72,22 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
             super(view);
 
             this.itemTitle = (TextView) view.findViewById(R.id.itemTitle);
-            //this.itemType = (TextView) view.findViewById(R.id.itemType);
+            this.itemType = (TextView) view.findViewById(R.id.itemType);
             this.itemId = (TextView) view.findViewById(R.id.itemId);
             this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
-
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /* if (String.valueOf(itemType.getText()).equals("brandCategory")) {
-                        Intent intent = new Intent(v.getContext(), ProductListActivity.class);
-                        intent.putExtra("itemBrand", itemId.getText());
-                        intent.putExtra("itemTitle", itemTitle.getText());
-                        v.getContext().startActivity(intent);
-                    } else if (String.valueOf(itemType.getText()).equals("productList")) {
-                        Intent intent = new Intent(v.getContext(), ProductListActivity.class);
+                    if (String.valueOf(itemType.getText()).equals("cafe")) {
+                        Intent intent = new Intent(v.getContext(), CafeSingleActivity.class);
                         intent.putExtra("itemId", itemId.getText());
                         intent.putExtra("itemTitle", itemTitle.getText());
                         v.getContext().startActivity(intent);
-                    } else if (String.valueOf(itemType.getText()).equals("productSingle")) {
-                        Intent intent = new Intent(v.getContext(), ProductSingleActivity.class);
-                        intent.putExtra("itemId", itemId.getText());
-                        intent.putExtra("itemTitle", itemTitle.getText());
-                        v.getContext().startActivity(intent);
-                    } */
+                    } else if (String.valueOf(itemType.getText()).equals("video")) {
+                    } else if (String.valueOf(itemType.getText()).equals("event")) {
+                    } else if (String.valueOf(itemType.getText()).equals("news")) {
+                    }
                 }
             });
 
