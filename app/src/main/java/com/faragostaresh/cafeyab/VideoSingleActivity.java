@@ -1,8 +1,13 @@
 package com.faragostaresh.cafeyab;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
@@ -37,8 +42,13 @@ public class VideoSingleActivity extends AppCompatActivity {
 
     private static final String TAG = VideoSingleActivity.class.getSimpleName();
 
+    Context context = this;
+
     public static String videoUrl = "";
     public static String itemId = "";
+    public static String itemTitle = "";
+    public static String itemUrl = "https://www.cafeyab.com";
+    public static String largeUrl = "";
 
     public TextView txtSummary;
     public TextView txtDescription;
@@ -96,6 +106,12 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 txtDescription.setVisibility(View.GONE);
                             }
 
+                            // Set item url
+                            itemUrl = json.getString("videoUrl");
+
+                            // Set item largeUrl
+                            largeUrl = json.getString("largeUrl");
+
                             //qmeryDirect
                             WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
                             playerWebView.clearCache(true);
@@ -147,6 +163,106 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         //Adding request to the queue
         requestQueue.add(jsonArrayRequest);
+
+
+        // Set shear bottom
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Intent> targetShareIntents = new ArrayList<Intent>();
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("*/*");
+
+                List<ResolveInfo> resInfos = context.getPackageManager().queryIntentActivities(shareIntent, 0);
+                for (ResolveInfo ri : resInfos) {
+
+                    String packageName = ri.activityInfo.packageName;
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
+                    intent.setPackage(packageName);
+
+                    if (packageName.contains("com.twitter.android")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.facebook.katana")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.instagram")) {
+
+                        intent.setType("image/jpeg");
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.pinterest")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.google.android.gm")) {
+
+                        intent.setType("image/*");
+                        intent.putExtra(Intent.EXTRA_TITLE, itemTitle);
+                        intent.putExtra(Intent.EXTRA_SUBJECT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.hootsuite.droid.full")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("com.facebook.pages.app")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } else if (packageName.contains("org.telegram.messenger")) {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        targetShareIntents.add(intent);
+
+                    } /* else {
+
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemTitle);
+                        intent.putExtra(Intent.EXTRA_TEXT, itemUrl);
+                        intent.putExtra(Intent.EXTRA_STREAM, largeUrl);
+                        targetShareIntents.add(intent);
+
+                    } */
+                }
+
+                Intent chooserIntent = Intent.createChooser(targetShareIntents.remove(0), "Choose app to share");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetShareIntents.toArray(new Parcelable[]{}));
+                startActivity(chooserIntent);
+
+            }
+        });
     }
 
     @Override

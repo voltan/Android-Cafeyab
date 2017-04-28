@@ -7,34 +7,34 @@
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/navigation_cafe"
         android:enabled="true"
         android:icon="@drawable/ic_local_cafe"
         android:title="@string/title_cafe"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/navigation_video"
         android:enabled="true"
         android:icon="@drawable/ic_videocam"
         android:title="@string/title_video"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/navigation_event"
         android:enabled="true"
         android:icon="@drawable/ic_event_available"
         android:title="@string/title_event"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/navigation_news"
         android:enabled="true"
         android:icon="@drawable/ic_content_paste"
         android:title="@string/title_news"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 
 </menu>

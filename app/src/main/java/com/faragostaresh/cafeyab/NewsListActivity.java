@@ -59,9 +59,9 @@ public class NewsListActivity extends AppCompatActivity {
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        //MenuItem item = navigation.getMenu().findItem(R.id.navigation_news);
-        //item.setCheckable(true);
-        //item.setChecked(true);
+        MenuItem item = navigation.getMenu().findItem(R.id.navigation_news);
+        item.setCheckable(true);
+        item.setChecked(true);
 
         // Set floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
