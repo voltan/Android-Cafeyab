@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,9 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
 import com.faragostaresh.model.ItemList;
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +40,12 @@ public class VideoSingleActivity extends AppCompatActivity {
     public static String videoUrl = "";
     public static String itemId = "";
 
-    private List<ItemList> myVideoList = new ArrayList<ItemList>();
-    private ListView listView;
-    private VideoListAdapter adapter;
+    public TextView txtSummary;
+    public TextView txtDescription;
+
+    public ListView listView;
+    public VideoListAdapter adapter;
+    public List<ItemList> myVideoList = new ArrayList<ItemList>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +60,9 @@ public class VideoSingleActivity extends AppCompatActivity {
         itemId = extras.getString("itemId");
         videoUrl = "https://www.cafeyab.com/video/json/videoSingle/id/" + itemId;
 
-
-
-        // Set for list of items
-        adapter = new VideoListAdapter(this, myVideoList);
-        listView = (ListView) findViewById(R.id.videoRelatedlist);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new VideoSingleActivity.ListVewiClickListener());
-        //myVideoList.clear();
-
-
         Log.d(TAG, "Single item url : " + videoUrl);
+
+        adapter = new VideoListAdapter(this, myVideoList, "related");
 
         //Creating a json array request
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(videoUrl,
@@ -85,6 +82,20 @@ public class VideoSingleActivity extends AppCompatActivity {
                             TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
                             textViewTitle.setText(json.getString("title"));
 
+                            txtSummary = (TextView) findViewById(R.id.summary);
+                            if (!json.getString("text_summary").isEmpty()) {
+                                txtSummary.setText(json.getString("text_summary"));
+                            } else {
+                                txtSummary.setVisibility(View.GONE);
+                            }
+
+                            txtDescription = (TextView) findViewById(R.id.description);
+                            if (!json.getString("text_description").isEmpty()) {
+                                txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
+                            } else {
+                                txtDescription.setVisibility(View.GONE);
+                            }
+
                             //qmeryDirect
                             WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
                             playerWebView.clearCache(true);
@@ -103,13 +114,6 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonArrayRelated.length(); i++) {
                                     try {
                                         JSONObject obj = jsonArrayRelated.getJSONObject(i);
-
-                                        Log.d(TAG, "videoRelated single: " + jsonArrayRelated.getJSONObject(i));
-                                        Log.d(TAG, "videoRelated object: " + obj);
-                                        Log.d(TAG, "videoRelated title: " + obj.getString("title"));
-                                        Log.d(TAG, "videoRelated id: " + obj.getString("id"));
-                                        Log.d(TAG, "videoRelated mediumUrl: " + obj.getString("mediumUrl"));
-
                                         ItemList video = new ItemList();
                                         video.setTitle(obj.getString("title"));
                                         video.setItemID(obj.getString("id"));
@@ -119,9 +123,13 @@ public class VideoSingleActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 }
+
+                                // Set for list of items
+                                listView = (ListView) findViewById(R.id.videoRelatedlist);
+                                listView.setAdapter(adapter);
+                                listView.setOnItemClickListener(new VideoSingleActivity.ListVewiClickListener());
+                                setListViewHeightBasedOnChildren(listView);
                             }
-
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -193,6 +201,26 @@ public class VideoSingleActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
     @Override

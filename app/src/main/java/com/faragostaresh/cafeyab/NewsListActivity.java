@@ -18,11 +18,11 @@ public class NewsListActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                /* case R.id.navigation_home:
+                case R.id.navigation_home:
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break; */
+                    break;
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
@@ -38,11 +38,11 @@ public class NewsListActivity extends AppCompatActivity {
                     startActivity(intent3);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
                     break;
-                /* case R.id.navigation_news:
+                case R.id.navigation_news:
                     Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
                     startActivity(intent4);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break; */
+                    break;
             }
             return false;
         }

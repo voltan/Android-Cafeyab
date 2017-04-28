@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,27 +30,50 @@
                 android:layout_marginTop="0dp"
                 android:padding="@dimen/activity_vertical_margin" />
 
-            <android.support.v7.widget.CardView
+            <TextView
+                android:id="@+id/viewTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_vertical_margin">
+                android:layout_height="match_parent"
+                android:lineSpacingExtra="12sp"
+                android:layout_gravity="right"
+                android:textSize="20sp"
+                android:padding="@dimen/activity_vertical_margin" />
 
-                <TextView
-                    android:id="@+id/viewTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_vertical_margin" />
-            </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/listTitle3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:text="@string/relatedVideos"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
 
             <ListView
                 android:id="@+id/videoRelatedlist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
- />
+                android:layout_height="wrap_content" />
+
 
         </LinearLayout>
     </ScrollView>

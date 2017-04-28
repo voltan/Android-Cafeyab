@@ -19,15 +19,18 @@ import com.faragostaresh.model.ItemList;
 import java.util.List;
 
 public class VideoListAdapter extends BaseAdapter {
-    private final AppCompatActivity appCompatActivity;
+
     ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
+    private final AppCompatActivity appCompatActivity;
     private LayoutInflater inflater;
     private List<ItemList> ItemList;
+    private String type = "list";
     private int lastPosition = -1;
 
-    public VideoListAdapter(AppCompatActivity appCompatActivity, List<ItemList> ItemsList) {
+    public VideoListAdapter(AppCompatActivity appCompatActivity, List<ItemList> ItemsList, String type) {
         this.appCompatActivity = appCompatActivity;
         this.ItemList = ItemsList;
+        this.type = type;
     }
 
     @Override
@@ -52,7 +55,11 @@ public class VideoListAdapter extends BaseAdapter {
         }
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_row_video, null);
+            if (String.valueOf(type).equals("related")) {
+                convertView = inflater.inflate(R.layout.list_row_video_related, null);
+            } else {
+                convertView = inflater.inflate(R.layout.list_row_video, null);
+            }
         }
 
         if (imageLoader == null) {
