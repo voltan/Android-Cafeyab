@@ -23,6 +23,9 @@
     <string name="activity_map_single">نقشه</string>
     <string name="activity_search">جستجو</string>
     <string name="activity_user">کاربر</string>
+    <string name="activity_logout">خروج</string>
+    <string name="activity_login">ورود</string>
+    <string name="activity_register">ثبت نام</string>
 
     <string name="activity_event_single">اطلاعات رویداد</string>
     <string name="activity_video_single">اطلاعات ویدیو</string>
@@ -119,6 +122,11 @@
     <string name="relatedVideos">ویدیو های مشابه</string>
     <string name="listEventTitle">اطلاعات رویداد</string>
     <string name="eventRegister">شرایط ثبت نام</string>
+
+    <string name="register">عضو نیستید؟ ثبت نام کنید</string>
+    <string name="login">ورود</string>
+    <string name="password">واژه رمز</string>
+    <string name="email">آدرس ایمیل</string>
 
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>

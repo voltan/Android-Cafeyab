@@ -1,10 +1,15 @@
 package com.faragostaresh.cafeyab;
 
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.TextView;
@@ -24,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.faragostaresh.adaptor.MainIconAdapter;
 import com.faragostaresh.adaptor.MyGridView;
 import com.faragostaresh.adaptor.HorizontalRecyclerViewAdapter;
@@ -36,6 +43,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -253,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Adding request to request queue
         CafeyabApplication.getInstance().addToRequestQueue(reqCafe);
+
+        // Check user
+        new checkLogin().execute();
     }
 
     @Override
@@ -299,5 +314,77 @@ public class MainActivity extends AppCompatActivity {
         }
         dm.setAllItemsInSection(singleItem);
         allSampleData.add(dm);
+    }
+
+    protected class checkLogin extends AsyncTask<Void, Void, JSONObject> {
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+
+            String str = "https://www.cafeyab.com/usmartphone/check";
+            Log.d(TAG, str);
+            URLConnection urlConn = null;
+            BufferedReader bufferedReader = null;
+            try {
+                URL url = new URL(str);
+                urlConn = url.openConnection();
+
+                // User info
+                SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                String userSessionId = settings.getString("user_sessionid", "").toString();
+                urlConn.setRequestProperty("Cookie", "pisess=" + userSessionId);
+
+                bufferedReader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                StringBuffer stringBuffer = new StringBuffer();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuffer.append(line);
+                }
+
+                Log.e(TAG, stringBuffer.toString());
+
+                return new JSONObject(stringBuffer.toString());
+            } catch (Exception ex) {
+                Log.e(TAG, "yourDataTask", ex);
+                return null;
+            } finally {
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject response) {
+            if (response != null) {
+                try {
+                    String check = response.getString("check");
+                    String sessionid = response.getString("sessionid");
+                    String uid = response.getString("uid");
+                    String identity = response.getString("identity");
+                    String email = response.getString("email");
+                    String name = response.getString("name");
+                    String avatar = response.getString("avatar");
+
+                    // User info
+                    SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("user_check", check);
+                    editor.putString("user_sessionid", sessionid);
+                    editor.putString("user_uid", uid);
+                    editor.putString("user_identity", identity);
+                    editor.putString("user_email", email);
+                    editor.putString("user_name", name);
+                    editor.putString("user_avatar", avatar);
+                    editor.commit();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "Failure", e);
+                }
+            }
+        }
     }
 }

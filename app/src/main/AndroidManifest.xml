@@ -124,7 +124,21 @@
             android:label="@string/activity_user"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/activity_login"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/activity_register"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".LogoutActivity"
+            android:label="@string/activity_logout"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"></activity>
     </application>
 
 </manifest>
