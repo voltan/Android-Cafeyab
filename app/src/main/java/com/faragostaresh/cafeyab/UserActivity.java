@@ -32,6 +32,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -63,9 +64,19 @@ public class UserActivity extends AppCompatActivity {
         if (String.valueOf(userCheck).equals("0")) {
             Intent intentUser = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intentUser);
-        } else {
-            Intent intentUser = new Intent(getApplicationContext(), AboutActivity.class);
-            startActivity(intentUser);
+        }
+
+        setContentView(R.layout.activity_user);
+
+        // Set for support RTL
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Set header
+        try {
+            ImageView imageView = (ImageView) findViewById(R.id.header_cover_image);
+            Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

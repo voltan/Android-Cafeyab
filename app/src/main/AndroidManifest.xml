@@ -123,7 +123,8 @@
             android:name=".UserActivity"
             android:label="@string/activity_user"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/activity_login"
