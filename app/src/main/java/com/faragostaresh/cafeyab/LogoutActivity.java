@@ -42,7 +42,7 @@ public class LogoutActivity extends AppCompatActivity {
             editor.putString("user_avatar", "");
             editor.commit();
 
-            startActivity(new Intent(LogoutActivity.this, LoginActivity.class));
+            startActivity(new Intent(LogoutActivity.this, MainActivity.class));
             finish();
 
         } catch (Exception ex) {

@@ -17,14 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/user_profile_background"
             android:elevation="2dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="24dp">
 
             <TextView
                 android:id="@+id/userName"
@@ -47,7 +47,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Director of Project Management at GoldenPhase Solar"
                 android:textSize="16sp" />
 
             <Space

@@ -43,9 +43,14 @@ public class UserActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
         // Set photo Header
         View photoHeader = findViewById(R.id.photoHeader);
         try {
+            userAvatar = userAvatar.replace("s=80", "s=600");
             CircleImageView imageView = (CircleImageView) findViewById(R.id.civProfilePic);
             Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
         } catch (Exception e) {
@@ -87,7 +92,6 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
 }
 

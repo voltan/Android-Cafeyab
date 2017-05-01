@@ -130,6 +130,11 @@
     <string name="email">آدرس ایمیل</string>
     <string name="user_profile_text">برای ویرایش اطلاعات خود یا تغییر آواتار ( عکس پروفایل ) به وب سایت کافه یاب مراجعه نمایید</string>
 
+
+    <string name="about_text_1">کافه‌یاب نگاهیست نو به فرهنگ کافه‌نشینی در ایران، مرجعی برای یافتن یا معرفی و البته سهیم کردن یکدیگر در تجربه حضورمان در آنها...</string>
+    <string name="about_text_2">کافه‌یاب به عنوان مرجع معرفی و اطلاع‌رسانی کافه‌های ایران، در تابستان ۹۳ فعالیت خود را آغاز نمود. این وب‌سایت در نظر دارد تا با معرفی کافه‌ها، کافی‌شاپ‌ها، شیرینی فروشی‌ها و قهوه فروشی‌ها، امکان آشنایی کاربران را با این مکان‌ها و خدماتشان، فراهم کند. همچنین امکان درج و به روز رسانی اطلاعات کافه‌ها توسط صاحبان آن‌ها در وب‌سایت وجود دارد. اهداف اصلی کافه‌یاب: فرهنگسازی قهوه و معرفی فرهنگ واقعی کافه‌نشینی در ایران - معرفی کافه‌های شهر به عموم مردم با اطلاعات دقیق‌تر و باکیفیت‌تر نسبت به دیگر سایت‌های ایرانی - ارائه اخبار و مقالات به روز - پوشش خبری از همایش‌ها، جشنواره‌ها و گردهمآیی‌های صنف قهوه - در دسترس بودن قهوه و تجهیزات مربوط به آن برای عموم مردم از طریق فروش اینترنتی و تحویل در درب منزل - معرفی قهوه و تجهیزات برتر به کافه‌ها - پایین آوردن قیمت‌ها از طریق کاهش واسطه‌های فروش - پایین آوردن هزینه‌های کیفی و تبلیغاتی کافه‌ها و برندها - آشنایی بیشتر مردم با هنر و مبانی اجتماعی مرتبط با کافه‌ها و قهوه</string>
+    <string name="about_text_version">نسخه نرم افزار : ۲،۰،۰</string>
+    <string name="about_text_copyright">تمام حقوق مطالب برای وب سایت کافه یاب محفوظ است. استفاده از مطالب وب سایت و اپلیکشن فقط با ذکر منبع مجاز است.</string>
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
     <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>

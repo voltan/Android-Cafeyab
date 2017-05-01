@@ -65,7 +65,8 @@
             android:name=".AboutActivity"
             android:label="@string/activity_about"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
@@ -88,7 +89,7 @@
             android:label="@string/activity_news_single"
             android:parentActivityName=".NewsListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
@@ -99,7 +100,7 @@
             android:label="@string/activity_event_single"
             android:parentActivityName=".EventListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VideoListActivity"
             android:label="@string/activity_video_list"

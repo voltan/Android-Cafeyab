@@ -1,29 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/user_background"
     tools:context="com.faragostaresh.cafeyab.AboutActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/message"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/activity_about" />
+            android:orientation="vertical" >
 
-    </FrameLayout>
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="240dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="120dp"
+                    android:background="@drawable/user_profile_background"
+                    android:elevation="2dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/aboutName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="68dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@string/app_name_persian"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/aboutEnName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutName"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="@string/app_name"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/aboutText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutEnName"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:text="@string/about_text_1"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/aboutText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutText1"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:text="@string/about_text_2"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/aboutVersin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutText2"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:lineSpacingExtra="12sp"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:text="@string/about_text_version"
+                        android:textSize="14sp" />
+
+                    <Space
+                        android:id="@+id/spaceHolder"
+                        android:layout_width="10dp"
+                        android:layout_height="0dp"
+                        android:layout_below="@id/aboutVersin"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/aboutCopyRighr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/aboutVersin"
+                        android:layout_centerHorizontal="true"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_vertical_margin"
+                        android:text="@string/about_text_copyright"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/photoHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_anchor="@id/relativeLayout"
+                    app:layout_anchorGravity="top|center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civProfilePic"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        app:civ_border_color="#ffffff"
+                        app:civ_border_width="3dp" />
+
+                    <TextView
+                        android:id="@+id/aboutVersion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="2nd"
+                        android:textSize="14sp" />
+                </FrameLayout>
+            </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
