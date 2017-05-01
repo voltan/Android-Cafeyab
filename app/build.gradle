@@ -62,5 +62,7 @@ dependencies {
     // Add a draggable sliding up panel use on search
     compile 'com.sothree.slidinguppanel:library:3.3.1'
 
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
     testCompile 'junit:junit:4.12'
 }

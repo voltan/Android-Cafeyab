@@ -1,124 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/user_background"
+    tools:context="com.faragostaresh.cafeyab.UserActivity">
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/profile_layout"
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#80000000"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
-
-            <ImageView
-                android:id="@+id/header_cover_image"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:scaleType="centerCrop" />
-
-            <ImageButton
-                android:id="@+id/user_profile_photo"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_below="@+id/header_cover_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="-260dp"
-                android:background="@drawable/profile_circular_border_imageview"
-                android:elevation="5dp"
-                android:padding="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/avatar" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/user_profile_background"
+            android:elevation="2dp"
+            android:paddingBottom="16dp">
 
             <TextView
-                android:id="@+id/user_profile_name"
+                android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="76dp"
-                android:text="Viral Android"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="68dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/user_profile_short_bio"
-                android:layout_width="wrap_content"
+                android:id="@+id/userEmail"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_profile_name"
+                android:layout_below="@id/userName"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                android:text="Android free tutorials and example"
-                android:textColor="#fff"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:lines="2"
+                android:text="Director of Project Management at GoldenPhase Solar"
+                android:textSize="16sp" />
+
+            <Space
+                android:id="@+id/spaceHolder"
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                android:layout_below="@id/userEmail"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/userEmail"
+                android:layout_marginBottom="16dp"
+                android:layout_toLeftOf="@id/spaceHolder"
+                android:layout_toStartOf="@id/spaceHolder"
+                android:background="@drawable/user_message_button"
+                android:fontFamily="sans-serif-medium"
+                android:paddingEnd="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:text="@string/activity_logout"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnWebsite"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/userEmail"
+                android:layout_marginBottom="16dp"
+                android:layout_toEndOf="@id/spaceHolder"
+                android:layout_toRightOf="@id/spaceHolder"
+                android:background="@drawable/user_connect_button"
+                android:fontFamily="sans-serif-medium"
+                android:paddingEnd="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:text="@string/app_name_persian"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/userSummary"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnLogout"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:lines="2"
+                android:text="@string/user_profile_text"
                 android:textSize="14sp" />
         </RelativeLayout>
 
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/photoHeader"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_layout"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+            app:layout_anchor="@id/relativeLayout"
+            app:layout_anchorGravity="top|center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civProfilePic"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/avatar"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="3dp" />
 
             <TextView
-                android:layout_width="fill_parent"
+                android:id="@+id/userLevel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile UI Design" />
+                android:layout_gravity="bottom|end"
+                android:fontFamily="sans-serif-condensed"
+                android:text="2nd"
+                android:textSize="14sp" />
+        </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile XMl UI Design" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile UI Design" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile XMl UI Design" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Android Profile UI Design" />
-        </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+</FrameLayout>

@@ -86,6 +86,7 @@
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/iron"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -125,7 +126,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_horizontal_list_height"
-                android:background="@color/white"
+                android:layout_margin="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView

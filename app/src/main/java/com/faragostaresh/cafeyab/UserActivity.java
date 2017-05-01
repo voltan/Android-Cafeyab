@@ -1,50 +1,22 @@
 package com.faragostaresh.cafeyab;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
-/**
- * A login screen that offers login via email/password.
+/*
+ * http://androidbox.me/linkedin-profile-app/
  */
 public class UserActivity extends AppCompatActivity {
 
@@ -71,13 +43,51 @@ public class UserActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
-        // Set header
+        // Set photo Header
+        View photoHeader = findViewById(R.id.photoHeader);
         try {
-            ImageView imageView = (ImageView) findViewById(R.id.header_cover_image);
-            Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
+            CircleImageView imageView = (CircleImageView) findViewById(R.id.civProfilePic);
+            Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            photoHeader.setTranslationZ(6);
+            photoHeader.invalidate();
+        }
+
+        // Set texts
+        TextView userNameView = (TextView) findViewById(R.id.userName);
+        userNameView.setText(userName);
+
+        // Set texts
+        TextView userEmailView = (TextView) findViewById(R.id.userEmail);
+        userEmailView.setText(userEmail);
+
+        // Set Button
+        Button logout = (Button) findViewById(R.id.btnLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Set Button
+        Button website = (Button) findViewById(R.id.btnWebsite);
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                String url = "https://www.cafeyab.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
     }
 }
 
