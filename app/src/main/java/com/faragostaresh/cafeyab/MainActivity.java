@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.content.Intent;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -268,6 +271,36 @@ public class MainActivity extends AppCompatActivity {
 
         // Check user
         new checkLogin().execute();
+
+        // Set User bar
+        SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+        String userCheck = settings.getString("user_check", "").toString();
+        String userSessionId = settings.getString("user_sessionid", "").toString();
+        String userUid = settings.getString("user_uid", "").toString();
+        String userIdentity = settings.getString("user_identity", "").toString();
+        String userEmail = settings.getString("user_email", "").toString();
+        String userName = settings.getString("user_name", "").toString();
+        String userAvatar = settings.getString("user_avatar", "").toString();
+        CircleImageView imageView = (CircleImageView) findViewById(R.id.user_avatar);
+        TextView userTitleView = (TextView) findViewById(R.id.user_title);
+        TextView userEmailView = (TextView) findViewById(R.id.user_email);
+        if (String.valueOf(userCheck).equals("1")) {
+            userTitleView.setText("خوش آمدید " + userName);
+            userEmailView.setText(userEmail);
+            try {
+                Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        RelativeLayout userBar = (RelativeLayout) findViewById(R.id.user_bar);
+        userBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

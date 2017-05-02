@@ -100,6 +100,54 @@
                 android:layout_margin="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
+                <RelativeLayout
+                    android:id="@+id/user_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_box"
+                    android:padding="5dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/user_avatar"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="@dimen/activity_vertical_margin"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:src="@drawable/avatar"
+                        app:civ_border_color="@color/iron"
+                        app:civ_border_width="1dp" />
+
+                    <TextView
+                        android:id="@+id/user_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/user_avatar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="@dimen/activity_vertical_margin"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:layout_marginTop="8dp"
+                        android:layout_toLeftOf="@+id/user_avatar"
+                        android:fontFamily="sans-serif"
+                        android:gravity="right"
+                        android:text="@string/user_register_login"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/user_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/user_title"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/activity_vertical_margin"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="right"
+                        android:text="@string/user_register_login_text"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
                 <TextView
                     android:id="@+id/search"
                     android:layout_width="match_parent"

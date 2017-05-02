@@ -129,6 +129,8 @@
     <string name="password">واژه رمز</string>
     <string name="email">آدرس ایمیل</string>
     <string name="user_profile_text">برای ویرایش اطلاعات خود یا تغییر آواتار ( عکس پروفایل ) به وب سایت کافه یاب مراجعه نمایید</string>
+    <string name="user_register_login">ثبت نام / ورود به کافه‌یاب</string>
+    <string name="user_register_login_text">با ثبت نام به طور کامل از امکانات کافه یاب استفاده کنید</string>
 
 
     <string name="about_text_1">کافه‌یاب نگاهیست نو به فرهنگ کافه‌نشینی در ایران، مرجعی برای یافتن یا معرفی و البته سهیم کردن یکدیگر در تجربه حضورمان در آنها...</string>
