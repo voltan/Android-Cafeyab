@@ -288,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
             userTitleView.setText("خوش آمدید " + userName);
             userEmailView.setText(userEmail);
             try {
+                userAvatar = userAvatar.replace("s=80", "s=400");
                 Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
