@@ -26,7 +26,7 @@ public class AboutActivity extends AppCompatActivity {
         View photoHeader = findViewById(R.id.photoHeader);
         try {
             CircleImageView imageView = (CircleImageView) findViewById(R.id.civProfilePic);
-            Glide.with(this).load(R.drawable.logo).into(imageView);
+            Glide.with(this).load(R.drawable.logo).skipMemoryCache(true).into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="2nd"
+                        android:text="V2"
                         android:textSize="14sp" />
                 </FrameLayout>
             </android.support.design.widget.CoordinatorLayout>

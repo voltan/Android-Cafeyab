@@ -130,17 +130,16 @@
             android:name=".LoginActivity"
             android:label="@string/activity_login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/activity_register"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LogoutActivity"
             android:label="@string/activity_logout"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

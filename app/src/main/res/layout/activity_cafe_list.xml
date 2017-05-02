@@ -78,12 +78,12 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:paddingLeft="@dimen/activity_vertical_margin"
                         android:paddingRight="@dimen/activity_vertical_margin"
-                        android:background="@color/colorBrown100"
+                        android:background="@color/white"
                         android:text="@string/filter_title"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
                     <!-- <Button
                         android:id="@+id/search_map"
