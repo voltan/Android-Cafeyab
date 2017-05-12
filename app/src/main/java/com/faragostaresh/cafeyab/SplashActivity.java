@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.support.design.widget.CoordinatorLayout;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,12 +28,17 @@ import java.net.URLConnection;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (haveNetworkConnection()) {
+            // Obtain the FirebaseAnalytics instance.
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
             new checkLogin().execute();
             new Handler().postDelayed(new Runnable() {
                 @Override

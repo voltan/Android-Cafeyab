@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.faragostaresh.adaptor.EventListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -33,6 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventListActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String eventUrl = "https://www.cafeyab.com/event/json/search?limit=10&page=";
     public static String itemId;
@@ -85,6 +88,9 @@ public class EventListActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -7,7 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class RegisterActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
-
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         WebView playerWebView = (WebView) findViewById(R.id.registerWebView);
         playerWebView.clearCache(true);

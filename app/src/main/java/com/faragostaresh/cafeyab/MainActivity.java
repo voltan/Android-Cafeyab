@@ -1,5 +1,8 @@
 package com.faragostaresh.cafeyab;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -9,11 +12,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +44,7 @@ import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
 import com.faragostaresh.model.HorizontalSectionModel;
 import com.faragostaresh.model.HorizontalSingleItemModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,11 +58,22 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import com.faragostaresh.cafeyab.R;
+import com.faragostaresh.app.Config;
+import com.faragostaresh.extra.NotificationUtils;
+
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+
 
     TextView searchBox;
     ArrayList<HorizontalSectionModel> allSampleData;
@@ -110,8 +127,37 @@ public class MainActivity extends AppCompatActivity {
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
-        // Set hide actionBar
-        //getSupportActionBar().hide();
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        // Firebase Messaging
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    // gcm successfully registered
+                    // Firebase Messaging topics
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_GLOBAL);
+                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_CAFE);
+                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_VIDEO);
+                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_EVENT);
+                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_NEWS);
+
+                    displayFirebaseRegId();
+
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+
+                    String message = intent.getStringExtra("message");
+
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        displayFirebaseRegId();
 
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -303,6 +349,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    // Fetches reg id from shared preferences
+    // and displays on the screen
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+
+        Log.e(TAG, "Firebase reg id: " + regId);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // register GCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+        // register new push message receiver
+        // by doing this, the activity will be notified each time a new message arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.PUSH_NOTIFICATION));
+
+        // clear the notification area when the app is opened
+        NotificationUtils.clearNotifications(getApplicationContext());
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

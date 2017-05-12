@@ -43,6 +43,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,6 +53,8 @@ public class MapSingleActivity extends AppCompatActivity
         GoogleMap.OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
@@ -73,6 +76,9 @@ public class MapSingleActivity extends AppCompatActivity
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");

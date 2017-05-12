@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
 import com.faragostaresh.model.ItemList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideoSingleActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = VideoSingleActivity.class.getSimpleName();
 
@@ -64,6 +67,9 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Get search information
         Bundle extras = getIntent().getExtras();

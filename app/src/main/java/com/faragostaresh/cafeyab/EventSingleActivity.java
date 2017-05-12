@@ -33,6 +33,7 @@ import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +44,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EventSingleActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = EventSingleActivity.class.getSimpleName();
 
@@ -74,6 +77,9 @@ public class EventSingleActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Get search information
         Bundle extras = getIntent().getExtras();

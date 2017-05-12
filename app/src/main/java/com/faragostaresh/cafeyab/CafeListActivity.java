@@ -30,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.faragostaresh.adaptor.CafeListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -45,6 +46,8 @@ import java.util.List;
 import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDED;
 
 public class CafeListActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = CafeListActivity.class.getSimpleName();
 
@@ -116,6 +119,9 @@ public class CafeListActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

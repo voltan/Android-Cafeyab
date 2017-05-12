@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.CafeList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CafeSingleActivity extends AppCompatActivity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = CafeSingleActivity.class.getSimpleName();
 
@@ -80,6 +83,9 @@ public class CafeSingleActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Get search information
         itemId = null;
