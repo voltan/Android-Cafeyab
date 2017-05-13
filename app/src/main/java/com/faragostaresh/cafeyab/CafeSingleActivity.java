@@ -31,6 +31,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.app.Config;
 import com.faragostaresh.model.CafeList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -55,7 +56,7 @@ public class CafeSingleActivity extends AppCompatActivity {
     public static String cafeUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
-    public static String itemUrl = "https://www.cafeyab.com";
+    public static String itemUrl = Config.URL_WEBSITE;
     public static String largeUrl = "";
     public static String mapLatitude = "";
     public static String mapLongitude = "";
@@ -95,7 +96,7 @@ public class CafeSingleActivity extends AppCompatActivity {
         itemId = extras.getString("itemId");
         itemTitle = extras.getString("itemTitle");
 
-        cafeUrl = "https://www.cafeyab.com/guide/json/itemSingle/id/" + itemId;
+        cafeUrl = Config.URL_CAFE_SINGLE + itemId;
         Log.d(TAG, "Single item url : " + cafeUrl);
 
         // Set title

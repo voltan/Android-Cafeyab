@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.faragostaresh.app.Config;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -26,7 +27,7 @@ public class LogoutActivity extends AppCompatActivity {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        String str = "https://www.cafeyab.com/usmartphone/logout";
+        String str = Config.URL_LOGOUT;
         Log.d(TAG, str);
         URLConnection urlConn = null;
         BufferedReader bufferedReader = null;

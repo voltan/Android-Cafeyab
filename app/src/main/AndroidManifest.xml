@@ -133,7 +133,6 @@
             android:label="@string/activity_logout"
             android:screenOrientation="portrait" />
 
-
         <!-- Firebase Notifications -->
         <service android:name="com.faragostaresh.service.FirebaseMessagingService">
             <intent-filter>

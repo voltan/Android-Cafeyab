@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.faragostaresh.app.Config;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONException;
@@ -161,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        String str = "https://www.cafeyab.com/usmartphone/login";
+        String str = Config.URL_LOGIN;
 
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         String userSessionId = settings.getString("user_sessionid", "").toString();

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.support.design.widget.CoordinatorLayout;
 
+import com.faragostaresh.app.Config;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONException;
@@ -91,7 +92,7 @@ public class SplashActivity extends AppCompatActivity {
         protected JSONObject doInBackground(Void... params)
         {
 
-            String str="https://www.cafeyab.com/usmartphone/check";
+            String str = Config.URL_CHECK;
             URLConnection urlConn = null;
             BufferedReader bufferedReader = null;
             try

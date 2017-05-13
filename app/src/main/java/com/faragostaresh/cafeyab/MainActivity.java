@@ -140,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
                     // gcm successfully registered
                     // Firebase Messaging topics
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_GLOBAL);
-                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_CAFE);
-                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_VIDEO);
-                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_EVENT);
-                    //FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_NEWS);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_CAFE);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_VIDEO);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_EVENT);
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.FB_TOPIC_NEWS);
 
                     displayFirebaseRegId();
 
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > 21) {
             try {
                 ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-                Glide.with(this).load("https://www.cafeyab.com/upload/app/android/index-cover.jpg").skipMemoryCache(true).into(imageView);
+                Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //
-        String urlCafe = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
+        String urlCafe = Config.URL_CAFE_RECOMMENDED;
         Log.d(TAG, urlCafe);
         // Volley's json array request object
         JsonObjectRequest reqCafe = new JsonObjectRequest(urlCafe,
@@ -437,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(Void... params) {
 
-            String str = "https://www.cafeyab.com/usmartphone/check";
+            String str = Config.URL_CHECK;
             Log.d(TAG, str);
             URLConnection urlConn = null;
             BufferedReader bufferedReader = null;

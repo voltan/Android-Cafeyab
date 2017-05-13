@@ -29,6 +29,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.faragostaresh.adaptor.CafeListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.app.Config;
 import com.faragostaresh.model.ItemList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
@@ -51,7 +52,6 @@ public class CafeListActivity extends AppCompatActivity {
 
     private static final String TAG = CafeListActivity.class.getSimpleName();
 
-    private static final String cafeUrl = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
     public static String itemId = "";
     public static String itemTitle = "";
     public int page = 1;
@@ -394,7 +394,7 @@ public class CafeListActivity extends AppCompatActivity {
 
 
         // appending offset to url
-        String url = cafeUrl + page;
+        String url = Config.URL_CAFE_LIST + page;
 
         // Make search to url
         if (!TextUtils.isEmpty(searchTitle)) {

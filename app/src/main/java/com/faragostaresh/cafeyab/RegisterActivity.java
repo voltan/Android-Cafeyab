@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
+import com.faragostaresh.app.Config;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         playerWebView.getSettings().setDomStorageEnabled(true);
         playerWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         playerWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);;
-        playerWebView.loadUrl("https://www.cafeyab.com/user/register");
+        playerWebView.loadUrl(Config.URL_REGISTER);
     }
 
     @Override

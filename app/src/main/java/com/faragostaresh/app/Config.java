@@ -23,4 +23,20 @@ public class Config {
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
 
     public static final String SHARED_PREF = "cafeyab_firebase";
+
+    // Set url
+    public static final String URL_WEBSITE          = "https://www.cafeyab.com";
+    public static final String URL_CAFE_LIST        = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
+    public static final String URL_CAFE_RECOMMENDED = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
+    public static final String URL_CAFE_SINGLE      = "https://www.cafeyab.com/guide/json/itemSingle/id/";
+    public static final String URL_EVENT_LIST       = "https://www.cafeyab.com/event/json/search?limit=10&page=";
+    public static final String URL_EVENT_SINGLE     = "https://www.cafeyab.com/event/json/eventSingle/id/";
+    public static final String URL_VIDEO_LIST       = "https://www.cafeyab.com/video/json/search?limit=10&page=";
+    public static final String URL_VIDEO_SINGLE     = "https://www.cafeyab.com/video/json/videoSingle/id/";
+    public static final String URL_CHECK            = "https://www.cafeyab.com/usmartphone/check";
+    public static final String URL_LOGIN            = "https://www.cafeyab.com/usmartphone/login";
+    public static final String URL_LOGOUT           = "https://www.cafeyab.com/usmartphone/logout";
+    public static final String URL_REGISTER         = "https://www.cafeyab.com/user/register";
+    public static final String URL_IMAGE_MAIN       = "https://www.cafeyab.com/upload/app/android/index-cover.jpg";
+
 }

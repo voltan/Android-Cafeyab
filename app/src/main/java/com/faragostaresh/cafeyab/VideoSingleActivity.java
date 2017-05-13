@@ -29,6 +29,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
+import com.faragostaresh.app.Config;
 import com.faragostaresh.model.ItemList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -50,7 +51,7 @@ public class VideoSingleActivity extends AppCompatActivity {
     public static String videoUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
-    public static String itemUrl = "https://www.cafeyab.com";
+    public static String itemUrl = Config.URL_WEBSITE;
     public static String largeUrl = "";
 
     public TextView txtSummary;
@@ -74,7 +75,7 @@ public class VideoSingleActivity extends AppCompatActivity {
         // Get search information
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
-        videoUrl = "https://www.cafeyab.com/video/json/videoSingle/id/" + itemId;
+        videoUrl = Config.URL_VIDEO_SINGLE + itemId;
 
         Log.d(TAG, "Single item url : " + videoUrl);
 

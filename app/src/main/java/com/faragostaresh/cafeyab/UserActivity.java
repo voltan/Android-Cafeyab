@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.faragostaresh.app.Config;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -92,7 +93,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Click action
-                String url = "https://www.cafeyab.com";
+                String url = Config.URL_WEBSITE;
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);

@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.app.Config;
 import com.faragostaresh.model.ItemList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -56,7 +57,7 @@ public class EventSingleActivity extends AppCompatActivity {
     public static String eventUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
-    public static String itemUrl = "https://www.cafeyab.com";
+    public static String itemUrl = Config.URL_WEBSITE;
     public static String largeUrl = "";
 
     public TextView txtSummary;
@@ -85,7 +86,7 @@ public class EventSingleActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
         itemTitle = extras.getString("itemTitle");
-        eventUrl = "https://www.cafeyab.com/event/json/eventSingle/id/" + itemId;
+        eventUrl = Config.URL_EVENT_SINGLE + itemId;
 
         Log.d(TAG, "Single item url : " + eventUrl);
 

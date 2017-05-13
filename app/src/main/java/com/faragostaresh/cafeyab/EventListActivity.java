@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.faragostaresh.adaptor.EventListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
+import com.faragostaresh.app.Config;
 import com.faragostaresh.model.ItemList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
@@ -37,7 +38,6 @@ public class EventListActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    private static final String eventUrl = "https://www.cafeyab.com/event/json/search?limit=10&page=";
     public static String itemId;
     public int page = 1;
     private List<ItemList> myEventList = new ArrayList<ItemList>();
@@ -197,7 +197,7 @@ public class EventListActivity extends AppCompatActivity {
 
 
         // appending offset to url
-        String url = eventUrl + page;
+        String url = Config.URL_EVENT_LIST + page;
 
         // Volley's json array request object
         JsonObjectRequest req = new JsonObjectRequest(url,
