@@ -327,12 +327,13 @@ public class MainActivity extends AppCompatActivity {
         String userEmail = settings.getString("user_email", "").toString();
         String userName = settings.getString("user_name", "").toString();
         String userAvatar = settings.getString("user_avatar", "").toString();
+
         CircleImageView imageView = (CircleImageView) findViewById(R.id.user_avatar);
         TextView userTitleView = (TextView) findViewById(R.id.user_title);
-        TextView userEmailView = (TextView) findViewById(R.id.user_email);
+        //TextView userEmailView = (TextView) findViewById(R.id.user_email);
         if (String.valueOf(userCheck).equals("1")) {
             userTitleView.setText("خوش آمدید " + userName);
-            userEmailView.setText(userEmail);
+            //userEmailView.setText(userEmail);
             try {
                 userAvatar = userAvatar.replace("s=80", "s=400");
                 Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);

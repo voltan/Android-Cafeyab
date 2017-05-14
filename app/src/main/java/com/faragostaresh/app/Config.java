@@ -33,6 +33,10 @@ public class Config {
     public static final String URL_EVENT_SINGLE     = "https://www.cafeyab.com/event/json/eventSingle/id/";
     public static final String URL_VIDEO_LIST       = "https://www.cafeyab.com/video/json/search?limit=10&page=";
     public static final String URL_VIDEO_SINGLE     = "https://www.cafeyab.com/video/json/videoSingle/id/";
+
+    public static final String URL_NEWS_LIST        = "https://www.cafeyab.com/news/json/search?limit=10&page=";
+    public static final String URL_NEWS_SINGLE      = "https://www.cafeyab.com/news/json/storySingle/id/";
+
     public static final String URL_CHECK            = "https://www.cafeyab.com/usmartphone/check";
     public static final String URL_LOGIN            = "https://www.cafeyab.com/usmartphone/login";
     public static final String URL_LOGOUT           = "https://www.cafeyab.com/usmartphone/logout";
