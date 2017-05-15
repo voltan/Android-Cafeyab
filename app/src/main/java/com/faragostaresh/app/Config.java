@@ -41,6 +41,6 @@ public class Config {
     public static final String URL_LOGIN            = "https://www.cafeyab.com/usmartphone/login";
     public static final String URL_LOGOUT           = "https://www.cafeyab.com/usmartphone/logout";
     public static final String URL_REGISTER         = "https://www.cafeyab.com/user/register";
-    public static final String URL_IMAGE_MAIN       = "https://www.cafeyab.com/upload/app/android/index-cover.jpg";
+    public static final String URL_IMAGE_MAIN       = "https://www.cafeyab.com/upload/app/android/cover.jpg";
 
 }

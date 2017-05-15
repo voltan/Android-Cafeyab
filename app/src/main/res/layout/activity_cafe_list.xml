@@ -75,16 +75,14 @@
 
                     <TextView
                         android:id="@+id/search_title"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingLeft="@dimen/activity_vertical_margin"
-                        android:paddingRight="@dimen/activity_vertical_margin"
-                        android:background="@color/white"
-                        android:text="@string/filter_title"
-                        android:textColor="@color/jet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="true"
+                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:text="@string/backdrop_search"
                         android:drawableRight="@drawable/ic_search"
-                        android:textSize="18sp" />
+                        android:textColor="@color/jet" />
 
                     <!-- <Button
                         android:id="@+id/search_map"

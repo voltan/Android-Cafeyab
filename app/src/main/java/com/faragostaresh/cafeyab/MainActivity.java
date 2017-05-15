@@ -85,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                /* case R.id.navigation_home:
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
+                    break; */
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
         // Set bottom navigation
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        MenuItem item = navigation.getMenu().findItem(R.id.navigation_home);
+        /* MenuItem item = navigation.getMenu().findItem(R.id.navigation_home);
         item.setCheckable(true);
-        item.setChecked(true);
+        item.setChecked(true); */
 
         // Set floating button
         if (Build.VERSION.SDK_INT > 21) {
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > 21) {
             try {
                 ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-                Glide.with(this).load(Config.URL_IMAGE_MAIN).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageView);
+                Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -319,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
         new checkLogin().execute();
 
         // Set User bar
-        SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+        /* SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         String userCheck = settings.getString("user_check", "").toString();
         String userSessionId = settings.getString("user_sessionid", "").toString();
         String userUid = settings.getString("user_uid", "").toString();
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
     }
 
 

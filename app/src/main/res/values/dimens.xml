@@ -45,7 +45,7 @@
     <dimen name="app_bar_elevation">4dp</dimen>
     <dimen name="floating_action_button_elevation">4dp</dimen>
     <integer name="grid_column_count">2</integer>
-    <dimen name="expanded_toolbar_height">80dp</dimen>
+    <dimen name="expanded_toolbar_height">120dp</dimen>
     <dimen name="expanded_toolbar_title_margin_bottom">40dp</dimen>
     <dimen name="material_layout_keylines_screen_edge_margin">24dp</dimen>
     <dimen name="material_component_floating_action_button_margin">16dp</dimen>

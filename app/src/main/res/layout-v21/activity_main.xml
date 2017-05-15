@@ -56,13 +56,25 @@
                     android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin">
 
                     <TextView
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_search"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="true"
+                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:text="@string/backdrop_search"
+                        android:drawableRight="@drawable/ic_search"
+                        android:textColor="@color/jet" />
+
+                    <!-- <TextView
                         android:id="@+id/viewTitle1"
                         style="?android:attr/textAppearanceLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:text="@string/backdrop_title"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" /> 0-->
 
                 </LinearLayout>
 
@@ -100,7 +112,7 @@
                 android:layout_margin="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <!-- <RelativeLayout
                     android:id="@+id/user_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,32 +145,8 @@
                         android:text="@string/user_register_login"
                         android:textSize="18sp" />
 
-                    <!-- <TextView
-                        android:id="@+id/user_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/user_title"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="@dimen/activity_vertical_margin"
-                        android:layout_marginRight="@dimen/activity_vertical_margin"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="right"
-                        android:text="@string/user_register_login_text"
-                        android:textSize="15sp" /> -->
 
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/search"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_search"
-                    android:gravity="center_vertical"
-                    android:includeFontPadding="true"
-                    android:padding="@dimen/cast_expanded_controller_control_button_margin"
-                    android:text="@string/backdrop_search"
-                    android:drawableRight="@drawable/ic_search"
-                    android:textColor="@color/jet" />
+                </RelativeLayout> -->
 
                 <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"

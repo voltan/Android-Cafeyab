@@ -51,11 +51,11 @@ public class EventListActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                /* case R.id.navigation_home:
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break;
+                    break; */
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
@@ -214,6 +214,7 @@ public class EventListActivity extends AppCompatActivity {
                                         event.setTitle(obj.getString("title"));
                                         event.setItemID(obj.getString("id"));
                                         event.setThumbnailUrl(obj.getString("mediumUrl"));
+                                        event.setItemtime(obj.getString("time_view"));
                                         myEventList.add(event);
                                     } catch (JSONException e) {
                                         e.printStackTrace();

@@ -5,7 +5,6 @@
     android:background="@drawable/background_box"
     android:padding="5dp">
 
-    <!-- Thumbnail Image -->
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/thumbnail"
         android:layout_width="@dimen/list_event_image_width"
@@ -16,7 +15,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
-    <!-- location Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

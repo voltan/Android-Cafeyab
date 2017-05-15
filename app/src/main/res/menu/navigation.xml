@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+    <!-- <item
         android:id="@+id/navigation_home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="ifRoom|withText" /> -->
 
     <item
         android:id="@+id/navigation_cafe"

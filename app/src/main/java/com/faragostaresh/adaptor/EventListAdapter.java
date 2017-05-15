@@ -59,7 +59,7 @@ public class EventListAdapter extends BaseAdapter {
 
         NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        //ImageView image = (ImageView) convertView.findViewById(R.id.imageView);
+        TextView time = (TextView) convertView.findViewById(R.id.time);
 
         // getting movie data for the row
         ItemList m = ItemList.get(position);
@@ -69,7 +69,7 @@ public class EventListAdapter extends BaseAdapter {
 
         // title
         title.setText(m.getTitle());
-        //image.setImageBitmap(m.getImage());
+        title.setText(m.getItemtime());
 
         lastPosition = position;
 

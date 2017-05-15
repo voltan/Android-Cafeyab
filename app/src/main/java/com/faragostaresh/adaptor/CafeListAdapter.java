@@ -1,6 +1,5 @@
 package com.faragostaresh.adaptor;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -61,7 +60,7 @@ public class CafeListAdapter extends BaseAdapter {
 
         NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        //ImageView image = (ImageView) convertView.findViewById(R.id.imageView);
+        TextView city_aria = (TextView) convertView.findViewById(R.id.city_aria);
 
         // getting movie data for the row
         ItemList m = ItemList.get(position);
@@ -71,7 +70,7 @@ public class CafeListAdapter extends BaseAdapter {
 
         // title
         title.setText(m.getTitle());
-        //image.setImageBitmap(m.getImage());
+        city_aria.setText(m.getCityArea());
 
         lastPosition = position;
 
