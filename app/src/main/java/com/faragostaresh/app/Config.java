@@ -29,11 +29,11 @@ public class Config {
     public static final String URL_CAFE_LIST        = "https://www.cafeyab.com/guide/json/search?limit=10&page=";
     public static final String URL_CAFE_RECOMMENDED = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
     public static final String URL_CAFE_SINGLE      = "https://www.cafeyab.com/guide/json/itemSingle/id/";
+    public static final String URL_CAFE_MAPS        = "https://www.cafeyab.com/guide/json/itemMap";
     public static final String URL_EVENT_LIST       = "https://www.cafeyab.com/event/json/search?limit=10&page=";
     public static final String URL_EVENT_SINGLE     = "https://www.cafeyab.com/event/json/eventSingle/id/";
     public static final String URL_VIDEO_LIST       = "https://www.cafeyab.com/video/json/search?limit=10&page=";
     public static final String URL_VIDEO_SINGLE     = "https://www.cafeyab.com/video/json/videoSingle/id/";
-
     public static final String URL_NEWS_LIST        = "https://www.cafeyab.com/news/json/search?limit=10&page=";
     public static final String URL_NEWS_SINGLE      = "https://www.cafeyab.com/news/json/storySingle/id/";
 
