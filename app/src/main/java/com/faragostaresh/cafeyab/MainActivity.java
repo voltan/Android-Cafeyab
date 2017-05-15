@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > 21) {
             try {
                 ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-                Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
+                Glide.with(this).load(Config.URL_IMAGE_MAIN).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
             }

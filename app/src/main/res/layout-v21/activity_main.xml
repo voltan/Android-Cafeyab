@@ -86,7 +86,7 @@
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/iron"
+        android:background="#dddddd"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -157,8 +157,8 @@
                     android:includeFontPadding="true"
                     android:padding="@dimen/cast_expanded_controller_control_button_margin"
                     android:text="@string/backdrop_search"
-                    android:textAlignment="center"
-                    android:textColor="#8f8f8f" />
+                    android:drawableRight="@drawable/ic_search"
+                    android:textColor="@color/jet" />
 
                 <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"
