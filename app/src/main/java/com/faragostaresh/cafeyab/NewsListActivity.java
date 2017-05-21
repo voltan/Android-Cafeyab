@@ -265,7 +265,11 @@ public class NewsListActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                if (error.getMessage().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
+                }
                 // stopping swipe refresh
                 mSwipyRefreshLayout.setRefreshing(false);
             }

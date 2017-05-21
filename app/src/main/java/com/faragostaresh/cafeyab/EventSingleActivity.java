@@ -135,7 +135,7 @@ public class EventSingleActivity extends AppCompatActivity {
 
                             registerDetails = (TextView) findViewById(R.id.register_details);
                             if (!json.getString("register_details").isEmpty()) {
-                                registerDetails.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
+                                registerDetails.setText(Html.fromHtml(json.getString("register_details"), null, new MyTagHandler()));
                             } else {
                                 registerDetails.setVisibility(View.GONE);
                                 TextView txtheaderRegister = (TextView) findViewById(R.id.register_details_title);
