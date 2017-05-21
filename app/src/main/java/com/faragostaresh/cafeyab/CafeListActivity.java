@@ -61,12 +61,11 @@ public class CafeListActivity extends AppCompatActivity {
     public int searchNoSmoking = 0;
     public int searchBreakfast = 0;
     public int searchFood = 0;
-    public int searchVegetarianFood = 0;
     public int searchWifi = 0;
     public int searchTruck = 0;
     public int searchThirdWaveCoffee = 0;
-    /* public int searchTakeaWay = 0;
-    public int searchGallery = 0;
+    public int searchDiscount = 0;
+    /* public int searchGallery = 0;
     public int searchTv = 0;
     public int searchFamily = 0; */
     public int openSearchBox = 0;
@@ -165,7 +164,7 @@ public class CafeListActivity extends AppCompatActivity {
         final CheckBox filterNoSmoking = (CheckBox) findViewById(R.id.filter_no_smoking);
         final CheckBox filterBreakfast = (CheckBox) findViewById(R.id.filter_breakfast);
         final CheckBox filterFood = (CheckBox) findViewById(R.id.filter_food);
-        final CheckBox filterVegetarianFood = (CheckBox) findViewById(R.id.filter_vegetarian_food);
+        final CheckBox filterDiscount = (CheckBox) findViewById(R.id.filter_discount);
         final CheckBox filterWifi = (CheckBox) findViewById(R.id.filter_wifi);
         /*
         final CheckBox filterTruck = (CheckBox) findViewById(R.id.filter_truck);
@@ -202,8 +201,8 @@ public class CafeListActivity extends AppCompatActivity {
                 if (filterFood.isChecked()) {
                     intent.putExtra("searchFood", 1);
                 }
-                if (filterVegetarianFood.isChecked()) {
-                    intent.putExtra("searchVegetarianFood", 1);
+                if (filterDiscount.isChecked()) {
+                    intent.putExtra("searchDiscount", 1);
                 }
                 if (filterWifi.isChecked()) {
                     intent.putExtra("searchWifi", 1);
@@ -242,7 +241,7 @@ public class CafeListActivity extends AppCompatActivity {
             searchNoSmoking = extras.getInt("searchNoSmoking");
             searchBreakfast = extras.getInt("searchBreakfast");
             searchFood = extras.getInt("searchFood");
-            searchVegetarianFood = extras.getInt("searchVegetarianFood");
+            searchDiscount = extras.getInt("searchDiscount");
             searchWifi = extras.getInt("searchWifi");
             searchTruck = extras.getInt("searchTruck");
             searchThirdWaveCoffee = extras.getInt("searchThirdWaveCoffee");
@@ -273,8 +272,8 @@ public class CafeListActivity extends AppCompatActivity {
             if (searchFood == 1) {
                 filterFood.setChecked(true);
             }
-            if (searchVegetarianFood == 1) {
-                filterVegetarianFood.setChecked(true);
+            if (searchDiscount == 1) {
+                filterDiscount.setChecked(true);
             }
             if (searchWifi == 1) {
                 filterWifi.setChecked(true);
@@ -407,25 +406,25 @@ public class CafeListActivity extends AppCompatActivity {
             url = url + "&recommended=1";
         }
         if (searchNoSmoking == 1) {
-            url = url + "&nosmoke=%D8%A2%D8%B2%D8%A7%D8%AF%20%D9%86%DB%8C%D8%B3%D8%AA";
+            url = url + "&nosmoke=" + Uri.encode("آزاد نیست");
         }
         if (searchBreakfast == 1) {
-            url = url + "&breakfast=دارد";
+            url = url + "&breakfast=" + Uri.encode("دارد");
         }
         if (searchFood == 1) {
-            url = url + "&food=دارد";
+            url = url + "&food=" + Uri.encode("دارد");
         }
-        if (searchVegetarianFood == 1) {
-            url = url + "&vegetarian=دارد";
+        if (searchDiscount == 1) {
+            url = url + "&discount=1";
         }
         if (searchWifi == 1) {
-            url = url + "&wifi=دارد";
+            url = url + "&wifi=" + Uri.encode("دارد");
         }
         if (searchTruck == 1) {
-            url = url + "&truck=سیار";
+            url = url + "&truck=" + Uri.encode("سیار");
         }
         if (searchThirdWaveCoffee == 1) {
-            url = url + "&thirdwavecoffee=دارد";
+            url = url + "&thirdwavecoffee=" + Uri.encode("دارد");
         }
         /* if (searchTakeaWay == 1) {
             url = url + "&takeaway=دارد";
