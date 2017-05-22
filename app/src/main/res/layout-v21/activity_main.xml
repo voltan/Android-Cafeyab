@@ -112,11 +112,12 @@
                 android:layout_margin="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
-                <!-- <RelativeLayout
+                <RelativeLayout
                     android:id="@+id/user_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_box"
+                    android:layout_marginBottom="4dp"
                     android:padding="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -145,8 +146,7 @@
                         android:text="@string/user_register_login"
                         android:textSize="18sp" />
 
-
-                </RelativeLayout> -->
+                </RelativeLayout>
 
                 <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"
@@ -185,10 +185,10 @@
         android:contentDescription="@string/action_share"
         android:src="@android:drawable/ic_dialog_map"
         app:elevation="@dimen/floating_action_button_elevation"
-        app:layout_anchor="@id/app_bar"
+        app:layout_anchor="@id/meta_bar"
         app:layout_anchorGravity="bottom|end" />
 
-    <android.support.design.widget.BottomNavigationView
+    <!-- <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -196,6 +196,12 @@
         android:background="@color/colorPrimary"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation" /> -->
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </android.support.design.widget.CoordinatorLayout>

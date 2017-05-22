@@ -27,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.faragostaresh.adaptor.CafeListAdapter;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.app.Config;
@@ -75,17 +77,17 @@ public class CafeListActivity extends AppCompatActivity {
     private SwipyRefreshLayout mSwipyRefreshLayout;
     private SlidingUpPanelLayout mLayout;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    /* private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                /* case R.id.navigation_home:
-                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent1);
-                    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
-                    break; */
+                //case R.id.navigation_home:
+                //    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                //    startActivity(intent1);
+                //    overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                //    break;
                 case R.id.navigation_cafe:
                     Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
                     startActivity(intent2);
@@ -109,7 +111,7 @@ public class CafeListActivity extends AppCompatActivity {
             }
             return false;
         }
-    };
+    }; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,11 +125,65 @@ public class CafeListActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Set bottom navigation
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        /* BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         MenuItem item = navigation.getMenu().findItem(R.id.navigation_cafe);
         item.setCheckable(true);
-        item.setChecked(true);
+        item.setChecked(true); */
+
+        BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.title_home)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_local_cafe, getString(R.string.title_cafe)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_videocam, getString(R.string.title_video)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_event_available, getString(R.string.title_event)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_content_paste, getString(R.string.title_news)))
+                .setFirstSelectedPosition(1)
+                .setMode(BottomNavigationBar.MODE_FIXED)
+                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
+                .setActiveColor(R.color.iron)
+                .setInActiveColor(R.color.white)
+                .setBarBackgroundColor(R.color.colorPrimary)
+                .initialise();
+
+        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
+            @Override
+            public void onTabSelected(int position) {
+                switch (position) {
+                    case 0:
+                        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent1);
+                        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                        break;
+                    case 1:
+                        Intent intent2 = new Intent(getApplicationContext(), CafeListActivity.class);
+                        startActivity(intent2);
+                        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                        break;
+                    case 2:
+                        Intent intent5 = new Intent(getApplicationContext(), VideoListActivity.class);
+                        startActivity(intent5);
+                        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                        break;
+                    case 3:
+                        Intent intent3 = new Intent(getApplicationContext(), EventListActivity.class);
+                        startActivity(intent3);
+                        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                        break;
+                    case 4:
+                        Intent intent4 = new Intent(getApplicationContext(), NewsListActivity.class);
+                        startActivity(intent4);
+                        overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation);
+                        break;
+                }
+            }
+            @Override
+            public void onTabUnselected(int position) {
+            }
+            @Override
+            public void onTabReselected(int position) {
+            }
+        });
 
         // Set floating button
         /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
