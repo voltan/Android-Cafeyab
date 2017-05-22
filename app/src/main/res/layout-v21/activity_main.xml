@@ -157,9 +157,9 @@
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="5dp" />
 
-            </LinearLayout>
+             </LinearLayout>
 
-            <LinearLayout
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_horizontal_list_height"
                 android:layout_margin="@dimen/activity_vertical_margin"
@@ -171,7 +171,7 @@
                     android:layout_height="match_parent"
                     android:scrollbars="none" />
 
-            </LinearLayout>
+            </LinearLayout> -->
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

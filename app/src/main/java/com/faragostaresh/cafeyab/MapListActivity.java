@@ -380,7 +380,7 @@ public class MapListActivity extends AppCompatActivity implements
         if (mLocationPermissionGranted) {
 
             // appending offset to url
-            String url = Config.URL_CAFE_MAPS + "?latitude=" + mCurrentLocation.getLatitude() + "&longitude=" + mCurrentLocation.getLongitude();
+            String url = Config.URL_CAFE_MAPS + "&latitude=" + mCurrentLocation.getLatitude() + "&longitude=" + mCurrentLocation.getLongitude();
             Log.d(TAG, "Url: " + url);
 
             // Volley's json array request object
@@ -389,7 +389,7 @@ public class MapListActivity extends AppCompatActivity implements
                         @Override
                         public void onResponse(JSONObject response) {
                             if (response != null) {
-                                JSONArray jsonArray = response.optJSONArray("maps");
+                                JSONArray jsonArray = response.optJSONArray("list");
                                 if (response.length() > 0) {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         try {

@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //
-        String urlCafe = Config.URL_CAFE_RECOMMENDED;
+        /* String urlCafe = Config.URL_CAFE_RECOMMENDED;
         Log.d(TAG, urlCafe);
         // Volley's json array request object
         JsonObjectRequest reqCafe = new JsonObjectRequest(urlCafe,
@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Adding request to request queue
-        CafeyabApplication.getInstance().addToRequestQueue(reqCafe);
+        CafeyabApplication.getInstance().addToRequestQueue(reqCafe); */
 
         // Check user
         new checkLogin().execute();
@@ -426,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createDummyDataCafe() {
+    /* public void createDummyDataCafe() {
         HorizontalSectionModel dm = new HorizontalSectionModel();
         dm.setHeaderTitle("کافه های پیشنهادی");
         ArrayList<HorizontalSingleItemModel> singleItem = new ArrayList<HorizontalSingleItemModel>();
@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
         }
         dm.setAllItemsInSection(singleItem);
         allSampleData.add(dm);
-    }
+    } */
 
     protected class checkLogin extends AsyncTask<Void, Void, JSONObject> {
         @Override
