@@ -267,7 +267,7 @@ public class EventListActivity extends AppCompatActivity {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);
                                         ItemList event = new ItemList();
-                                        event.setTitle(obj.getString("title"));
+                                        event.setTitle(obj.getString("title") + " ( " + obj.getString("time_view") + " )");
                                         event.setItemID(obj.getString("id"));
                                         event.setThumbnailUrl(obj.getString("mediumUrl"));
                                         event.setItemtime(obj.getString("time_view"));

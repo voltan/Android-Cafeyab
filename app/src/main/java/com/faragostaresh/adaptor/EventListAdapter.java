@@ -69,7 +69,7 @@ public class EventListAdapter extends BaseAdapter {
 
         // title
         title.setText(m.getTitle());
-        title.setText(m.getItemtime());
+        //title.setText(m.getItemtime());
 
         lastPosition = position;
 
