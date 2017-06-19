@@ -116,6 +116,41 @@
                         android:text="@string/about_text_copyright"
                         android:textSize="14sp" />
 
+                    <TableLayout
+                        android:id="@+id/faragostaresh"
+                        android:layout_margin="@dimen/activity_vertical_margin"
+                        android:padding="@dimen/nav_header_vertical_spacing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/pad_marg_all"
+                            android:orientation="vertical">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/faragostareshLogo"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:src="@drawable/faragostaresh"
+                                app:civ_border_color="@color/iron"
+                                app:civ_border_width="1dp" />
+
+                            <TextView
+                                android:id="@+id/faragostareshCopyright"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/pad_marg_all"
+                                android:layout_marginRight="@dimen/pad_marg_all"
+                                android:text="@string/faragostareshCopyright"
+                                android:textSize="16dp" />
+
+                        </TableRow>
+                    </TableLayout>
+
                 </RelativeLayout>
 
                 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
