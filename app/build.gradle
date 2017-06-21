@@ -47,9 +47,12 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:11.0.1'
     compile 'com.google.android.gms:play-services:11.0.1'
 
-    // Firebase
+    // Google  firebase
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
+
+    // Google exoplayer
+    compile 'com.google.android.exoplayer:exoplayer:r2.0.0'
 
     // Load image on index page
     compile 'com.github.bumptech.glide:glide:3.7.0'

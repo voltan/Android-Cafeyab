@@ -28,9 +28,13 @@ public class Config {
     public static final String TOKEN = "lovquDGv5iyOc8AHdMZ";
 
     // Set url
+    public static final String URL_APP_URL          = "https://play.google.com/store/apps/details?id=com.faragostaresh.orod";
+    public static final String URL_FARAGOSTARESH    = "https://www.faragostaresh.com";
     public static final String URL_WEBSITE          = "https://www.cafeyab.com";
+
     public static final String URL_REGISTER         = URL_WEBSITE + "/user/register";
     public static final String URL_IMAGE_MAIN       = URL_WEBSITE + "/upload/app/android/cover.jpg";
+    public static final String URL_APP_LOGO         = URL_WEBSITE + "/upload/app/android/logo.png";
 
     public static final String URL_CAFE_LIST        = URL_WEBSITE + "/apis/guide/itemList?token=" + TOKEN + "&platform=android&limit=10&page=";
     public static final String URL_CAFE_SINGLE      = URL_WEBSITE + "/apis/guide/itemSingle?token=" + TOKEN + "&platform=android&id=";
@@ -49,9 +53,4 @@ public class Config {
     public static final String URL_CHECK            = URL_WEBSITE + "/apis/user/check?token=" + TOKEN + "&platform=android";
     public static final String URL_LOGIN            = URL_WEBSITE + "/apis/user/login?token=" + TOKEN + "&platform=android";
     public static final String URL_LOGOUT           = URL_WEBSITE + "/apis/user/logout?token=" + TOKEN + "&platform=android";
-
-
-
-    //public static final String URL_CAFE_RECOMMENDED = URL_WEBSITE + "/guide/json/search?limit=15&page=1&recommended=1";
-
 }

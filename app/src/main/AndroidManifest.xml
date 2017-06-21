@@ -57,8 +57,7 @@
             android:name=".AboutActivity"
             android:label="@string/activity_about"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"  />
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
