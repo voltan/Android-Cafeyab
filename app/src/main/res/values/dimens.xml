@@ -13,18 +13,9 @@
     <dimen name="backdrop_subtitle">18dp</dimen>
     <dimen name="backdrop_subtitle_padding">10dp</dimen>
 
-    <!-- Main page icons -->
-    <dimen name="main_grid_icon_padding_bottom">40dp</dimen>
-    <dimen name="main_grid_icon_padding_top">40dp</dimen>
-    <dimen name="main_grid_icon_padding_left">40dp</dimen>
-    <dimen name="main_grid_icon_padding_right">40dp</dimen>
-    <dimen name="main_grid_text_padding_bottom">5dp</dimen>
-    <dimen name="main_grid_text_padding_top">55dp</dimen>
-    <dimen name="main_grid_text_padding_left">5dp</dimen>
-    <dimen name="main_grid_text_padding_right">5dp</dimen>
-
     <!-- Main page list -->
     <dimen name="main_horizontal_list_height">270dp</dimen>
+    <dimen name="main_grid_icon">60px</dimen>
 
     <!-- List image -->
     <dimen name="list_video_image_height">200dp</dimen>
@@ -33,8 +24,8 @@
     <dimen name="list_event_image_width">140dp</dimen>
 
     <!-- Item pages -->
-    <dimen name="video_player_height">250dp</dimen>
-    <dimen name="main_image_height">320dp</dimen>
+    <dimen name="video_player_height">240dp</dimen>
+    <dimen name="main_image_height">240dp</dimen>
 
 
 

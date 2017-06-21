@@ -21,7 +21,6 @@
             app:expandedTitleMargin="@dimen/activity_horizontal_margin"
             app:expandedTitleMarginBottom="@dimen/expanded_toolbar_title_margin_bottom"
             app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
-            app:layout_scrollFlags="scroll"
             app:toolbarId="@+id/toolbar">
 
             <FrameLayout
@@ -94,7 +93,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -109,7 +108,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -117,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_box"
-                    android:layout_marginBottom="4dp"
+                    android:layout_margin="@dimen/activity_vertical_margin"
                     android:padding="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -175,7 +173,7 @@
             </LinearLayout> -->
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

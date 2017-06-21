@@ -22,15 +22,15 @@ public final class MainIconAdapter extends BaseAdapter {
 
         mItems.add(new Item("کافه‌های جدید",             R.drawable.ic_home_location_on));
         mItems.add(new Item("کافه‌های پیشنهادی",         R.drawable.ic_home_assistant_photo));
-        mItems.add(new Item("کافه‌های تخفیف‌‌‌ دار",        R.drawable.ic_money_off));
+        mItems.add(new Item("کافه‌های تخفیف‌‌ ‌‌دار",        R.drawable.ic_home_money_off));
 
         mItems.add(new Item("کافه‌های سیار",             R.drawable.ic_home_airport_shuttle));
-        mItems.add(new Item("کافه‌های بدون سیگار",       R.drawable.ic_home_smoke_free));
-        mItems.add(new Item("کافه‌های با اینترنت",       R.drawable.ic_home_wifi));
+        mItems.add(new Item("کافه‌های بدون‌سیگار",        R.drawable.ic_home_smoke_free));
+        mItems.add(new Item("کافه‌های با‌اینترنت",        R.drawable.ic_home_wifi));
 
-        mItems.add(new Item("کافه‌های با قهوه موج سوم",  R.drawable.ic_home_local_cafe));
-        mItems.add(new Item("کافه‌های با صبحانه",        R.drawable.ic_home_brightness_high));
-        mItems.add(new Item("کافه‌های با غذا",           R.drawable.ic_home_restaurant));
+        mItems.add(new Item("قهوه موج سوم",             R.drawable.ic_home_local_cafe));
+        mItems.add(new Item("کافه‌های با‌صبحانه",         R.drawable.ic_home_brightness_high));
+        mItems.add(new Item("کافه‌های با‌غذا",            R.drawable.ic_home_restaurant));
     }
 
     @Override
