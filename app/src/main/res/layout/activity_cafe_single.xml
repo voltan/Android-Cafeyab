@@ -235,7 +235,7 @@
         android:layout_margin="@dimen/material_component_floating_action_button_margin"
         android:clickable="true"
         android:contentDescription="@string/action_share"
-        android:src="@drawable/ic_share_black_24dp"
+        android:src="@drawable/ic_share"
         app:elevation="@dimen/floating_action_button_elevation"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />

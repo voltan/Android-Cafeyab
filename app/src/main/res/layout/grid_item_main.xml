@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:textColor="@color/jet"
+        android:textColor="@color/colorGarry700"
         android:paddingBottom="@dimen/main_grid_text_padding_bottom"
         android:paddingTop="@dimen/main_grid_text_padding_top"
         android:paddingLeft="@dimen/main_grid_text_padding_left"

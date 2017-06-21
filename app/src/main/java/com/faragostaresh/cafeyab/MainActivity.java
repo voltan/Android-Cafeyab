@@ -5,50 +5,31 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.faragostaresh.adaptor.MainIconAdapter;
 import com.faragostaresh.adaptor.MyGridView;
-import com.faragostaresh.adaptor.HorizontalRecyclerViewAdapter;
-import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.model.ItemList;
 import com.faragostaresh.model.HorizontalSectionModel;
-import com.faragostaresh.model.HorizontalSingleItemModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -62,7 +43,6 @@ import java.util.List;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import com.faragostaresh.cafeyab.R;
 import com.faragostaresh.app.Config;
 import com.faragostaresh.extra.NotificationUtils;
 
@@ -173,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.title_home)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_local_cafe, getString(R.string.title_cafe)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_local_cafe, getString(R.string.title_cafe)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_videocam, getString(R.string.title_video)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_event_available, getString(R.string.title_event)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_content_paste, getString(R.string.title_news)))

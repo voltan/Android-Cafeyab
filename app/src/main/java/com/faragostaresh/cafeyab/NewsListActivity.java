@@ -3,8 +3,6 @@ package com.faragostaresh.cafeyab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -135,7 +133,7 @@ public class NewsListActivity extends AppCompatActivity {
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.title_home)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_local_cafe, getString(R.string.title_cafe)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_local_cafe, getString(R.string.title_cafe)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_videocam, getString(R.string.title_video)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_event_available, getString(R.string.title_event)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_content_paste, getString(R.string.title_news)))
