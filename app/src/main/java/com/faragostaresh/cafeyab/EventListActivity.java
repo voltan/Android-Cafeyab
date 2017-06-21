@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -256,7 +257,7 @@ public class EventListActivity extends AppCompatActivity {
         String url = Config.URL_EVENT_LIST + page;
 
         // Volley's json array request object
-        JsonObjectRequest req = new JsonObjectRequest(url,
+        JsonObjectRequest volleyRequest = new JsonObjectRequest(url,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -305,8 +306,11 @@ public class EventListActivity extends AppCompatActivity {
             }
         });
 
+        // Add retry policy
+        volleyRequest.setRetryPolicy(new DefaultRetryPolicy(5000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         // Adding request to request queue
-        CafeyabApplication.getInstance().addToRequestQueue(req);
+        CafeyabApplication.getInstance().addToRequestQueue(volleyRequest);
     }
 
     private class ListVewiClickListener implements ListView.OnItemClickListener {

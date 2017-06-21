@@ -1,9 +1,11 @@
 package com.faragostaresh.cafeyab;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -21,6 +23,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -42,9 +45,9 @@ import java.util.List;
 
 public class VideoSingleActivity extends AppCompatActivity {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-
     private static final String TAG = VideoSingleActivity.class.getSimpleName();
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     Context context = this;
 
@@ -60,6 +63,8 @@ public class VideoSingleActivity extends AppCompatActivity {
     public ListView listView;
     public VideoListAdapter adapter;
     public List<ItemList> myVideoList = new ArrayList<ItemList>();
+
+    public ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,98 +84,12 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         Log.d(TAG, "Single item url : " + videoUrl);
 
+        // Set title
+        setTitle(itemTitle);
+
         adapter = new VideoListAdapter(this, myVideoList, "related");
 
-        //Creating a json array request
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(videoUrl,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        //VideoList videoSingle = new VideoList();
-                        Log.d(TAG, response.toString());
-                        JSONObject json = null;
-                        try {
-                            json = response.getJSONObject(0);
-
-                            // Set title
-                            setTitle(json.getString("title"));
-
-                            // Set info for layout
-                            TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
-                            textViewTitle.setText(json.getString("title"));
-
-                            txtSummary = (TextView) findViewById(R.id.summary);
-                            if (!json.getString("text_summary").isEmpty()) {
-                                txtSummary.setText(json.getString("text_summary"));
-                            } else {
-                                txtSummary.setVisibility(View.GONE);
-                            }
-
-                            txtDescription = (TextView) findViewById(R.id.description);
-                            if (!json.getString("text_description").isEmpty()) {
-                                txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
-                            } else {
-                                txtDescription.setVisibility(View.GONE);
-                            }
-
-                            // Set item url
-                            itemUrl = json.getString("videoUrl");
-
-                            // Set item largeUrl
-                            largeUrl = json.getString("largeUrl");
-
-                            //qmeryDirect
-                            WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
-                            playerWebView.clearCache(true);
-                            playerWebView.clearHistory();
-                            playerWebView.getSettings().setJavaScriptEnabled(true);
-                            playerWebView.getSettings().setDomStorageEnabled(true);
-                            playerWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-                            playerWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);;
-                            playerWebView.loadUrl(json.getString("qmeryDirect"));
-
-
-                            Log.d(TAG, "videoRelated array: " + json.getJSONArray("videoRelated"));
-
-                            JSONArray jsonArrayRelated = json.getJSONArray("videoRelated");
-                            if (jsonArrayRelated.length() > 0) {
-                                for (int i = 0; i < jsonArrayRelated.length(); i++) {
-                                    try {
-                                        JSONObject obj = jsonArrayRelated.getJSONObject(i);
-                                        ItemList video = new ItemList();
-                                        video.setTitle(obj.getString("title"));
-                                        video.setItemID(obj.getString("id"));
-                                        video.setThumbnailUrl(obj.getString("mediumUrl"));
-                                        myVideoList.add(video);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                // Set for list of items
-                                listView = (ListView) findViewById(R.id.videoRelatedlist);
-                                listView.setAdapter(adapter);
-                                listView.setOnItemClickListener(new VideoSingleActivity.ListVewiClickListener());
-                                setListViewHeightBasedOnChildren(listView);
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                    }
-                });
-        //Creating request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        //Adding request to the queue
-        requestQueue.add(jsonArrayRequest);
-
+        new getJson().execute();
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
@@ -270,6 +189,124 @@ public class VideoSingleActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    public class getJson extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(VideoSingleActivity.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("در حال دریافت اطلاعات ...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //Creating a json array request
+            JsonArrayRequest volleyRequest = new JsonArrayRequest(videoUrl,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            //VideoList videoSingle = new VideoList();
+                            Log.d(TAG, response.toString());
+                            JSONObject json = null;
+                            try {
+                                json = response.getJSONObject(0);
+
+                                // Set title
+                                setTitle(json.getString("title"));
+
+                                // Set info for layout
+                                TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
+                                textViewTitle.setText(json.getString("title"));
+
+                                txtSummary = (TextView) findViewById(R.id.summary);
+                                if (!json.getString("text_summary").isEmpty()) {
+                                    txtSummary.setText(json.getString("text_summary"));
+                                } else {
+                                    txtSummary.setVisibility(View.GONE);
+                                }
+
+                                txtDescription = (TextView) findViewById(R.id.description);
+                                if (!json.getString("text_description").isEmpty()) {
+                                    txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
+                                } else {
+                                    txtDescription.setVisibility(View.GONE);
+                                }
+
+                                // Set item url
+                                itemUrl = json.getString("videoUrl");
+
+                                // Set item largeUrl
+                                largeUrl = json.getString("largeUrl");
+
+                                //qmeryDirect
+                                WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
+                                playerWebView.clearCache(true);
+                                playerWebView.clearHistory();
+                                playerWebView.getSettings().setJavaScriptEnabled(true);
+                                playerWebView.getSettings().setDomStorageEnabled(true);
+                                playerWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+                                playerWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);;
+                                playerWebView.loadUrl(json.getString("qmeryDirect"));
+
+
+                                Log.d(TAG, "videoRelated array: " + json.getJSONArray("videoRelated"));
+
+                                JSONArray jsonArrayRelated = json.getJSONArray("videoRelated");
+                                if (jsonArrayRelated.length() > 0) {
+                                    for (int i = 0; i < jsonArrayRelated.length(); i++) {
+                                        try {
+                                            JSONObject obj = jsonArrayRelated.getJSONObject(i);
+                                            ItemList video = new ItemList();
+                                            video.setTitle(obj.getString("title"));
+                                            video.setItemID(obj.getString("id"));
+                                            video.setThumbnailUrl(obj.getString("mediumUrl"));
+                                            myVideoList.add(video);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                    // Set for list of items
+                                    listView = (ListView) findViewById(R.id.videoRelatedlist);
+                                    listView.setAdapter(adapter);
+                                    listView.setOnItemClickListener(new VideoSingleActivity.ListVewiClickListener());
+                                    setListViewHeightBasedOnChildren(listView);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        }
+                    });
+            //Creating request queue
+            RequestQueue requestQueue = Volley.newRequestQueue(VideoSingleActivity.this);
+
+            // Add retry policy
+            volleyRequest.setRetryPolicy(new DefaultRetryPolicy(5000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+            //Adding request to the queue
+            requestQueue.add(volleyRequest);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            }, 1000);
+        }
     }
 
     @Override

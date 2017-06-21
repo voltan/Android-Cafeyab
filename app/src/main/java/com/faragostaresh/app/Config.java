@@ -29,28 +29,29 @@ public class Config {
 
     // Set url
     public static final String URL_WEBSITE          = "https://www.cafeyab.com";
-    public static final String URL_REGISTER         = "https://www.cafeyab.com/user/register";
-    public static final String URL_IMAGE_MAIN       = "https://www.cafeyab.com/upload/app/android/cover.jpg";
+    public static final String URL_REGISTER         = URL_WEBSITE + "/user/register";
+    public static final String URL_IMAGE_MAIN       = URL_WEBSITE + "/upload/app/android/cover.jpg";
 
-    public static final String URL_CAFE_LIST        = "https://www.cafeyab.com/apis/guide/itemList?token=" + TOKEN + "&platform=android&limit=10&page=";
-    public static final String URL_CAFE_SINGLE      = "https://www.cafeyab.com/apis/guide/itemSingle?token=" + TOKEN + "&platform=android&id=";
-    public static final String URL_CAFE_MAPS        = "https://www.cafeyab.com/apis/guide/map?token=" + TOKEN + "&platform=android";
+    public static final String URL_CAFE_LIST        = URL_WEBSITE + "/apis/guide/itemList?token=" + TOKEN + "&platform=android&limit=10&page=";
+    public static final String URL_CAFE_SINGLE      = URL_WEBSITE + "/apis/guide/itemSingle?token=" + TOKEN + "&platform=android&id=";
+    public static final String URL_CAFE_MAPS        = URL_WEBSITE + "/apis/guide/map?token=" + TOKEN + "&platform=android";
 
-    public static final String URL_EVENT_LIST       = "https://www.cafeyab.com/event/json/search?limit=10&page=";
-    public static final String URL_EVENT_SINGLE     = "https://www.cafeyab.com/event/json/eventSingle/id/";
+    public static final String URL_EVENT_LIST       = URL_WEBSITE + "/event/json/search?limit=10&page=";
+    public static final String URL_EVENT_SINGLE     = URL_WEBSITE + "/event/json/eventSingle/id/";
 
-    public static final String URL_VIDEO_LIST       = "https://www.cafeyab.com/video/json/search?limit=10&page=";
-    public static final String URL_VIDEO_SINGLE     = "https://www.cafeyab.com/video/json/videoSingle/id/";
+    public static final String URL_VIDEO_LIST       = URL_WEBSITE + "/video/json/search?limit=10&page=";
+    public static final String URL_VIDEO_SINGLE     = URL_WEBSITE + "/video/json/videoSingle/id/";
 
-    public static final String URL_NEWS_LIST        = "https://www.cafeyab.com/news/json/search?limit=10&page=";
-    public static final String URL_NEWS_SINGLE      = "https://www.cafeyab.com/news/json/storySingle/id/";
+    public static final String URL_NEWS_LIST        = URL_WEBSITE + "/news/json/search?limit=10&page=";
+    public static final String URL_NEWS_SINGLE      = URL_WEBSITE + "/news/json/storySingle/id/";
 
-    public static final String URL_CHECK            = "https://www.cafeyab.com/apis/user/check?token=" + TOKEN + "&platform=android";
-    public static final String URL_LOGIN            = "https://www.cafeyab.com/apis/user/login?token=" + TOKEN + "&platform=android";
-    public static final String URL_LOGOUT           = "https://www.cafeyab.com/apis/user/logout?token=" + TOKEN + "&platform=android";
+    public static final String URL_PROFILE          = URL_WEBSITE + "/apis/user/profile?token=" + TOKEN + "&platform=android";
+    public static final String URL_CHECK            = URL_WEBSITE + "/apis/user/check?token=" + TOKEN + "&platform=android";
+    public static final String URL_LOGIN            = URL_WEBSITE + "/apis/user/login?token=" + TOKEN + "&platform=android";
+    public static final String URL_LOGOUT           = URL_WEBSITE + "/apis/user/logout?token=" + TOKEN + "&platform=android";
 
 
 
-    //public static final String URL_CAFE_RECOMMENDED = "https://www.cafeyab.com/guide/json/search?limit=15&page=1&recommended=1";
+    //public static final String URL_CAFE_RECOMMENDED = URL_WEBSITE + "/guide/json/search?limit=15&page=1&recommended=1";
 
 }

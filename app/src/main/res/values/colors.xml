@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#795548</color>
-    <color name="colorPrimaryDark">#5d4037</color>
+    <color name="colorPrimary">#3e2723</color>
+    <color name="colorPrimaryDark">#2f1c14</color>
+    <color name="colorPrimaryDarker">#2f1c14</color>
     <color name="colorAccent">#9B0606</color>
 
+    <color name="colorBackground">#f5f5f5</color>
+    <color name="colorGarry400">#bdbdbd</color>
+    <color name="colorGarry700">#616161</color>
+    <color name="colorText">#616161</color>
     <color name="colorBrown50">#efebe9</color>
     <color name="colorBrown100">#d7ccc8</color>
-    <color name="textColor">#000</color>
+    <color name="textColor">#616161</color>
 
     <color name="background_material_light">#efebe9</color>
 
 
-    <color name="primary">#795548</color>
+    <!-- <color name="primary">#795548</color>
     <color name="primary_dark">#5d4037</color>
     <color name="primary_darker">#3e2723</color>
-    <color name="accent">#FFFFFF</color>
+    <color name="accent">#FFFFFF</color> -->
 
     <color name="black">#000000</color>
     <color name="jet">#222222</color>

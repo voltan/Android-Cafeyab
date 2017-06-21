@@ -121,6 +121,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/activity_login"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -131,6 +132,7 @@
         <activity
             android:name=".LogoutActivity"
             android:label="@string/activity_logout"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
         <!-- Firebase Notifications -->

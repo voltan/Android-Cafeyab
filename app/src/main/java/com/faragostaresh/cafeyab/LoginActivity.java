@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,18 +41,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-
     private static final int REQUEST_SIGNUP = 0;
 
     String email = "";
     String password = "";
 
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Set tolbar
+        ///Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -61,19 +65,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        // Set photo Header
-        View photoHeader = findViewById(R.id.photoHeader);
-        try {
-            CircleImageView imageView = (CircleImageView) findViewById(R.id.civProfilePic);
-            Glide.with(this).load(R.drawable.logo).skipMemoryCache(true).into(imageView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            photoHeader.setTranslationZ(6);
-            photoHeader.invalidate();
-        }
 
         // User info
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
@@ -87,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText _emailText = (EditText) findViewById(R.id.input_email);
         EditText _passwordText = (EditText) findViewById(R.id.input_password);
 
+        //TextView forgetPassword = (TextView) findViewById(R.id.link_forget);
         //ButterKnife.bind(this);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +100,21 @@ public class LoginActivity extends AppCompatActivity {
                 //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
+
+
+
+
+        /* forgetPassword.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), ForgetActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
+                //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            }
+        }); */
 
     }
 
@@ -144,7 +151,8 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("در حال ورود ...");
         progressDialog.show();
@@ -153,23 +161,22 @@ public class LoginActivity extends AppCompatActivity {
         password = _passwordText.getText().toString();
 
 
-
-
-
-
-
-
+        // Set policy
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        // Set url
         String str = Config.URL_LOGIN;
 
+        // User info
         SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         String userSessionId = settings.getString("user_sessionid", "").toString();
 
+        // Set data
         String data = Uri.encode("identity", "UTF-8") + "=" + Uri.encode(email, "UTF-8");
         data += "&" + Uri.encode("credential", "UTF-8") + "=" + Uri.encode(password, "UTF-8");
 
+        // Set reader
         BufferedReader reader = null;
 
         // Send data
@@ -179,7 +186,6 @@ public class LoginActivity extends AppCompatActivity {
             URL url = new URL(str);
 
             // Send POST data request
-
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Cookie", "pisess=" + userSessionId);
             conn.setDoOutput(true);
@@ -187,24 +193,23 @@ public class LoginActivity extends AppCompatActivity {
             wr.write(data);
             wr.flush();
 
-
+            // Set log
             int responseCode = conn.getResponseCode();
             Log.e(TAG, "nSending 'POST' request to URL : " + str);
             Log.e(TAG, "Post Data : " + data);
             Log.e(TAG, "Response Code : " + responseCode);
 
             // Get the server response
-
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuffer stringBuffer = new StringBuffer();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuffer.append(line);
             }
-
             Log.e(TAG, stringBuffer.toString());
             JSONObject response = new JSONObject(stringBuffer.toString());
 
+            // Check response
             if(response != null)  {
                 try {
 
@@ -230,7 +235,12 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("user_avatar", avatar);
                     editor.commit();
 
-                    progressDialog.dismiss();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    }, 1000);
 
                     if (String.valueOf(login).equals("1")) {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -274,8 +284,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     public void onLoginSuccess() {

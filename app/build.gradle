@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.faragostaresh.cafeyab"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 11
         versionName "2.0"
@@ -44,8 +44,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
 
     // Google map libs
-    compile 'com.google.android.gms:play-services-maps:10.2.1'
-    compile 'com.google.android.gms:play-services:10.2.1'
+    compile 'com.google.android.gms:play-services-maps:11.0.1'
+    compile 'com.google.android.gms:play-services:11.0.1'
 
     // Firebase
     compile 'com.google.firebase:firebase-core:10.0.1'

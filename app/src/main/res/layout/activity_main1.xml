@@ -98,7 +98,7 @@
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#dddddd"
+        android:background="@color/colorBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -152,12 +152,13 @@
                     android:id="@+id/gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:horizontalSpacing="5dp"
+                    android:background="@color/colorGarry400"
+                    android:horizontalSpacing="1dp"
                     android:numColumns="3"
                     android:stretchMode="columnWidth"
-                    android:verticalSpacing="5dp" />
+                    android:verticalSpacing="1dp" />
 
-             </LinearLayout>
+            </LinearLayout>
 
             <!-- <LinearLayout
                 android:layout_width="match_parent"
@@ -185,18 +186,8 @@
         android:contentDescription="@string/action_share"
         android:src="@android:drawable/ic_dialog_map"
         app:elevation="@dimen/floating_action_button_elevation"
-        app:layout_anchor="@id/meta_bar"
+        app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
-
-    <!-- <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/navigation" /> -->
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:layout_gravity="bottom"

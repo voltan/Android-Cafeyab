@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main1);
 
         // Set toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -225,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set floating button
-        if (Build.VERSION.SDK_INT > 21) {
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -235,17 +234,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-        }
 
         // Set main image
-        if (Build.VERSION.SDK_INT > 21) {
             try {
                 ImageView imageView = (ImageView) findViewById(R.id.backdrop);
                 Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
 
         // Set list of main icons
         MyGridView gridView = (MyGridView)findViewById(R.id.gridview);
@@ -500,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(Void... params) {
 
-            String str = Config.URL_CHECK;
+            String str = Config.URL_PROFILE;
             Log.d(TAG, str);
             URLConnection urlConn = null;
             BufferedReader bufferedReader = null;
@@ -548,6 +545,14 @@ public class MainActivity extends AppCompatActivity {
                     String email = response.getString("email");
                     String name = response.getString("name");
                     String avatar = response.getString("avatar");
+                    String first_name = response.getString("first_name");
+                    String last_name = response.getString("last_name");
+                    String id_number = response.getString("id_number");
+                    String phone = response.getString("phone");
+                    String mobile = response.getString("mobile");
+                    String address1 = response.getString("address1");
+                    String zip_code = response.getString("zip_code");
+                    String company = response.getString("company");
 
                     // User info
                     SharedPreferences settings = getSharedPreferences("UserInfo", 0);
@@ -559,6 +564,15 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("user_email", email);
                     editor.putString("user_name", name);
                     editor.putString("user_avatar", avatar);
+                    editor.putString("user_first_name", first_name);
+                    editor.putString("user_last_name", last_name);
+                    editor.putString("user_id_number", id_number);
+                    editor.putString("user_phone", phone);
+                    editor.putString("user_mobile", mobile);
+                    editor.putString("user_address1", address1);
+                    editor.putString("user_zip_code", zip_code);
+                    editor.putString("user_company", company);
+
                     editor.commit();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -566,5 +580,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

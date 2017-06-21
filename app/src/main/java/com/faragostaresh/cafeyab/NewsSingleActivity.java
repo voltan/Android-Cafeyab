@@ -1,10 +1,13 @@
 package com.faragostaresh.cafeyab;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -44,9 +48,9 @@ public class NewsSingleActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
-
     Context context = this;
+
+    ImageLoader imageLoader = CafeyabApplication.getInstance().getImageLoader();
 
     public static String newsUrl = "";
     public static String itemId = "";
@@ -60,6 +64,8 @@ public class NewsSingleActivity extends AppCompatActivity {
 
     private ListView mainListView;
     private ArrayAdapter<String> listAdapter1;
+
+    public ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,111 +90,7 @@ public class NewsSingleActivity extends AppCompatActivity {
         // Set title
         setTitle(itemTitle);
 
-        NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
-
-        //Creating a json array request
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(newsUrl,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        //VideoList videoSingle = new VideoList();
-                        Log.d(TAG, response.toString());
-                        JSONObject json = null;
-                        try {
-                            json = response.getJSONObject(0);
-
-                            // Set title
-                            setTitle(json.getString("title"));
-
-                            // Set info for layout
-                            thumbnail.setImageUrl(json.getString("largeUrl"), imageLoader);
-
-                            // Set info for layout
-                            //TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
-                            //textViewTitle.setText(json.getString("title"));
-
-                            //TextView textSubViewTitle = (TextView) findViewById(R.id.viewSubTitle);
-                            //textViewTitle.setText(json.getString("subtitle"));
-
-                            /* txtSummary = (TextView) findViewById(R.id.summary);
-                            if (!json.getString("text_summary").isEmpty()) {
-                                txtSummary.setText(json.getString("text_summary"));
-                            } else {
-                                txtSummary.setVisibility(View.GONE);
-                            } */
-
-                            txtSummary = (TextView) findViewById(R.id.summary);
-                            if (!json.getString("text_summary").isEmpty()) {
-                                txtSummary.setText(json.getString("text_summary"));
-                            } else {
-                                txtSummary.setVisibility(View.GONE);
-                            }
-
-                            txtDescription = (TextView) findViewById(R.id.description);
-                            if (!json.getString("text_description").isEmpty()) {
-                                txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
-                            } else {
-                                txtDescription.setVisibility(View.GONE);
-                            }
-
-                            /* registerDetails = (TextView) findViewById(R.id.register_details);
-                            if (!json.getString("register_details").isEmpty()) {
-                                registerDetails.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
-                            } else {
-                                registerDetails.setVisibility(View.GONE);
-                                TextView txtheaderRegister = (TextView) findViewById(R.id.register_details_title);
-                                txtheaderRegister.setVisibility(View.GONE);
-                            } */
-
-                            // Set item url
-                            itemUrl = json.getString("storyUrl");
-
-                            // Set item largeUrl
-                            largeUrl = json.getString("largeUrl");
-
-
-                            /* String[] attributes1 = new String[]{};
-                            ArrayList<String> attributesList1 = new ArrayList<String>();
-                            attributesList1.addAll(Arrays.asList(attributes1));
-                            listAdapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row_cafe_attributes, attributesList1);
-                            if (!json.getString("time_view").isEmpty()) {
-                                listAdapter1.add("زمان برگزاری : " + json.getString("time_view"));
-                            }
-                            if (!json.getString("organizer_name").isEmpty()) {
-                                listAdapter1.add("سازمان دهنده : " + json.getString("organizer_name"));
-                            }
-                            if (!json.getString("register_price_view").isEmpty()) {
-                                listAdapter1.add("هزینه ثبت نام  : " + json.getString("register_price_view"));
-                            }
-                            if (!json.getString("address").isEmpty()) {
-                                listAdapter1.add("آدرس : " + json.getString("address"));
-                                listAdapter1.add(" ");
-                            }
-                            mainListView = (ListView) findViewById(R.id.listView);
-                            mainListView.setAdapter(listAdapter1);
-                            Integer attributeCount1 = listAdapter1.getCount();
-                            if (attributeCount1 <= 0) {
-                                TextView txtheader1 = (TextView) findViewById(R.id.listEventTitle);
-                                txtheader1.setVisibility(View.GONE);
-                            } else {
-                                setListViewHeightBasedOnChildren(mainListView);
-                            } */
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                    }
-                });
-        //Creating request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        //Adding request to the queue
-        requestQueue.add(jsonArrayRequest);
+        new getJson().execute();
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
@@ -289,6 +191,141 @@ public class NewsSingleActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public class getJson extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(NewsSingleActivity.this, R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("در حال دریافت اطلاعات ...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
+
+            //Creating a json array request
+            JsonArrayRequest volleyRequest = new JsonArrayRequest(newsUrl,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            //VideoList videoSingle = new VideoList();
+                            Log.d(TAG, response.toString());
+                            JSONObject json = null;
+                            try {
+                                json = response.getJSONObject(0);
+
+                                // Set title
+                                setTitle(json.getString("title"));
+
+                                // Set info for layout
+                                thumbnail.setImageUrl(json.getString("largeUrl"), imageLoader);
+
+                                // Set info for layout
+                                //TextView textViewTitle = (TextView) findViewById(R.id.viewTitle);
+                                //textViewTitle.setText(json.getString("title"));
+
+                                //TextView textSubViewTitle = (TextView) findViewById(R.id.viewSubTitle);
+                                //textViewTitle.setText(json.getString("subtitle"));
+
+                            /* txtSummary = (TextView) findViewById(R.id.summary);
+                            if (!json.getString("text_summary").isEmpty()) {
+                                txtSummary.setText(json.getString("text_summary"));
+                            } else {
+                                txtSummary.setVisibility(View.GONE);
+                            } */
+
+                                txtSummary = (TextView) findViewById(R.id.summary);
+                                if (!json.getString("text_summary").isEmpty()) {
+                                    txtSummary.setText(json.getString("text_summary"));
+                                } else {
+                                    txtSummary.setVisibility(View.GONE);
+                                }
+
+                                txtDescription = (TextView) findViewById(R.id.description);
+                                if (!json.getString("text_description").isEmpty()) {
+                                    txtDescription.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
+                                } else {
+                                    txtDescription.setVisibility(View.GONE);
+                                }
+
+                            /* registerDetails = (TextView) findViewById(R.id.register_details);
+                            if (!json.getString("register_details").isEmpty()) {
+                                registerDetails.setText(Html.fromHtml(json.getString("text_description"), null, new MyTagHandler()));
+                            } else {
+                                registerDetails.setVisibility(View.GONE);
+                                TextView txtheaderRegister = (TextView) findViewById(R.id.register_details_title);
+                                txtheaderRegister.setVisibility(View.GONE);
+                            } */
+
+                                // Set item url
+                                itemUrl = json.getString("storyUrl");
+
+                                // Set item largeUrl
+                                largeUrl = json.getString("largeUrl");
+
+
+                            /* String[] attributes1 = new String[]{};
+                            ArrayList<String> attributesList1 = new ArrayList<String>();
+                            attributesList1.addAll(Arrays.asList(attributes1));
+                            listAdapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row_cafe_attributes, attributesList1);
+                            if (!json.getString("time_view").isEmpty()) {
+                                listAdapter1.add("زمان برگزاری : " + json.getString("time_view"));
+                            }
+                            if (!json.getString("organizer_name").isEmpty()) {
+                                listAdapter1.add("سازمان دهنده : " + json.getString("organizer_name"));
+                            }
+                            if (!json.getString("register_price_view").isEmpty()) {
+                                listAdapter1.add("هزینه ثبت نام  : " + json.getString("register_price_view"));
+                            }
+                            if (!json.getString("address").isEmpty()) {
+                                listAdapter1.add("آدرس : " + json.getString("address"));
+                                listAdapter1.add(" ");
+                            }
+                            mainListView = (ListView) findViewById(R.id.listView);
+                            mainListView.setAdapter(listAdapter1);
+                            Integer attributeCount1 = listAdapter1.getCount();
+                            if (attributeCount1 <= 0) {
+                                TextView txtheader1 = (TextView) findViewById(R.id.listEventTitle);
+                                txtheader1.setVisibility(View.GONE);
+                            } else {
+                                setListViewHeightBasedOnChildren(mainListView);
+                            } */
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        }
+                    });
+            //Creating request queue
+            RequestQueue requestQueue = Volley.newRequestQueue(NewsSingleActivity.this);
+
+            // Add retry policy
+            volleyRequest.setRetryPolicy(new DefaultRetryPolicy(5000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+            //Adding request to the queue
+            requestQueue.add(volleyRequest);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            }, 1000);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
