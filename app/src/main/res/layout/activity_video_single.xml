@@ -22,8 +22,6 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_share" />
 
-
-
         <ScrollView
             android:layout_width="match_parent"
             android:descendantFocusability="beforeDescendants"

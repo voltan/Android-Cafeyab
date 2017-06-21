@@ -105,12 +105,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"> -->
 
-                <RelativeLayout
+                <!-- <RelativeLayout
                     android:id="@+id/user_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,10 +144,11 @@
                         android:text="@string/user_register_login"
                         android:textSize="18sp" />
 
-                </RelativeLayout>
+                </RelativeLayout> -->
 
                 <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorGarry400"
@@ -156,7 +157,7 @@
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="1dp" />
 
-            </LinearLayout>
+            <!-- </LinearLayout> -->
 
             <!-- <LinearLayout
                 android:layout_width="match_parent"

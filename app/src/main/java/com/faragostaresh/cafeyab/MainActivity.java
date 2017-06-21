@@ -205,23 +205,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Set floating button
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Click action
-                    Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
-                    startActivity(intent);
-                }
-            });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Intent intent = new Intent(getApplicationContext(), MapListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Set main image
-            try {
-                ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-                Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            ImageView imageView = (ImageView) findViewById(R.id.backdrop);
+            Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         // Set list of main icons
@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
         new checkLogin().execute();
 
         // Set User bar
-        SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+        /* SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         String userCheck = settings.getString("user_check", "").toString();
         String userSessionId = settings.getString("user_sessionid", "").toString();
         String userUid = settings.getString("user_uid", "").toString();
@@ -387,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
     }
 
 
