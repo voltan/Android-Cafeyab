@@ -22,6 +22,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -74,6 +75,7 @@ public class VideoSingleActivity extends AppCompatActivity {
     Context context = this;
 
     public static String videoUrl = "";
+    public static String videoSourceUrl = "";
     public static String itemId = "";
     public static String itemTitle = "";
     public static String itemUrl = Config.URL_WEBSITE;
@@ -113,9 +115,10 @@ public class VideoSingleActivity extends AppCompatActivity {
         // Set title
         setTitle(itemTitle);
 
-        adapter = new VideoListAdapter(this, myVideoList, "related");
-
         new getJson().execute();
+
+        ScrollView mainScrollView = (ScrollView) findViewById(R.id.mainScrollView);
+        mainScrollView.smoothScrollTo(0, 0);
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
@@ -229,6 +232,9 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+
+            adapter = new VideoListAdapter(VideoSingleActivity.this, myVideoList, "related");
+
             //Creating a json array request
             JsonArrayRequest volleyRequest = new JsonArrayRequest(videoUrl,
                     new Response.Listener<JSONArray>() {
@@ -282,7 +288,7 @@ public class VideoSingleActivity extends AppCompatActivity {
 
 
 
-
+                                videoSourceUrl = json.getString("video_qmery_hls");
 
 
                                 /*
@@ -311,7 +317,7 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 simpleExoPlayerView.setPlayer(player);
 
 
-                                Uri mp4VideoUri = Uri.parse(json.getString("video_qmery_hls"));
+                                Uri mp4VideoUri = Uri.parse(videoSourceUrl);
 
                                 // Measures bandwidth during playback. Can be null if not required.
                                 DefaultBandwidthMeter bandwidthMeterA = new DefaultBandwidthMeter();
@@ -371,6 +377,16 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 });
                                 player.setPlayWhenReady(true);
 
+                                /* TextView viewFull = (TextView) findViewById(R.id.viewFull);
+                                viewFull.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(getApplicationContext(), VideoFullScreenActivity.class);
+                                        intent.putExtra("videoSourceUrl", videoSourceUrl);
+                                        intent.putExtra("itemTitle", itemTitle);
+                                        startActivity(intent);
+                                    }
+                                }); */
 
 
 

@@ -102,6 +102,10 @@
             android:label="@string/activity_video_single"
             android:parentActivityName=".VideoListActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".VideoFullScreenActivity"
+            android:label="@string/activity_video_single"
+            android:parentActivityName=".VideoListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MapListActivity"
             android:label="@string/activity_map_list"
