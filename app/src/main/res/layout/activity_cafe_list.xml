@@ -52,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:clipToPadding="false"
-                        android:numColumns="2" />
+                        android:numColumns="@integer/grid_column_count" />
 
                 </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 

@@ -11,10 +11,13 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.RelativeLayout;
@@ -300,6 +303,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /* searchBox = (EditText) findViewById(R.id.search);
+        searchBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    Intent intent = new Intent(getApplicationContext(), CafeListActivity.class);
+                    intent.putExtra("openSearchBox", 1);
+                    intent.putExtra("searchTitle", searchBox.getText().toString());
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        }); */
+
         //
         /* String urlCafe = Config.URL_CAFE_RECOMMENDED;
         Log.d(TAG, urlCafe);
@@ -358,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
         new checkLogin().execute();
 
         // Set User bar
-        /* SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+        SharedPreferences settings = getSharedPreferences("UserInfo", 0);
         String userCheck = settings.getString("user_check", "").toString();
         String userSessionId = settings.getString("user_sessionid", "").toString();
         String userUid = settings.getString("user_uid", "").toString();
@@ -387,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                 startActivity(intent);
             }
-        }); */
+        });
     }
 
 

@@ -19,16 +19,16 @@
 
     <!-- List image -->
     <dimen name="list_video_image_height">200dp</dimen>
-    <dimen name="list_cafe_image_height">100dp</dimen>
+    <dimen name="list_cafe_image_height">200dp</dimen>
     <dimen name="list_event_image_height">100dp</dimen>
     <dimen name="list_event_image_width">140dp</dimen>
 
     <!-- Item pages -->
-    <dimen name="video_player_height">240dp</dimen>
-    <dimen name="main_image_height">240dp</dimen>
+    <dimen name="video_player_height">320dp</dimen>
+    <dimen name="main_image_height">320dp</dimen>
 
 
-
+    <integer name="grid_column_count">1</integer>
 
 
     <dimen name="max_width">400dp</dimen>
@@ -38,8 +38,8 @@
     <dimen name="material_component_cards_space_between_cards">4dp</dimen>
     <dimen name="app_bar_elevation">4dp</dimen>
     <dimen name="floating_action_button_elevation">4dp</dimen>
-    <integer name="grid_column_count">2</integer>
-    <dimen name="expanded_toolbar_height">120dp</dimen>
+    <dimen name="expanded_toolbar_height">80dp</dimen>
+    <dimen name="expanded_toolbar_height_main">120dp</dimen>
     <dimen name="expanded_toolbar_title_margin_bottom">40dp</dimen>
     <dimen name="material_layout_keylines_screen_edge_margin">24dp</dimen>
     <dimen name="material_component_floating_action_button_margin">16dp</dimen>

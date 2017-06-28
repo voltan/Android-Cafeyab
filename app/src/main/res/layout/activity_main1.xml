@@ -20,6 +20,7 @@
             android:fitsSystemWindows="true"
             app:expandedTitleMargin="@dimen/activity_horizontal_margin"
             app:expandedTitleMarginBottom="@dimen/expanded_toolbar_title_margin_bottom"
+            app:layout_scrollFlags="scroll"
             app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
             app:toolbarId="@+id/toolbar">
 
@@ -44,7 +45,7 @@
                 <LinearLayout
                     android:id="@+id/meta_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/expanded_toolbar_height"
+                    android:layout_height="@dimen/expanded_toolbar_height_main"
                     android:layout_gravity="bottom"
                     android:background="#80000000"
                     android:elevation="@dimen/app_bar_elevation"
@@ -56,6 +57,7 @@
 
                     <TextView
                         android:id="@+id/search"
+                        android:drawableLeft="@drawable/ic_arrow_back"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_search"
@@ -65,6 +67,22 @@
                         android:text="@string/backdrop_search"
                         android:drawableRight="@drawable/ic_search"
                         android:textColor="@color/jet" />
+
+                    <!-- <EditText
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/activity_vertical_margin"
+                        android:background="@drawable/background_search"
+                        android:drawableLeft="@drawable/ic_arrow_back"
+                        android:drawableRight="@drawable/ic_search"
+                        android:gravity="center_vertical"
+                        android:hint="@string/backdrop_search"
+                        android:imeOptions="actionSearch"
+                        android:includeFontPadding="true"
+                        android:inputType="text"
+                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:textColor="@color/jet" /> -->
 
                     <!-- <TextView
                         android:id="@+id/viewTitle1"
@@ -93,7 +111,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/movie_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -110,7 +128,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"> -->
 
-                <!-- <RelativeLayout
+                <RelativeLayout
                     android:id="@+id/user_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,11 +162,10 @@
                         android:text="@string/user_register_login"
                         android:textSize="18sp" />
 
-                </RelativeLayout> -->
+                </RelativeLayout>
 
                 <com.faragostaresh.adaptor.MyGridView
                     android:id="@+id/gridview"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorGarry400"
@@ -174,7 +191,7 @@
             </LinearLayout> -->
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -183,7 +200,7 @@
         android:layout_margin="@dimen/material_component_floating_action_button_margin"
         android:clickable="true"
         android:contentDescription="@string/action_share"
-        android:src="@android:drawable/ic_dialog_map"
+        android:src="@drawable/ic_near_me"
         app:elevation="@dimen/floating_action_button_elevation"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />

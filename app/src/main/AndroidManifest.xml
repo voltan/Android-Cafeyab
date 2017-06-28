@@ -47,16 +47,16 @@
             android:name=".MainActivity"
             android:label=""
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/activity_about"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"  />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -68,7 +68,6 @@
         <activity
             android:name=".NewsListActivity"
             android:label="@string/activity_news_list"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NewsSingleActivity"
@@ -79,7 +78,6 @@
         <activity
             android:name=".EventListActivity"
             android:label="@string/activity_event_list"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".EventSingleActivity"
@@ -90,14 +88,14 @@
         <activity
             android:name=".VideoListActivity"
             android:label="@string/activity_video_list"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".VideoSingleActivity"
             android:label="@string/activity_video_single"
             android:parentActivityName=".VideoListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".VideoFullScreenActivity"
+        <activity
+            android:name=".VideoFullScreenActivity"
             android:label="@string/activity_video_single"
             android:parentActivityName=".VideoListActivity"
             android:screenOrientation="portrait" />

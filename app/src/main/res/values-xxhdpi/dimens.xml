@@ -7,10 +7,12 @@
 
     <!-- List image -->
     <dimen name="list_video_image_height">200dp</dimen>
-    <dimen name="list_cafe_image_height">100dp</dimen>
+    <dimen name="list_cafe_image_height">200dp</dimen>
 
     <!-- Video page -->
-    <dimen name="video_player_height">240dp</dimen>
-    <dimen name="main_image_height">240dp</dimen>
+    <dimen name="video_player_height">320dp</dimen>
+    <dimen name="main_image_height">320dp</dimen>
+
+    <integer name="grid_column_count">1</integer>
 
 </resources>
