@@ -148,28 +148,6 @@ public class MapListActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Saves the state of the map when the activity is paused.
      */
@@ -466,6 +444,15 @@ public class MapListActivity extends AppCompatActivity implements
                     .position(mDefaultLocation)
                     .title(getString(R.string.app_name))
                     .snippet(getString(R.string.app_name)));
+
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+
         }
     }
 

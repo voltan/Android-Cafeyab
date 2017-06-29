@@ -25,10 +25,10 @@
         <ScrollView
             android:id="@+id/mainScrollView"
             android:layout_width="match_parent"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="false"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,11 +104,18 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
-                <ListView
-                    android:id="@+id/videoRelatedlist"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
 
+                    <ListView
+                        android:id="@+id/videoRelatedlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

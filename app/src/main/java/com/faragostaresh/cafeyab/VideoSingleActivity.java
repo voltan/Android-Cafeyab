@@ -117,8 +117,14 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         new getJson().execute();
 
-        ScrollView mainScrollView = (ScrollView) findViewById(R.id.mainScrollView);
+        /* ScrollView mainScrollView = (ScrollView) findViewById(R.id.mainScrollView);
         mainScrollView.smoothScrollTo(0, 0);
+        mainScrollView.setEnabled(true);
+        mainScrollView.post(new Runnable() {
+            @Override public void run() {
+                mainScrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        }); */
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);

@@ -118,15 +118,15 @@
                 android:id="@+id/button_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:background="@color/colorAccent"
+                android:drawableLeft="@drawable/ic_arrow_back_w"
+                android:drawableRight="@drawable/ic_near_me"
                 android:gravity="center"
                 android:onClick="showMap"
                 android:paddingLeft="@dimen/cast_expanded_controller_control_button_margin"
                 android:paddingRight="@dimen/cast_expanded_controller_control_button_margin"
-                android:drawableLeft="@drawable/ic_arrow_back_w"
-                android:drawableRight="@drawable/ic_map"
                 android:text="@string/cafe_map"
                 android:textColor="@color/white" />
 
@@ -135,8 +135,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="12sp"
-                android:textColor="@color/textColor"
                 android:padding="@dimen/activity_vertical_margin"
+                android:textColor="@color/textColor"
                 android:textSize="15sp" />
 
             <TextView
@@ -223,10 +223,10 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:lineSpacingExtra="12sp"
-                android:textColor="@color/textColor"
-                android:padding="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:lineSpacingExtra="12sp"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textColor="@color/textColor"
                 android:textSize="15sp" />
 
         </LinearLayout>
