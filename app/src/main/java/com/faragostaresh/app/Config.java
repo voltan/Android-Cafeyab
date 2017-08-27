@@ -28,7 +28,7 @@ public class Config {
     public static final String TOKEN = "lovquDGv5iyOc8AHdMZ";
 
     // Set url
-    public static final String URL_APP_URL          = "https://play.google.com/store/apps/details?id=com.faragostaresh.orod";
+    public static final String URL_APP_URL          = "https://play.google.com/store/apps/details?id=com.faragostaresh.cafeyab";
     public static final String URL_FARAGOSTARESH    = "https://www.faragostaresh.com";
     public static final String URL_WEBSITE          = "https://www.cafeyab.com";
 

@@ -146,12 +146,12 @@
         \n- پایین آوردن هزینه‌های کیفی و تبلیغاتی کافه‌ها و برندها
         \n- آشنایی بیشتر مردم با هنر و مبانی اجتماعی مرتبط با کافه‌ها و قهوه
     </string>
-    <string name="about_text_version">نسخه نرم افزار : ۲،۰،۱</string>
+    <string name="about_text_version">نسخه نرم افزار : ۲،۰،۲</string>
     <string name="about_text_copyright">تمام حقوق مطالب برای وب سایت کافه یاب محفوظ است. استفاده از مطالب وب سایت و اپلیکشن فقط با ذکر منبع مجاز است.</string>
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
-    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
-    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="location_permission_denied">متاسفانه لوکیشن گوشی شما غیر فعال است. به مسیر زیر بروید و لوکیشن را فعال کنید : System Settings &gt; Location &gt; \'Cafeyab\'</string>
+    <string name="permission_required_toast">دسترسی به لوکیشن برای این نرم افزار الزامی است.</string>
 
 
 

@@ -7,8 +7,8 @@ android {
         applicationId "com.faragostaresh.cafeyab"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 13
-        versionName "2.0"
+        versionCode 15
+        versionName "2.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         jackOptions {
@@ -44,8 +44,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
 
     // Google map libs
-    compile 'com.google.android.gms:play-services-maps:11.0.1'
-    compile 'com.google.android.gms:play-services:11.0.1'
+    compile 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'com.google.android.gms:play-services:11.0.4'
 
     // Google  firebase
     compile 'com.google.firebase:firebase-core:10.0.1'

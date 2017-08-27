@@ -18,11 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -290,10 +288,6 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 playerWebView.loadUrl(json.getString("qmeryDirect")); */
 
 
-
-
-
-
                                 videoSourceUrl = json.getString("video_qmery_hls");
 
 
@@ -347,29 +341,28 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 player.prepare(loopingSource);
 
 
-
                                 player.addListener(new ExoPlayer.EventListener() {
                                     @Override
                                     public void onLoadingChanged(boolean isLoading) {
-                                        Log.v(TAG,"Listener-onLoadingChanged...");
+                                        Log.v(TAG, "Listener-onLoadingChanged...");
 
                                     }
 
                                     @Override
                                     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                                        Log.v(TAG,"Listener-onPlayerStateChanged...");
+                                        Log.v(TAG, "Listener-onPlayerStateChanged...");
 
                                     }
 
                                     @Override
                                     public void onTimelineChanged(Timeline timeline, Object manifest) {
-                                        Log.v(TAG,"Listener-onTimelineChanged...");
+                                        Log.v(TAG, "Listener-onTimelineChanged...");
 
                                     }
 
                                     @Override
                                     public void onPlayerError(ExoPlaybackException error) {
-                                        Log.v(TAG,"Listener-onPlayerError...");
+                                        Log.v(TAG, "Listener-onPlayerError...");
                                         player.stop();
                                         player.prepare(loopingSource);
                                         player.setPlayWhenReady(true);
@@ -377,7 +370,7 @@ public class VideoSingleActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onPositionDiscontinuity() {
-                                        Log.v(TAG,"Listener-onPositionDiscontinuity...");
+                                        Log.v(TAG, "Listener-onPositionDiscontinuity...");
 
                                     }
                                 });
@@ -393,11 +386,6 @@ public class VideoSingleActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 }); */
-
-
-
-
-
 
 
                                 Log.d(TAG, "videoRelated array: " + json.getJSONArray("videoRelated"));
@@ -558,32 +546,35 @@ public class VideoSingleActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.v(TAG,"onStop()...");
+        Log.v(TAG, "onStop()...");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.v(TAG,"onStart()...");
+        Log.v(TAG, "onStart()...");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v(TAG,"onResume()...");
+        Log.v(TAG, "onResume()...");
     }
 
     @Override
     protected void onPause() {
+        if (player != null) {
+            player.setPlayWhenReady(false);
+        }
+        Log.v(TAG, "onPause()...");
         super.onPause();
-        Log.v(TAG,"onPause()...");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(TAG,"onDestroy()...");
+        Log.v(TAG, "onDestroy()...");
         player.release();
 
     }

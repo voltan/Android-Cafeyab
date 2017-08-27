@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.faragostaresh.adaptor.PermissionUtils;
 import com.faragostaresh.app.CafeyabApplication;
 import com.faragostaresh.app.Config;
 import com.google.android.gms.common.ConnectionResult;
@@ -68,6 +69,10 @@ public class MapListActivity extends AppCompatActivity implements
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    private boolean mPermissionDenied = false;
 
     // The geographical location where the device is currently located.
     private Location mCurrentLocation;
@@ -329,7 +334,7 @@ public class MapListActivity extends AppCompatActivity implements
     /**
      * Handles the result of the request for location permissions.
      */
-    @Override
+    /* @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
@@ -344,6 +349,36 @@ public class MapListActivity extends AppCompatActivity implements
             }
         }
         updateLocationUI();
+    } */
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+            return;
+        }
+
+        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+                android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+            // Enable the my location layer if the permission has been granted.
+            enableMyLocation();
+        } else {
+            // Display the missing permission error dialog when the fragments resume.
+            mPermissionDenied = true;
+        }
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission to access the location is missing.
+            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION, true);
+        } else if (mMap != null) {
+            // Access to the location has been granted to the app.
+            mMap.setMyLocationEnabled(true);
+        }
     }
 
     /**
@@ -355,7 +390,7 @@ public class MapListActivity extends AppCompatActivity implements
             return;
         }
 
-        if (mLocationPermissionGranted) {
+        if (mLocationPermissionGranted && mCurrentLocation != null) {
 
             // appending offset to url
             String url = Config.URL_CAFE_MAPS + "&latitude=" + mCurrentLocation.getLatitude() + "&longitude=" + mCurrentLocation.getLongitude();
@@ -440,19 +475,8 @@ public class MapListActivity extends AppCompatActivity implements
 
 
         } else {
-            mMap.addMarker(new MarkerOptions()
-                    .position(mDefaultLocation)
-                    .title(getString(R.string.app_name))
-                    .snippet(getString(R.string.app_name)));
-
-            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                @Override
-                public void onInfoWindowClick(Marker marker) {
-                    finish();
-                    startActivity(getIntent());
-                }
-            });
-
+            showMissingPermissionError();
+            mPermissionDenied = false;
         }
     }
 
@@ -477,5 +501,23 @@ public class MapListActivity extends AppCompatActivity implements
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
         mMap.setTrafficEnabled(true);
+    }
+
+
+
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        if (mPermissionDenied) {
+            // Permission was not granted, display error dialog.
+            showMissingPermissionError();
+            mPermissionDenied = false;
+        }
+    }
+
+    private void showMissingPermissionError() {
+        PermissionUtils.PermissionDeniedDialog
+                .newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
 }
