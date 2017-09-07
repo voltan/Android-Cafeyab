@@ -2,8 +2,7 @@
     android:id="@+id/rowTextView"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/textColor"
+    android:textColor="@color/colorText"
     android:paddingTop="@dimen/pad_marg_16"
     android:paddingBottom="@dimen/pad_marg_16"
-    android:textSize="16sp" >
-</TextView>
+    android:textSize="16sp"></TextView>

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/colorBackground"
-    android:padding="@dimen/pad_marg_16" >
+    android:padding="@dimen/pad_marg_16">
 
     <com.faragostaresh.extra.SquareImageView
         android:id="@+id/picture"
@@ -21,6 +21,6 @@
         android:layout_gravity="bottom"
         android:gravity="center"
         android:textSize="12dp"
-        android:textColor="@color/colorGarry700"/>
+        android:textColor="@color/colorGarry700" />
 
 </LinearLayout>

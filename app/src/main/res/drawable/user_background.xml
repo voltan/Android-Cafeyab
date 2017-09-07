@@ -2,21 +2,18 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- The background image of Tokyo we will use -->
     <item android:height="1000dp">
-        <bitmap
-            android:src="@drawable/user_header" />
+        <bitmap android:src="@drawable/user_header" />
     </item>
 
     <!-- Create the gradient so that the this background starts of transparent
          and gradually fades to into background. This will make the picture look
          like it is gradually fading -->
     <item android:height="1000dp">
-        <shape
-            android:shape="rectangle">
+        <shape android:shape="rectangle">
             <gradient
                 android:angle="270"
                 android:startColor="@android:color/transparent"
-                android:endColor="@android:color/white">
-            </gradient>
+                android:endColor="@android:color/white"></gradient>
         </shape>
     </item>
 </layer-list>

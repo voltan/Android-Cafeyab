@@ -140,9 +140,9 @@ public class CafeListActivity extends AppCompatActivity {
                 .setFirstSelectedPosition(1)
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
-                .setActiveColor(R.color.iron)
-                .setInActiveColor(R.color.white)
-                .setBarBackgroundColor(R.color.colorPrimary)
+                .setActiveColor(R.color.colorAccent)
+                .setInActiveColor(R.color.colorGarry500)
+                .setBarBackgroundColor(R.color.colorGarry300)
                 .initialise();
 
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){

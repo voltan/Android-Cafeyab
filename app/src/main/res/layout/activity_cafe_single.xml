@@ -136,7 +136,7 @@
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="12sp"
                 android:padding="@dimen/pad_marg_16"
-                android:textColor="@color/textColor"
+                android:textColor="@color/colorText"
                 android:textSize="15sp" />
 
             <TextView
@@ -226,7 +226,7 @@
                 android:layout_marginBottom="@dimen/pad_marg_16"
                 android:lineSpacingExtra="12sp"
                 android:padding="@dimen/pad_marg_16"
-                android:textColor="@color/textColor"
+                android:textColor="@color/colorText"
                 android:textSize="15sp" />
 
         </LinearLayout>
