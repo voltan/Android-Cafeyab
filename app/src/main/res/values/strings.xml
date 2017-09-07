@@ -132,6 +132,7 @@
     <string name="user_profile_text">برای ویرایش اطلاعات خود یا تغییر آواتار ( عکس پروفایل ) به وب سایت کافه یاب مراجعه نمایید</string>
     <string name="user_register_login">ثبت نام / ورود به کافه‌یاب</string>
     <string name="user_register_login_text">با ثبت نام به طور کامل از امکانات کافه یاب استفاده کنید</string>
+    <string name="forget">یافتن کلمه عبور</string>
 
 
     <string name="about_text_1">کافه‌یاب نگاهیست نو به فرهنگ کافه‌نشینی در ایران، مرجعی برای یافتن یا معرفی و البته سهیم کردن یکدیگر در تجربه حضورمان در آنها...</string>
@@ -146,7 +147,7 @@
         \n- پایین آوردن هزینه‌های کیفی و تبلیغاتی کافه‌ها و برندها
         \n- آشنایی بیشتر مردم با هنر و مبانی اجتماعی مرتبط با کافه‌ها و قهوه
     </string>
-    <string name="about_text_version">نسخه نرم افزار : ۲،۰،۲</string>
+    <string name="about_text_version">نسخه نرم افزار : ۲،۰،۳</string>
     <string name="about_text_copyright">تمام حقوق مطالب برای وب سایت کافه یاب محفوظ است. استفاده از مطالب وب سایت و اپلیکشن فقط با ذکر منبع مجاز است.</string>
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>

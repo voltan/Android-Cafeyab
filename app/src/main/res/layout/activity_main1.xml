@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:expandedTitleMargin="@dimen/activity_horizontal_margin"
+            app:expandedTitleMargin="@dimen/pad_marg_16"
             app:expandedTitleMarginBottom="@dimen/expanded_toolbar_title_margin_bottom"
             app:layout_scrollFlags="scroll"
             app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
@@ -51,8 +51,8 @@
                     android:elevation="@dimen/app_bar_elevation"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/material_layout_keylines_screen_edge_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingLeft="@dimen/pad_marg_16"
+                    android:paddingRight="@dimen/pad_marg_16"
                     android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin">
 
                     <TextView
@@ -63,7 +63,7 @@
                         android:background="@drawable/background_search"
                         android:gravity="center_vertical"
                         android:includeFontPadding="true"
-                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:padding="@dimen/pad_marg_16"
                         android:text="@string/backdrop_search"
                         android:drawableRight="@drawable/ic_search"
                         android:textColor="@color/jet" />
@@ -72,7 +72,7 @@
                         android:id="@+id/search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/activity_vertical_margin"
+                        android:layout_margin="@dimen/pad_marg_16"
                         android:background="@drawable/background_search"
                         android:drawableLeft="@drawable/ic_arrow_back"
                         android:drawableRight="@drawable/ic_search"
@@ -81,7 +81,7 @@
                         android:imeOptions="actionSearch"
                         android:includeFontPadding="true"
                         android:inputType="text"
-                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:padding="@dimen/pad_marg_16"
                         android:textColor="@color/jet" /> -->
 
                     <!-- <TextView
@@ -101,7 +101,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:contentInsetStart="@dimen/activity_horizontal_margin"
+                app:contentInsetStart="@dimen/pad_marg_16"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -133,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_box"
-                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:layout_margin="@dimen/pad_marg_16"
                     android:padding="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -179,7 +179,7 @@
             <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_horizontal_list_height"
-                android:layout_margin="@dimen/activity_vertical_margin"
+                android:layout_margin="@dimen/pad_marg_16"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView

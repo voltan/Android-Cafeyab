@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button _loginButton = (Button) findViewById(R.id.btn_login);
         TextView _signupLink = (TextView) findViewById(R.id.link_signup);
+        TextView _forgetLink = (TextView) findViewById(R.id.link_forget);
         EditText _emailText = (EditText) findViewById(R.id.input_email);
         EditText _passwordText = (EditText) findViewById(R.id.input_password);
 
@@ -82,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
         //ButterKnife.bind(this);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 login();
@@ -90,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         _signupLink.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
@@ -101,7 +100,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        _forgetLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(Config.URL_FORGET));
+                startActivity(intent);
+            }
+        });
 
 
         /* forgetPassword.setOnClickListener(new View.OnClickListener() {

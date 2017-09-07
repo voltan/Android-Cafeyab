@@ -543,14 +543,6 @@ public class MainActivity extends AppCompatActivity {
                     String email = response.getString("email");
                     String name = response.getString("name");
                     String avatar = response.getString("avatar");
-                    String first_name = response.getString("first_name");
-                    String last_name = response.getString("last_name");
-                    String id_number = response.getString("id_number");
-                    String phone = response.getString("phone");
-                    String mobile = response.getString("mobile");
-                    String address1 = response.getString("address1");
-                    String zip_code = response.getString("zip_code");
-                    String company = response.getString("company");
 
                     // User info
                     SharedPreferences settings = getSharedPreferences("UserInfo", 0);
@@ -562,14 +554,26 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("user_email", email);
                     editor.putString("user_name", name);
                     editor.putString("user_avatar", avatar);
-                    editor.putString("user_first_name", first_name);
-                    editor.putString("user_last_name", last_name);
-                    editor.putString("user_id_number", id_number);
-                    editor.putString("user_phone", phone);
-                    editor.putString("user_mobile", mobile);
-                    editor.putString("user_address1", address1);
-                    editor.putString("user_zip_code", zip_code);
-                    editor.putString("user_company", company);
+
+                    if (check.equals(1)) {
+                        String first_name = response.getString("first_name");
+                        String last_name = response.getString("last_name");
+                        String id_number = response.getString("id_number");
+                        String phone = response.getString("phone");
+                        String mobile = response.getString("mobile");
+                        String address1 = response.getString("address1");
+                        String zip_code = response.getString("zip_code");
+                        String company = response.getString("company");
+
+                        editor.putString("user_first_name", first_name);
+                        editor.putString("user_last_name", last_name);
+                        editor.putString("user_id_number", id_number);
+                        editor.putString("user_phone", phone);
+                        editor.putString("user_mobile", mobile);
+                        editor.putString("user_address1", address1);
+                        editor.putString("user_zip_code", zip_code);
+                        editor.putString("user_company", company);
+                    }
 
                     editor.commit();
                 } catch (JSONException e) {

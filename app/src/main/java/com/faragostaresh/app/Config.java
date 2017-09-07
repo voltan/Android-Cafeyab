@@ -33,6 +33,7 @@ public class Config {
     public static final String URL_WEBSITE          = "https://www.cafeyab.com";
 
     public static final String URL_REGISTER         = URL_WEBSITE + "/user/register";
+    public static final String URL_FORGET           = URL_WEBSITE + "/user/password/find";
     public static final String URL_IMAGE_MAIN       = URL_WEBSITE + "/upload/app/android/cover.jpg";
     public static final String URL_APP_LOGO         = URL_WEBSITE + "/upload/app/android/logo.png";
 

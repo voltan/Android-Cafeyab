@@ -56,7 +56,7 @@
                 android:layout_below="@id/userEmail"
                 android:layout_centerHorizontal="true" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnLogout"
                 android:layout_width="110dp"
                 android:layout_height="40dp"
@@ -74,7 +74,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnWebsite"
                 android:layout_width="110dp"
                 android:layout_height="40dp"

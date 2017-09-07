@@ -23,7 +23,7 @@
             android:contentDescription="@string/action_share"
             android:src="@drawable/ic_share" />
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -34,10 +34,10 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/page_logo"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
                     android:layout_gravity="center"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingBottom="@dimen/pad_marg_16"
                     android:paddingTop="110dp"
                     android:src="@drawable/logo"
                     app:civ_border_color="@color/iron"
@@ -73,7 +73,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:lineSpacingExtra="12sp"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_1"
                     android:textSize="16sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:lineSpacingExtra="12sp"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_2"
                     android:textSize="16sp" />
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:lineSpacingExtra="12sp"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_3"
                     android:textSize="22sp" />
 
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:lineSpacingExtra="12sp"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_4"
                     android:textSize="16sp" />
 
@@ -115,7 +115,7 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:lineSpacingExtra="12sp"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_version"
                     android:textSize="14sp" />
 
@@ -135,16 +135,16 @@
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/pad_marg_16"
                     android:text="@string/about_text_copyright"
                     android:textSize="14sp" />
 
                 <TableLayout
                     android:id="@+id/faragostaresh"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/pad_marg_16"
                     android:layout_marginBottom="64dp"
                     android:paddingRight="@dimen/nav_header_vertical_spacing"
-                    android:paddingLeft="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/pad_marg_16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/pad_marg_all"
+                        android:layout_margin="@dimen/pad_marg_8"
                         android:orientation="vertical">
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -168,8 +168,8 @@
                             android:id="@+id/faragostareshCopyright"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/pad_marg_all"
-                            android:layout_marginRight="@dimen/pad_marg_all"
+                            android:layout_marginLeft="@dimen/pad_marg_8"
+                            android:layout_marginRight="@dimen/pad_marg_8"
                             android:text="@string/faragostareshCopyright"
                             android:textSize="16dp" />
 
@@ -177,6 +177,6 @@
                 </TableLayout>
 
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
     </FrameLayout>
 </LinearLayout>

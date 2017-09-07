@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/colorBackground"
-    android:padding="@dimen/activity_vertical_margin" >
+    android:padding="@dimen/pad_marg_16" >
 
     <com.faragostaresh.extra.SquareImageView
         android:id="@+id/picture"
         android:layout_width="@dimen/main_grid_icon"
         android:layout_height="@dimen/main_grid_icon"
-        android:layout_marginBottom="@dimen/pad_marg_all"
+        android:layout_marginBottom="@dimen/pad_marg_8"
         android:scaleType="centerCrop" />
 
     <TextView

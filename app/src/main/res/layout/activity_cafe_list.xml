@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:includeFontPadding="true"
-                        android:padding="@dimen/cast_expanded_controller_control_button_margin"
+                        android:padding="@dimen/pad_marg_16"
                         android:text="@string/backdrop_search"
                         android:drawableRight="@drawable/ic_search"
                         android:textColor="@color/jet" />
@@ -98,7 +98,7 @@
 
                 </LinearLayout>
 
-                <ScrollView
+                <android.support.v4.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -120,7 +120,7 @@
                                 android:id="@+id/filter_name"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:background="@drawable/background_field"
                                 android:ems="10"
@@ -131,7 +131,7 @@
                                 android:id="@+id/filter_city"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:gravity="left"
                                 android:padding="8dp" />
@@ -152,7 +152,7 @@
                                 android:id="@+id/filter_recommended"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_recommended" />
 
@@ -160,7 +160,7 @@
                                 android:id="@+id/filter_no_smoking"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_no_smoking" />
 
@@ -179,7 +179,7 @@
                                 android:id="@+id/filter_breakfast"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_breakfast" />
 
@@ -187,7 +187,7 @@
                                 android:id="@+id/filter_food"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_food" />
 
@@ -206,7 +206,7 @@
                                 android:id="@+id/filter_discount"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_discount" />
 
@@ -214,7 +214,7 @@
                                 android:id="@+id/filter_wifi"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_wifi" />
 
@@ -234,7 +234,7 @@
                                 android:id="@+id/filter_family"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_family" />
 
@@ -253,7 +253,7 @@
                                 android:id="@+id/filter_takea_way"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_takea_way" />
 
@@ -261,7 +261,7 @@
                                 android:id="@+id/filter_third_wave_coffee"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_third_wave_coffee" />
 
@@ -280,7 +280,7 @@
                                 android:id="@+id/filter_gallery"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_gallery" />
 
@@ -288,7 +288,7 @@
                                 android:id="@+id/filter_tv"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/activity_vertical_margin"
+                                android:layout_margin="@dimen/pad_marg_16"
                                 android:layout_weight="1"
                                 android:text="@string/filter_tv" />
 
@@ -299,18 +299,18 @@
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
 
-                        <Button
+                        <android.support.v7.widget.AppCompatButton
                             android:id="@+id/filter_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/activity_vertical_margin"
+                            android:layout_margin="@dimen/pad_marg_16"
                             android:background="@color/colorAccent"
                             android:text="@string/filter_button"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
 
-                </ScrollView>
+                </android.support.v4.widget.NestedScrollView>
 
             </LinearLayout>
         </com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -123,7 +123,7 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/activity_register"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LogoutActivity"

@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:expandedTitleMargin="@dimen/activity_horizontal_margin"
+            app:expandedTitleMargin="@dimen/pad_marg_16"
             app:expandedTitleMarginBottom="@dimen/expanded_toolbar_title_margin_bottom"
             app:expandedTitleTextAppearance="@style/ExpandedTitleTextAppearance"
             app:layout_scrollFlags="scroll"
@@ -52,8 +52,8 @@
                     android:elevation="@dimen/app_bar_elevation"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/material_layout_keylines_screen_edge_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingLeft="@dimen/pad_marg_16"
+                    android:paddingRight="@dimen/pad_marg_16"
                     android:paddingTop="@dimen/material_layout_keylines_screen_edge_margin">
 
                     <TextView
@@ -73,7 +73,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:contentInsetStart="@dimen/activity_horizontal_margin"
+                app:contentInsetStart="@dimen/pad_marg_16"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -93,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_margin="@dimen/pad_marg_16"
             android:orientation="vertical">
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:lineSpacingExtra="12sp"
-                android:padding="@dimen/activity_vertical_margin"
+                android:padding="@dimen/pad_marg_16"
                 android:text="@string/listEventTitle"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
@@ -112,9 +112,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"></ListView>
+                android:layout_marginBottom="@dimen/pad_marg_16"
+                android:paddingLeft="@dimen/pad_marg_16"
+                android:paddingRight="@dimen/pad_marg_16"></ListView>
 
             <TextView
                 android:id="@+id/summary"
@@ -122,7 +122,7 @@
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="12sp"
                 android:textColor="@color/textColor"
-                android:padding="@dimen/activity_vertical_margin"
+                android:padding="@dimen/pad_marg_16"
                 android:textSize="15sp" />
 
             <TextView
@@ -131,8 +131,8 @@
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="12sp"
                 android:textColor="@color/textColor"
-                android:padding="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:padding="@dimen/pad_marg_16"
+                android:layout_marginBottom="@dimen/pad_marg_16"
                 android:textSize="15sp" />
 
             <TextView
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:lineSpacingExtra="12sp"
-                android:padding="@dimen/activity_vertical_margin"
+                android:padding="@dimen/pad_marg_16"
                 android:text="@string/eventRegister"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
@@ -152,8 +152,8 @@
                 android:layout_height="match_parent"
                 android:lineSpacingExtra="12sp"
                 android:textColor="@color/textColor"
-                android:padding="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:padding="@dimen/pad_marg_16"
+                android:layout_marginBottom="@dimen/pad_marg_16"
                 android:textSize="15sp" />
 
         </LinearLayout>
