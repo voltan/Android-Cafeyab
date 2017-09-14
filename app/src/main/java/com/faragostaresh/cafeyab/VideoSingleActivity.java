@@ -67,6 +67,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * https://geoffledak.com/blog/2017/09/11/how-to-add-a-fullscreen-toggle-button-to-exoplayer-in-android/
+ */
 public class VideoSingleActivity extends AppCompatActivity {
 
     private static final String TAG = VideoSingleActivity.class.getSimpleName();
