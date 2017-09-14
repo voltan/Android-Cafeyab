@@ -616,7 +616,6 @@ public class VideoSingleActivity extends AppCompatActivity {
             initFullscreenDialog();
             initFullscreenButton();
 
-            //String streamUrl = "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8";
             String userAgent = Util.getUserAgent(VideoSingleActivity.this, getApplicationContext().getApplicationInfo().packageName);
             DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory(userAgent, null, DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS, DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS, true);
             DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(VideoSingleActivity.this, null, httpDataSourceFactory);
