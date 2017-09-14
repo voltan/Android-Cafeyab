@@ -35,13 +35,29 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                <!-- <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                     android:id="@+id/player_view"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/video_player_height"
                     android:layout_marginTop="0dp"
                     android:background="@color/black"
-                    android:paddingTop="0dp" />
+                    android:paddingTop="0dp" /> -->
+
+                <FrameLayout
+                    android:id="@+id/main_media_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/video_player_height"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/black"
+                    android:paddingTop="0dp">
+
+                    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                        android:id="@+id/exoplayer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center" />
+
+                </FrameLayout>
 
                 <!-- <TextView
                     android:id="@+id/viewFull"

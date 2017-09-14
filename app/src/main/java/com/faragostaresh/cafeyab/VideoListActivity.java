@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,9 +38,12 @@ import java.util.List;
 
 public class VideoListActivity extends AppCompatActivity {
 
+    private static final String TAG = VideoListActivity.class.getSimpleName();
+
     private FirebaseAnalytics mFirebaseAnalytics;
 
     public static String itemId;
+    public static String videoSourceUrl;
     public int page = 1;
     private List<ItemList> myVideoList = new ArrayList<ItemList>();
     private GridView gridView;
@@ -265,10 +269,14 @@ public class VideoListActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);
+
+                                        Log.d(TAG, "videoRelated array: " + jsonArray.getJSONObject(i));
+
                                         ItemList video = new ItemList();
                                         video.setTitle(obj.getString("title"));
                                         video.setItemID(obj.getString("id"));
                                         video.setThumbnailUrl(obj.getString("mediumUrl"));
+                                        video.setItemType(obj.getString("video_qmery_hls"));
                                         myVideoList.add(video);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -317,13 +325,15 @@ public class VideoListActivity extends AppCompatActivity {
                                 long id) {
             ItemList getselected = (ItemList) (gridView.getItemAtPosition(position));
             itemId = getselected.getItemId();
-            displayView(itemId);
+            videoSourceUrl = getselected.getItemType();
+            displayView(itemId, videoSourceUrl);
         }
 
-        private void displayView(String itemId) {
+        private void displayView(String itemId, String videoSourceUrl) {
             // Start New activity with a request to Show Selected News
             Intent intent = new Intent(getApplicationContext(), VideoSingleActivity.class);
             intent.putExtra("itemId", itemId);
+            intent.putExtra("videoSourceUrl", videoSourceUrl);
             startActivity(intent);
 
         }

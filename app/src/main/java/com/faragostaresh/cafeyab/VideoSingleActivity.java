@@ -1,16 +1,18 @@
 package com.faragostaresh.cafeyab;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
@@ -19,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,26 +38,25 @@ import com.faragostaresh.adaptor.MyTagHandler;
 import com.faragostaresh.adaptor.VideoListAdapter;
 import com.faragostaresh.app.Config;
 import com.faragostaresh.model.ItemList;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.LoopingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveVideoTrackSelection;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -88,9 +91,21 @@ public class VideoSingleActivity extends AppCompatActivity {
 
     public ProgressDialog progressDialog;
 
-    private SimpleExoPlayerView simpleExoPlayerView;
-    private SimpleExoPlayer player;
-    private ExoPlayer.EventListener exoPlayerEventListener;
+    private final String STATE_RESUME_WINDOW = "resumeWindow";
+    private final String STATE_RESUME_POSITION = "resumePosition";
+    private final String STATE_PLAYER_FULLSCREEN = "playerFullscreen";
+
+    private SimpleExoPlayerView mExoPlayerView;
+    private MediaSource mVideoSource;
+    private boolean mExoPlayerFullscreen = false;
+    private FrameLayout mFullScreenButton;
+    private ImageView mFullScreenIcon;
+    private Dialog mFullScreenDialog;
+
+    private int mResumeWindow;
+    private long mResumePosition;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,23 +121,22 @@ public class VideoSingleActivity extends AppCompatActivity {
         // Get search information
         Bundle extras = getIntent().getExtras();
         itemId = extras.getString("itemId");
+        videoSourceUrl = extras.getString("videoSourceUrl");
         videoUrl = Config.URL_VIDEO_SINGLE + itemId;
 
         Log.d(TAG, "Single item url : " + videoUrl);
+        Log.d(TAG, "Single video url : " + videoSourceUrl);
 
         // Set title
         setTitle(itemTitle);
 
         new getJson().execute();
 
-        /* ScrollView mainScrollView = (ScrollView) findViewById(R.id.mainScrollView);
-        mainScrollView.smoothScrollTo(0, 0);
-        mainScrollView.setEnabled(true);
-        mainScrollView.post(new Runnable() {
-            @Override public void run() {
-                mainScrollView.fullScroll(ScrollView.FOCUS_UP);
-            }
-        }); */
+        if (savedInstanceState != null) {
+            mResumeWindow = savedInstanceState.getInt(STATE_RESUME_WINDOW);
+            mResumePosition = savedInstanceState.getLong(STATE_RESUME_POSITION);
+            mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
+        }
 
         // Set shear bottom
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.share_fab);
@@ -228,10 +242,10 @@ public class VideoSingleActivity extends AppCompatActivity {
     public class getJson extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(VideoSingleActivity.this, R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("در حال دریافت اطلاعات ...");
-            progressDialog.show();
+            //progressDialog = new ProgressDialog(VideoSingleActivity.this, R.style.AppTheme_Dark_Dialog);
+            //progressDialog.setIndeterminate(true);
+            //progressDialog.setMessage("در حال دریافت اطلاعات ...");
+            //progressDialog.show();
         }
 
         @Override
@@ -277,18 +291,8 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 // Set item largeUrl
                                 largeUrl = json.getString("largeUrl");
 
-                                //qmeryDirect
-                                /* WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
-                                playerWebView.clearCache(true);
-                                playerWebView.clearHistory();
-                                playerWebView.getSettings().setJavaScriptEnabled(true);
-                                playerWebView.getSettings().setDomStorageEnabled(true);
-                                playerWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-                                playerWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);;
-                                playerWebView.loadUrl(json.getString("qmeryDirect")); */
-
-
-                                videoSourceUrl = json.getString("video_qmery_hls");
+                                // Set video url
+                                //videoSourceUrl = json.getString("video_qmery_hls");
 
 
                                 /*
@@ -296,10 +300,10 @@ public class VideoSingleActivity extends AppCompatActivity {
                                  */
 
                                 // 1. Create a default TrackSelector
-                                Handler mainHandler = new Handler();
+                                /* Handler mainHandler = new Handler();
                                 BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-                                TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
-                                TrackSelector trackSelector = new DefaultTrackSelector(mainHandler, videoTrackSelectionFactory);
+                                TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+                                TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
                                 // 2. Create a default LoadControl
                                 LoadControl loadControl = new DefaultLoadControl();
@@ -374,19 +378,7 @@ public class VideoSingleActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                player.setPlayWhenReady(true);
-
-                                /* TextView viewFull = (TextView) findViewById(R.id.viewFull);
-                                viewFull.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(getApplicationContext(), VideoFullScreenActivity.class);
-                                        intent.putExtra("videoSourceUrl", videoSourceUrl);
-                                        intent.putExtra("itemTitle", itemTitle);
-                                        startActivity(intent);
-                                    }
-                                }); */
-
+                                player.setPlayWhenReady(true); */
 
                                 Log.d(TAG, "videoRelated array: " + json.getJSONArray("videoRelated"));
 
@@ -399,6 +391,7 @@ public class VideoSingleActivity extends AppCompatActivity {
                                             video.setTitle(obj.getString("title"));
                                             video.setItemID(obj.getString("id"));
                                             video.setThumbnailUrl(obj.getString("mediumUrl"));
+                                            video.setItemType(obj.getString("video_qmery_hls"));
                                             myVideoList.add(video);
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -436,12 +429,12 @@ public class VideoSingleActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            new Handler().postDelayed(new Runnable() {
+            /* new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     progressDialog.dismiss();
                 }
-            }, 1000);
+            }, 1000); */
         }
     }
 
@@ -487,13 +480,15 @@ public class VideoSingleActivity extends AppCompatActivity {
                                 long id) {
             ItemList getselected = (ItemList) (listView.getItemAtPosition(position));
             itemId = getselected.getItemId();
-            displayView(itemId);
+            videoSourceUrl = getselected.getItemType();
+            displayView(itemId, videoSourceUrl);
         }
 
-        private void displayView(String itemId) {
+        private void displayView(String itemId, String videoSourceUrl) {
             // Start New activity with a request to Show Selected News
             Intent intent = new Intent(getApplicationContext(), VideoSingleActivity.class);
             intent.putExtra("itemId", itemId);
+            intent.putExtra("videoSourceUrl", videoSourceUrl);
             startActivity(intent);
 
         }
@@ -519,63 +514,141 @@ public class VideoSingleActivity extends AppCompatActivity {
         listView.requestLayout();
     }
 
-    /* @Override
-    public void onPause() {
-        super.onPause();
-        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
-        playerWebView.onPause();
-        playerWebView.pauseTimers();
-    }
+
+
+
+
+
 
     @Override
-    public void onResume() {
-        super.onResume();
-        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
-        playerWebView.resumeTimers();
-        playerWebView.onResume();
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt(STATE_RESUME_WINDOW, mResumeWindow);
+        outState.putLong(STATE_RESUME_POSITION, mResumePosition);
+        outState.putBoolean(STATE_PLAYER_FULLSCREEN, mExoPlayerFullscreen);
+
+        super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onDestroy() {
-        WebView playerWebView = (WebView) findViewById(R.id.playerWebView);
-        playerWebView.destroy();
-        playerWebView = null;
-        super.onDestroy();
-    } */
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.v(TAG, "onStop()...");
+    private void initFullscreenDialog() {
+
+        mFullScreenDialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
+            public void onBackPressed() {
+                if (mExoPlayerFullscreen)
+                    closeFullscreenDialog();
+                super.onBackPressed();
+            }
+        };
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.v(TAG, "onStart()...");
+
+    private void openFullscreenDialog() {
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
+        mFullScreenDialog.addContentView(mExoPlayerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mFullScreenIcon.setImageDrawable(ContextCompat.getDrawable(VideoSingleActivity.this, R.drawable.ic_fullscreen_skrink));
+        mExoPlayerFullscreen = true;
+        mFullScreenDialog.show();
+    }
+
+
+    private void closeFullscreenDialog() {
+
+        ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
+        ((FrameLayout) findViewById(R.id.main_media_frame)).addView(mExoPlayerView);
+        mExoPlayerFullscreen = false;
+        mFullScreenDialog.dismiss();
+        mFullScreenIcon.setImageDrawable(ContextCompat.getDrawable(VideoSingleActivity.this, R.drawable.ic_fullscreen_expand));
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
     }
+
+
+    private void initFullscreenButton() {
+
+        PlaybackControlView controlView = mExoPlayerView.findViewById(R.id.exo_controller);
+        mFullScreenIcon = controlView.findViewById(R.id.exo_fullscreen_icon);
+        mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
+        mFullScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mExoPlayerFullscreen)
+                    openFullscreenDialog();
+                else
+                    closeFullscreenDialog();
+            }
+        });
+    }
+
+
+    private void initExoPlayer() {
+
+        BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+        TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
+        LoadControl loadControl = new DefaultLoadControl();
+        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(this), trackSelector, loadControl);
+        mExoPlayerView.setPlayer(player);
+
+        boolean haveResumePosition = mResumeWindow != C.INDEX_UNSET;
+
+        if (haveResumePosition) {
+            mExoPlayerView.getPlayer().seekTo(mResumeWindow, mResumePosition);
+        }
+
+        mExoPlayerView.getPlayer().prepare(mVideoSource);
+        mExoPlayerView.getPlayer().setPlayWhenReady(true);
+    }
+
 
     @Override
     protected void onResume() {
+
         super.onResume();
-        Log.v(TAG, "onResume()...");
+
+        if (mExoPlayerView == null) {
+
+            mExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.exoplayer);
+            initFullscreenDialog();
+            initFullscreenButton();
+
+            //String streamUrl = "https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8";
+            String userAgent = Util.getUserAgent(VideoSingleActivity.this, getApplicationContext().getApplicationInfo().packageName);
+            DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory(userAgent, null, DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS, DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS, true);
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(VideoSingleActivity.this, null, httpDataSourceFactory);
+            Uri daUri = Uri.parse(videoSourceUrl);
+
+            mVideoSource = new HlsMediaSource(daUri, dataSourceFactory, 1, null, null);
+        }
+
+        initExoPlayer();
+
+        if (mExoPlayerFullscreen) {
+            ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
+            mFullScreenDialog.addContentView(mExoPlayerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            mFullScreenIcon.setImageDrawable(ContextCompat.getDrawable(VideoSingleActivity.this, R.drawable.ic_fullscreen_skrink));
+            mFullScreenDialog.show();
+        }
     }
+
 
     @Override
     protected void onPause() {
-        if (player != null) {
-            player.setPlayWhenReady(false);
-        }
-        Log.v(TAG, "onPause()...");
+
         super.onPause();
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.v(TAG, "onDestroy()...");
-        player.release();
+        mResumeWindow = mExoPlayerView.getPlayer().getCurrentWindowIndex();
+        mResumePosition = Math.max(0, mExoPlayerView.getPlayer().getContentPosition());
 
+        if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {
+            mExoPlayerView.getPlayer().release();
+        }
+
+        if (mFullScreenDialog != null)
+            mFullScreenDialog.dismiss();
     }
 }
