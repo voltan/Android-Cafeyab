@@ -31,6 +31,7 @@ import com.faragostaresh.adaptor.MainIconAdapter;
 import com.faragostaresh.adaptor.MyGridView;
 import com.faragostaresh.model.ItemList;
 import com.faragostaresh.model.HorizontalSectionModel;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONException;
@@ -44,6 +45,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import com.faragostaresh.app.Config;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-
+    public String deviceToken;
 
     TextView searchBox;
     ArrayList<HorizontalSectionModel> allSampleData;
@@ -113,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Set for support RTL
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        // Get device token
+        FirebaseApp.initializeApp(this);
+        deviceToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed token: " + deviceToken);
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -502,7 +509,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(Void... params) {
 
-            String str = Config.URL_PROFILE;
+            String str = Config.URL_PROFILE + "&deviceToken=" + deviceToken;
             Log.d(TAG, str);
             URLConnection urlConn = null;
             BufferedReader bufferedReader = null;
