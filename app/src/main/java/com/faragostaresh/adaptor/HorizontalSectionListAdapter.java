@@ -47,8 +47,8 @@ public class HorizontalSectionListAdapter extends RecyclerView.Adapter<Horizonta
 
         Glide.with(mContext)
                 .load(singleItem.getItemImage())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
+                //.centerCrop()
                 .into(holder.itemImage);
     }
 

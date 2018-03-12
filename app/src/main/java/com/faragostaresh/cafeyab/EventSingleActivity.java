@@ -213,7 +213,7 @@ public class EventSingleActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
+            final NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
 
             //Creating a json array request
             JsonArrayRequest volleyRequest = new JsonArrayRequest(eventUrl,

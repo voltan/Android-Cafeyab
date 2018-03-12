@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "588031332591",
+    "firebase_url": "https://cafeyab-project-90305.firebaseio.com",
+    "project_id": "cafeyab-project-90305",
+    "storage_bucket": "cafeyab-project-90305.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588031332591:android:7c825449ba406d68",
+        "android_client_info": {
+          "package_name": "com.faragostaresh.cafeyab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588031332591-fcnlg6j49e4jvcndkv25n1jrbit0p10s.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "588031332591-4s6elhguqetu482unb074cmjq71qtdfu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "588031332591-gdoc20jangnj6g2t7lorjcf9mt8oma0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faragostaresh.cafeyab",
+            "certificate_hash": "bd15fc4a662c350da6c9ef628a55eec2a01c7ffb"
+          }
+        },
+        {
+          "client_id": "588031332591-gqfqs1k628lobdfd60ap1p3m1qvqkpf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faragostaresh.cafeyab",
+            "certificate_hash": "20a5536984e30254f9d75c3f100b57e7c04de317"
+          }
+        },
+        {
+          "client_id": "588031332591-rk5alr5ekuuq1tkiu85vl92tul8vnm1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVctRPEW6EPD58Bqrceo7rfZZjIsGDk6g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588031332591-fcnlg6j49e4jvcndkv25n1jrbit0p10s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

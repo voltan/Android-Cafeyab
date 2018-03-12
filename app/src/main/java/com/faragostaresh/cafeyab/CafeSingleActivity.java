@@ -241,7 +241,7 @@ public class CafeSingleActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             //TextView viewTitle = (TextView) findViewById(R.id.viewTitle);
             //TextView viewCityArea = (TextView) findViewById(R.id.viewCityArea);
-            NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
+            final NetworkImageView thumbnail = (NetworkImageView) findViewById(R.id.photo);
 
             //Creating a json array request
             JsonArrayRequest volleyRequest = new JsonArrayRequest(cafeUrl,

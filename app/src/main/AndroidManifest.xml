@@ -58,7 +58,7 @@
             android:name=".CafeListActivity"
             android:label="@string/activity_cafe_list"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".CafeSingleActivity"
             android:label="@string/activity_cafe_single"

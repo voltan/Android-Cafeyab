@@ -59,7 +59,9 @@ public class UserActivity extends AppCompatActivity {
         try {
             userAvatar = userAvatar.replace("s=80", "s=600");
             CircleImageView imageView = (CircleImageView) findViewById(R.id.civProfilePic);
-            Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
+            Glide.with(this).load(userAvatar)
+                    //.skipMemoryCache(true)
+                    .into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }

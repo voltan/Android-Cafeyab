@@ -235,7 +235,9 @@ public class MainActivity extends AppCompatActivity {
         // Set main image
         try {
             ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-            Glide.with(this).load(Config.URL_IMAGE_MAIN).skipMemoryCache(true).into(imageView);
+            Glide.with(this).load(Config.URL_IMAGE_MAIN)
+                    //.skipMemoryCache(true)
+            .into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -407,7 +409,9 @@ public class MainActivity extends AppCompatActivity {
             //userEmailView.setText(userEmail);
             try {
                 userAvatar = userAvatar.replace("s=80", "s=400");
-                Glide.with(this).load(userAvatar).skipMemoryCache(true).into(imageView);
+                Glide.with(this).load(userAvatar)
+                        //.skipMemoryCache(true)
+                        .into(imageView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
